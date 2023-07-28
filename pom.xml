@@ -70,6 +70,7 @@
         <druid.version>1.2.18</druid.version>
         <fastjson.version>2.0.37</fastjson.version>
         <poi.version>5.2.3</poi.version>
+        <jackson.version>2.15.2</jackson.version>
     </properties>
     
     <dependencyManagement>
@@ -81,20 +82,21 @@
                 <version>${revision}</version>
             </dependency>
             <dependency>
-                <groupId>com.mylog.tools</groupId>
-                <artifactId>sdk-server</artifactId>
+                <groupId>com.dylan</groupId>
+                <artifactId>framework-ext</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
-                <groupId>com.mylog.tools</groupId>
-                <artifactId>utils-server</artifactId>
+                <groupId>com.dylan</groupId>
+                <artifactId>licence-api</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
-                <groupId>com.mylog.tools</groupId>
-                <artifactId>model-server</artifactId>
+                <groupId>com.dylan</groupId>
+                <artifactId>licence-server</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <!--      hibernate-validator      -->
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-validator</artifactId>
@@ -202,6 +204,23 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
                 <version>${es.version}</version>
+            </dependency>
+            <!--      jackson      -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.fasterxml.jackson.core</groupId>
+                        <artifactId>jackson-annotations</artifactId>
+                    </exclusion>
+                </exclusions>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

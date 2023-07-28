@@ -90,8 +90,8 @@
 
         <!--    引入自定义库    -->
         <dependency>
-            <groupId>com.mylog.tools</groupId>
-            <artifactId>utils-server</artifactId>
+            <groupId>com.dylan</groupId>
+            <artifactId>framework-ext</artifactId>
         </dependency>
     </dependencies>
 
