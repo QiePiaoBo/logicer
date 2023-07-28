@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dylan.licence.mapper.UserRoleMapper">
+<!--    <resultMap id="systemRoleMap" type="com.dylan.licence.entity.Role">-->
+<!--    </resultMap>-->
+
+    <sql id="TableField">
+        id, user_id, role_id, created_at, updated_at, del_flag
+    </sql>
+
+    <sql id="TableName">
+        `lgc_user_role`
+    </sql>
+
+    <select id="getRoleList4User" resultType="java.lang.Integer">
+        select
+            `role_id`
+        from
+            <include refid="TableName" />
+        where
+            `user_id` = #{userId}
+        and
+            `del_flag` = 0
+    </select>
+
+    <update id="logicalDeletionById">
+        update
+        <include refid="TableName" />
+        set
+        `del_flag` = 1
+        where
+        `id` = #{id}
+    </update>
+
+</mapper>

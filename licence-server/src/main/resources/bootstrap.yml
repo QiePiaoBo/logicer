@@ -1,0 +1,34 @@
+server:
+  port: ${common.port.licence}
+spring:
+  application:
+    name: cm-licence
+  profiles:
+    active: ${default-profile}
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      config:
+        server-addr: logicer.top:8848
+        namespace: ${config.namespace}
+        file-extension: yaml
+        refresh-enabled: true
+        enable-remote-sync-config: true
+        extension-configs:
+          - {dataId: common.yaml, group: 'DEFAULT_GROUP', refresh: true}
+          - {dataId: base_db.yaml, group: 'DEFAULT_GROUP', refresh: true}
+          - {dataId: redis.yaml, group: 'DEFAULT_GROUP', refresh: true}
+          - {data-id: rabbit.yaml, group: 'DEFAULT_GROUP', refresh: true}
+      discovery:
+        namespace: ${config.namespace}
+        server-addr: logicer.top:8848
+        ip: {ip: 127.0.0.1}
+  session:
+    store-type: redis
+mybatis-plus:
+  mapper-locations: classpath:mybatis/mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    call-setters-on-nulls: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

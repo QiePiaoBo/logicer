@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dylan.licence.mapper.RoleMapper">
+    <resultMap id="systemRoleMap" type="com.dylan.licence.entity.Role">
+    </resultMap>
+
+    <sql id="TableField">
+        id, role_code, role_name, pid, role_description, role_status, role_sort, created_at, updated_at, del_flag
+    </sql>
+
+    <sql id="TableName">
+        `lgc_role`
+    </sql>
+
+    <select id="selectRoleList" resultMap="systemRoleMap">
+        SELECT
+            <include refid="TableField" />
+        FROM
+            <include refid="TableName" />
+        limit #{myPage.startNo}, #{myPage.pageSize}
+    </select>
+
+    <select id="selectRoleTotal" resultType="java.lang.Long">
+        SELECT
+            count(*)
+        FROM
+            <include refid="TableName" />
+        WHERE
+            del_flag = 0
+    </select>
+
+    <select id="selectRoleListByIds" resultMap="systemRoleMap">
+        select
+            <include refid="TableField" />
+        from
+            <include refid="TableName" />
+        where
+            `id`
+        in
+            <foreach collection="ids" item="id" index="index" open="(" close=")" separator=",">
+                #{id}
+            </foreach>
+        and
+            `del_flag` = 0
+    </select>
+
+    <update id="logicalDeletionById">
+        update
+        <include refid="TableName" />
+        set
+        `del_flag` = 1
+        where
+        `id` = #{id}
+    </update>
+</mapper>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dylan.licence.mapper.UserInfoMapper">
+
+    <resultMap id="userInfoMap" type="com.dylan.licence.entity.UserInfo" />
+
+    <sql id="TableField">
+        id, user_id, real_name, gender, id_type, id_code, wechat_code, mail, del_flag, created_at, updated_at
+    </sql>
+
+    <sql id="TableName">
+        `lgc_user_info`
+    </sql>
+
+    <select id="selectUserInfoByUserId" resultMap="userInfoMap">
+        select
+            <include refid="TableField" />
+        from
+            <include refid="TableName" />
+        where
+            user_id = #{userId}
+        and del_flag = 0
+        limit 1
+    </select>
+
+    <select id="getPagedUserInfo" resultMap="userInfoMap">
+        SELECT
+        <include refid="TableField" />
+        FROM
+        <include refid="TableName" />
+        limit #{myPage.startNo}, #{myPage.pageSize}
+    </select>
+
+    <select id="selectUserInfoTotal" resultType="java.lang.Long">
+        SELECT
+        count(*)
+        FROM
+        <include refid="TableName" />
+        WHERE del_flag = 0
+    </select>
+
+
+    <update id="logicalDeletionById">
+        update
+        <include refid="TableName" />
+        set
+        `del_flag` = 1
+        where
+        `id` = #{id}
+    </update>
+</mapper>
