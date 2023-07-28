@@ -71,6 +71,7 @@
         <fastjson.version>2.0.37</fastjson.version>
         <poi.version>5.2.3</poi.version>
         <jackson.version>2.15.2</jackson.version>
+        <aspectjweaver.version>1.9.19</aspectjweaver.version>
     </properties>
     
     <dependencyManagement>
@@ -192,6 +193,12 @@
                 <groupId>org.apache.poi</groupId>
                 <artifactId>poi-ooxml</artifactId>
                 <version>${poi.version}</version>
+            </dependency>
+            <!--      aspectjweaver      -->
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectjweaver.version}</version>
             </dependency>
             <!--      Redisson      -->
             <dependency>
