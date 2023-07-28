@@ -1,17 +1,15 @@
 server:
-  port: ${common.port.licence}
+  port: ${port.licence}
 spring:
   application:
-    name: cm-licence
-  profiles:
-    active: ${default-profile}
+    name: ${application.name}
   main:
     allow-bean-definition-overriding: true
   cloud:
     nacos:
       config:
         server-addr: logicer.top:8848
-        namespace: ${config.namespace}
+        namespace: {config.namespace}
         file-extension: yaml
         refresh-enabled: true
         enable-remote-sync-config: true

@@ -31,7 +31,16 @@
             </activation>
             <properties>
                 <version.suffix>-SNAPSHOT</version.suffix>
+                <!--    当前环境    -->
+                <profile.name>dev</profile.name>
+                <!--    nacos配置中心地址    -->
+                <config.server-addr>logicer.top:8848</config.server-addr>
+                <!--    Nacos配置中心命名空间，用于支持多环境，必须用id，默认为空    -->
+                <config.namespace></config.namespace>
+                <!--    Nacos发现地址    -->
+                <discovery.server-addr>logicer.top:8848</discovery.server-addr>
             </properties>
+
         </profile>
         <!--    beta环境    -->
         <profile>
@@ -72,8 +81,9 @@
         <poi.version>5.2.3</poi.version>
         <jackson.version>2.15.2</jackson.version>
         <aspectjweaver.version>1.9.19</aspectjweaver.version>
+        <port.licence>9000</port.licence>
     </properties>
-    
+
     <dependencyManagement>
         <dependencies>
             <!--  自定义包  -->
