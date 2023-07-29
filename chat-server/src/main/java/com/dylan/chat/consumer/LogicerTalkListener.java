@@ -1,10 +1,10 @@
 package com.dylan.chat.consumer;
 
 import com.alibaba.nacos.shaded.com.google.common.collect.Queues;
-import com.dylan.chat.dal.mapper.MsgRecordMapper;
+import com.dylan.chat.mapper.MsgRecordMapper;
 import com.dylan.chat.model.MsgInsertModel;
 import com.dylan.chat.model.converter.MsgRecordConverter;
-import com.dylan.chat.service.SessionService;
+import com.dylan.chat.service.SessionServiceImpl;
 import com.dylan.framework.utils.Safes;
 import com.dylan.logicer.base.logger.MyLogger;
 import com.dylan.logicer.base.logger.MyLoggerFactory;
@@ -38,7 +38,7 @@ public class LogicerTalkListener {
     private final MyLogger logger = MyLoggerFactory.getLogger(LogicerTalkListener.class);
 
     @Resource
-    private SessionService sessionService;
+    private SessionServiceImpl sessionServiceImpl;
 
     @Resource
     private MsgRecordMapper msgRecordMapper;
@@ -100,7 +100,7 @@ public class LogicerTalkListener {
                                 .distinct()
                                 .collect(Collectors.toList());
                         // 根据所有的userName获取每个userName和Id的对应关系
-                        Map<String, Integer> userNameIds = sessionService.getUserNameIdMap(names);
+                        Map<String, Integer> userNameIds = sessionServiceImpl.getUserNameIdMap(names);
                         // 根据以上信息组装消息插入对象
                         List<MsgInsertModel> msgInsertModels = Safes.of(list)
                                 .stream()

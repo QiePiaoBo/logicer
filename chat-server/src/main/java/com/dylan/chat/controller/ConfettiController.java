@@ -4,8 +4,8 @@ package com.dylan.chat.controller;
 import com.dylan.chat.model.ConfettiInsertModel;
 import com.dylan.chat.model.ConfettiMergeModel;
 import com.dylan.chat.model.ConfettiQueryModel;
-import com.dylan.chat.service.ConfettiService;
-import com.dylan.chat.service.UserService;
+import com.dylan.chat.service.ConfettiServiceImpl;
+import com.dylan.chat.service.UserServiceImpl;
 import com.dylan.framework.model.result.HttpResult;
 import lombok.NonNull;
 import org.apache.ibatis.annotations.Param;
@@ -21,10 +21,10 @@ import javax.annotation.Resource;
 public class ConfettiController {
 
     @Resource
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
     @Resource
-    private ConfettiService confettiService;
+    private ConfettiServiceImpl confettiServiceImpl;
 
     /**
      * 添加或查询纸屑需要是登陆状态 第一步需要传入userName获取id
@@ -33,21 +33,21 @@ public class ConfettiController {
      */
     @RequestMapping(value = "get-voucher", method = RequestMethod.GET)
     public HttpResult getVoucherForUser(@Param("userName") @NonNull String userName){
-        return userService.getUserId(userName);
+        return userServiceImpl.getUserId(userName);
     }
 
     @RequestMapping(value = "get-confetti", method = RequestMethod.POST)
     public HttpResult getConfettiForUser(@RequestBody ConfettiQueryModel queryModel){
-        return confettiService.getConfettiForUser(queryModel);
+        return confettiServiceImpl.getConfettiForUser(queryModel);
     }
 
     @RequestMapping(value = "add-confetti", method = RequestMethod.POST)
     public HttpResult addConfettiForUser(@RequestBody ConfettiInsertModel insertModel){
-        return confettiService.addConfetti(insertModel);
+        return confettiServiceImpl.addConfetti(insertModel);
     }
 
     @RequestMapping(value = "merge-confetti", method = RequestMethod.POST)
     public HttpResult mergeConfettiForUser(@RequestBody ConfettiMergeModel model) {
-        return confettiService.mergeConfetti(model);
+        return confettiServiceImpl.mergeConfetti(model);
     }
 }

@@ -1,8 +1,8 @@
 package com.dylan.chat.config;
 
-import com.dylan.chat.dal.entity.TeamEntity;
-import com.dylan.chat.service.SessionService;
-import com.dylan.chat.service.TeamService;
+import com.dylan.chat.entity.TeamEntity;
+import com.dylan.chat.service.SessionServiceImpl;
+import com.dylan.chat.service.TeamServiceImpl;
 import com.dylan.logicer.base.logger.MyLogger;
 import com.dylan.logicer.base.logger.MyLoggerFactory;
 import org.apache.commons.lang3.StringUtils;
@@ -31,10 +31,10 @@ public class WebSocketInterceptor implements HandshakeInterceptor {
     private static final MyLogger logger = MyLoggerFactory.getLogger(WebSocketInterceptor.class);
 
     @Resource
-    private SessionService sessionService;
+    private SessionServiceImpl sessionServiceImpl;
 
     @Resource
-    private TeamService teamService;
+    private TeamServiceImpl teamServiceImpl;
 
     /**
      * 握手前
@@ -76,13 +76,13 @@ public class WebSocketInterceptor implements HandshakeInterceptor {
             if ("0".equals(msgAreaType)){
                 // 首先获取用户名Id映射(这里是作为Netty核心服务的客户端，所以要将用户名转Id的动作前置以保证Netty核心服务的处理速度)
                 // todo 完成客户端基本功能 将所有name转Id的动作前置以优化服务处理速度
-                Map<String, Integer> userNameIdMap = sessionService.getUserNameIdMap(Arrays.asList(fromUser, aimUserOrGroup));
+                Map<String, Integer> userNameIdMap = sessionServiceImpl.getUserNameIdMap(Arrays.asList(fromUser, aimUserOrGroup));
                 if (userNameIdMap.size() == 0){
                     logger.error("<beforeHandshake> error, error getting session of {} and {}", split[0], split[1]);
                     return false;
                 }
                 // 点对点消息 为发起用户和目的用户获取会话Id
-                sessionId = sessionService.getOrCreateSessionForUser(userNameIdMap.getOrDefault(fromUser,null),
+                sessionId = sessionServiceImpl.getOrCreateSessionForUser(userNameIdMap.getOrDefault(fromUser,null),
                         userNameIdMap.getOrDefault(aimUserOrGroup, null));
                 if (Objects.isNull(sessionId)){
                     logger.error("<beforeHandshake> error, error getting session of {} and {}", split[0], split[1]);
@@ -90,14 +90,14 @@ public class WebSocketInterceptor implements HandshakeInterceptor {
                 }
             } else if ("1".equals(msgAreaType)){
                 // 群消息 为发起用户和群获取会话Id
-                teamEntity = teamService.getTeamByTeamName(aimUserOrGroup);
+                teamEntity = teamServiceImpl.getTeamByTeamName(aimUserOrGroup);
                 if (Objects.isNull(teamEntity)){
                     logger.error("<beforeHandshake> error, error getting team of {} and {}", split[0], split[1]);
                     return false;
                 }
                 // 点对群消息 获取到群之后 目的群名改为目的群Id
                 aimUserOrGroup = teamEntity.getId() + "";
-                sessionId = sessionService.getOrCreateSessionForTeam(fromUser, teamEntity.getId());
+                sessionId = sessionServiceImpl.getOrCreateSessionForTeam(fromUser, teamEntity.getId());
                 if (Objects.isNull(sessionId)){
                     logger.error("<beforeHandshake> error, error getting session of {} and {}", split[0], split[1]);
                     return false;

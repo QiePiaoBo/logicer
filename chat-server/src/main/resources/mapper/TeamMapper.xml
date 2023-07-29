@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dylan.chat.dal.mapper.TeamMapper">
-    <resultMap id="teamMap" type="com.dylan.chat.dal.entity.TeamEntity">
+<mapper namespace="com.dylan.chat.mapper.TeamMapper">
+    <resultMap id="teamMap" type="com.dylan.chat.entity.TeamEntity">
     </resultMap>
 
     <sql id="Table_Fields">
@@ -12,7 +12,7 @@
         `lgc_talk_team`
     </sql>
 
-    <select id="getTeamByTeamName" resultType="com.dylan.chat.dal.entity.TeamEntity">
+    <select id="getTeamByTeamName" resultType="com.dylan.chat.entity.TeamEntity">
         select <include refid="Table_Fields" />
         from <include refid="Table_Name" />
         where team_name = #{teamName}

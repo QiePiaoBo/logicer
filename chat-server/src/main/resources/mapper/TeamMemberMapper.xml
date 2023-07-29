@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dylan.chat.dal.mapper.TeamMemberMapper">
-    <resultMap id="teamMemberMap" type="com.dylan.chat.dal.entity.TeamMemberEntity">
+<mapper namespace="com.dylan.chat.mapper.TeamMemberMapper">
+    <resultMap id="teamMemberMap" type="com.dylan.chat.entity.TeamMemberEntity">
     </resultMap>
 
     <sql id="Table_Fields">

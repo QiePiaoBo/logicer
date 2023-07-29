@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dylan.chat.dal.mapper.SessionMapper">
+<mapper namespace="com.dylan.chat.mapper.SessionMapper">
 
-    <resultMap type="com.dylan.chat.dal.entity.SessionEntity" id="sessionMap">
+    <resultMap type="com.dylan.chat.entity.SessionEntity" id="sessionMap">
         <result property="sessionId" column="session_id" jdbcType="INTEGER"/>
         <result property="senderId" column="sender_id" jdbcType="INTEGER"/>
         <result property="recipientId" column="recipient_id" jdbcType="INTEGER"/>
@@ -59,7 +59,7 @@
             <if test="talkTeamId != null">, #{talkTeamId}</if>
             )
     </insert>
-    <select id="querySessions" resultType="com.dylan.chat.dal.entity.SessionEntity">
+    <select id="querySessions" resultType="com.dylan.chat.entity.SessionEntity">
         select
         <include refid="Table_Fields"/>
         from
@@ -79,7 +79,7 @@
         </if>
     </select>
 
-    <select id="getSessionByUserName" resultType="com.dylan.chat.dal.entity.SessionEntity">
+    <select id="getSessionByUserName" resultType="com.dylan.chat.entity.SessionEntity">
         SELECT lgc_talk_session.session_id,lgc_talk_session.sender_id,lgc_talk_session.recipient_id,
                lgc_talk_session.talk_team_id,lgc_talk_session.created_at,lgc_talk_session.expiration_at,
                lgc_talk_session.del_flag
