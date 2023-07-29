@@ -1,5 +1,5 @@
 server:
-  port: @port.file@
+  port: @port.blog@
 spring:
   application:
     name: @application.name@
