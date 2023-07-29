@@ -19,6 +19,10 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.dylan</groupId>
+            <artifactId>framework-model</artifactId>
+        </dependency>
         <!--  七牛  -->
         <dependency>
             <groupId>com.qiniu</groupId>

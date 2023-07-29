@@ -19,6 +19,7 @@
         <module>licence-api</module>
         <module>licence-server</module>
         <module>framework-ext</module>
+        <module>framework-model</module>
     </modules>
 
     <profiles>
@@ -109,6 +110,11 @@
             <dependency>
                 <groupId>com.dylan</groupId>
                 <artifactId>framework-ext</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dylan</groupId>
+                <artifactId>framework-model</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
