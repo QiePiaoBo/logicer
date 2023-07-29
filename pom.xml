@@ -36,6 +36,7 @@
                 <!--    Nacos配置中心命名空间，用于支持多环境，必须用id，默认为空    -->
                 <config.namespace></config.namespace>
                 <service.ip>127.0.0.1</service.ip>
+                <logging.file.max-history>10</logging.file.max-history>
             </properties>
         </profile>
         <!--    beta环境    -->
@@ -49,6 +50,7 @@
                 <!--    Nacos配置中心命名空间，用于支持多环境，必须用id，默认为空    -->
                 <config.namespace>50da01a4-8c6a-46f8-9e87-ba293bb81ced</config.namespace>
                 <service.ip>127.0.0.1</service.ip>
+                <logging.file.max-history>10</logging.file.max-history>
             </properties>
         </profile>
         <!--    release环境    -->
@@ -62,6 +64,7 @@
                 <!--    Nacos配置中心命名空间，用于支持多环境，必须用id，默认为空    -->
                 <config.namespace>160099f3-c767-4419-9bd4-54167cef99c0</config.namespace>
                 <service.ip>127.0.0.1</service.ip>
+                <logging.file.max-history>10</logging.file.max-history>
             </properties>
         </profile>
     </profiles>
@@ -91,6 +94,7 @@
         <aspectjweaver.version>1.9.19</aspectjweaver.version>
         <spring-cloud-starter-bootstrap.version>4.0.3</spring-cloud-starter-bootstrap.version>
         <nacos-client.version>2.2.3</nacos-client.version>
+        <mybatis-plus-extension.version>3.5.3.1</mybatis-plus-extension.version>
         <port.licence>9000</port.licence>
     </properties>
 
@@ -133,12 +137,6 @@
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
                 <version>${spring-cloud-starter-alibaba-nacos-discovery.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.alibaba.nacos</groupId>
-                        <artifactId>nacos-client</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <dependency>
                 <groupId>com.alibaba.nacos</groupId>
@@ -179,6 +177,12 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-extension</artifactId>
+                <version>${mybatis-plus-extension.version}</version>
+                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>mysql</groupId>

@@ -38,3 +38,9 @@ mybatis-plus:
     map-underscore-to-camel-case: true
     call-setters-on-nulls: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  logback:
+    rollingpolicy:
+      max-history: 30
+  file:
+    path: /home/java/logs

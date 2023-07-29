@@ -9,8 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>licence-server</artifactId>
+    <name>licence-server</name>
     <properties>
-        <application.name>${artifactId}</application.name>
+        <application.name>${name}</application.name>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
@@ -31,7 +32,6 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
-
         <!-- mybatisPlus 核心库 -->
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -46,11 +46,6 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-        </dependency>
-        <!--    lombok    -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
         </dependency>
         <!-- //引入spring session-->
         <dependency>
@@ -71,22 +66,10 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.alibaba.nacos</groupId>
-            <artifactId>nacos-client</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-bootstrap</artifactId>-->
-<!--        </dependency>-->
         <!--    引入自定义库    -->
         <dependency>
             <groupId>com.dylan</groupId>
-            <artifactId>framework-ext</artifactId>
+            <artifactId>licence-api</artifactId>
         </dependency>
     </dependencies>
 

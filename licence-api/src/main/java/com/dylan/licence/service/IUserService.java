@@ -18,7 +18,7 @@ import org.springframework.cloud.openfeign.FeignClient;
  * @since 2020-05-24
  */
 @FeignClient(name = "${spring.application.name}")
-public interface IUserService extends IService<User> {
+public interface IUserService {
 
     /**
      * 获取用户列表

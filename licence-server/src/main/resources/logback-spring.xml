@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
     <!--  spring容器中的变量  -->
-    <springProperty scope="context" name="applicationName" source="spring.application.name" defaultValue="logicer-server" />
+    <springProperty scope="context" name="appName" source="spring.application.name" defaultValue="" />
     <!--  日志保留时长（天）  -->
-    <springProperty scope="context" name="maxHistory" source="logging.file.max-history" defaultValue="30" />
+    <springProperty scope="context" name="maxHistory" source="logging.logback.rollingpolicy.max-history" defaultValue="30" />
     <!--  日志文件路径  -->
-    <springProperty scope="context" name="logDir" source="logging.path" defaultValue="/home/logs/java/${applicationName}" />
+    <springProperty scope="context" name="logDir" source="logging.file.path" defaultValue="/home/java/logs" />
 
-    <contextName>${applicationName}</contextName>
+    <contextName>${appName}</contextName>
 
     <!--  彩色日志依赖的渲染类  -->
     <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
@@ -38,7 +38,7 @@
             </pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${logDir}/output_%d{yyyy-MM-dd'.log'}</fileNamePattern>
+            <fileNamePattern>${logDir}/${appName}/output_%d{yyyy-MM-dd'.log'}</fileNamePattern>
             <maxHistory>${maxHistory}</maxHistory>
             <totalSizeCap>15GB</totalSizeCap>
         </rollingPolicy>
@@ -48,6 +48,7 @@
 <!--    <springProfile name="dev|pre">-->
         <!--控制台和日志文件输出级别-->
         <root level="INFO">
+            <appender-ref ref="jsonFile"/>
             <appender-ref ref="console"/>
         </root>
 <!--    </springProfile>-->
