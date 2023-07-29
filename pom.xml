@@ -20,6 +20,8 @@
         <module>licence-server</module>
         <module>framework-ext</module>
         <module>framework-model</module>
+        <module>file-api</module>
+        <module>file-server</module>
     </modules>
 
     <profiles>
@@ -96,7 +98,11 @@
         <spring-cloud-starter-bootstrap.version>4.0.3</spring-cloud-starter-bootstrap.version>
         <nacos-client.version>2.2.3</nacos-client.version>
         <mybatis-plus-extension.version>3.5.3.1</mybatis-plus-extension.version>
+        <port.gateway>8888</port.gateway>
         <port.licence>9000</port.licence>
+        <port.file>9001</port.file>
+        <port.blog>9002</port.blog>
+        <port.chat>9003</port.chat>
     </properties>
 
     <dependencyManagement>
@@ -125,6 +131,16 @@
             <dependency>
                 <groupId>com.dylan</groupId>
                 <artifactId>licence-server</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dylan</groupId>
+                <artifactId>file-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dylan</groupId>
+                <artifactId>file-server</artifactId>
                 <version>${revision}</version>
             </dependency>
             <!--      hibernate-validator      -->
@@ -278,6 +294,8 @@
         </dependencies>
     </dependencyManagement>
     <build>
+        <!-- 打包名称 -->
+<!--        <finalName>${project.artifactId}-${revision}</finalName>-->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>

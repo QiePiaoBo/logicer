@@ -1,4 +1,4 @@
-package com.dylan.framework.filesdk;
+package com.dylan.file.filesdk;
 
 import com.qiniu.common.QiniuException;
 import com.qiniu.http.Response;

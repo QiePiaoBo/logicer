@@ -21,7 +21,7 @@ import java.util.Objects;
  */
 @RestControllerAdvice
 @ResponseBody
-public class MyExceptionHandler {
+class MyExceptionHandler {
 
     /**
      * 统一异常处理方法

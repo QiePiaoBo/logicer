@@ -13,7 +13,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
  * @author Dylan
  * @Description 用户及权限管理
  */
-@SpringBootApplication(scanBasePackages = {"com.dylan"})
+@SpringBootApplication(scanBasePackages = {"com.dylan.licence", "com.dylan.framework"})
 @EnableRedisHttpSession
 @EnableDiscoveryClient
 public class LicenceApplication {

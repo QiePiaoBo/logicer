@@ -8,8 +8,10 @@
         <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>licence-server</artifactId>
-    <name>licence-server</name>
+    <packaging>jar</packaging>
+    <artifactId>file-server</artifactId>
+    <name>file-server</name>
+
     <properties>
         <application.name>${name}</application.name>
         <maven.compiler.source>8</maven.compiler.source>
@@ -17,12 +19,25 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.dylan</groupId>
+            <artifactId>file-api</artifactId>
+        </dependency>
         <!--        引入springboot-starter-web-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!--        引入springboot-test-->
+        <!-- nacos配置 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!--    test    -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -32,6 +47,7 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+
         <!-- mybatisPlus 核心库 -->
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -47,34 +63,7 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
         </dependency>
-        <!-- //引入spring session-->
-        <dependency>
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session-data-redis</artifactId>
-        </dependency>
-        <!-- //引入redis-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-        <!-- nacos配置 -->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
-        <!--    引入自定义库    -->
-        <dependency>
-            <groupId>com.dylan</groupId>
-            <artifactId>licence-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.dylan</groupId>
-            <artifactId>framework-ext</artifactId>
-        </dependency>
+
     </dependencies>
 
 </project>
