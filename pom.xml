@@ -6,8 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.8.RELEASE</version>
-        <relativePath/>
+        <version>2.6.13</version>
     </parent>
     <groupId>com.dylan</groupId>
     <artifactId>logicer</artifactId>
@@ -25,35 +24,44 @@
     <profiles>
         <!--    test环境    -->
         <profile>
-            <id>test</id>
+            <id>dev</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
+                <profile-name>dev</profile-name>
                 <version.suffix>-SNAPSHOT</version.suffix>
                 <!--    当前环境    -->
                 <profile.name>dev</profile.name>
-                <!--    nacos配置中心地址    -->
-                <config.server-addr>logicer.top:8848</config.server-addr>
                 <!--    Nacos配置中心命名空间，用于支持多环境，必须用id，默认为空    -->
                 <config.namespace></config.namespace>
-                <!--    Nacos发现地址    -->
-                <discovery.server-addr>logicer.top:8848</discovery.server-addr>
+                <service.ip>127.0.0.1</service.ip>
             </properties>
-
         </profile>
         <!--    beta环境    -->
         <profile>
-            <id>beta</id>
+            <id>pre</id>
             <properties>
+                <profile-name>pre</profile-name>
                 <version.suffix>-BETA</version.suffix>
+                <!--    当前环境    -->
+                <profile.name>pre</profile.name>
+                <!--    Nacos配置中心命名空间，用于支持多环境，必须用id，默认为空    -->
+                <config.namespace>50da01a4-8c6a-46f8-9e87-ba293bb81ced</config.namespace>
+                <service.ip>127.0.0.1</service.ip>
             </properties>
         </profile>
         <!--    release环境    -->
         <profile>
             <id>release</id>
             <properties>
+                <profile-name>release</profile-name>
                 <version.suffix>-RELEASE</version.suffix>
+                <!--    当前环境    -->
+                <profile.name>release</profile.name>
+                <!--    Nacos配置中心命名空间，用于支持多环境，必须用id，默认为空    -->
+                <config.namespace>160099f3-c767-4419-9bd4-54167cef99c0</config.namespace>
+                <service.ip>127.0.0.1</service.ip>
             </properties>
         </profile>
     </profiles>
@@ -65,11 +73,11 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring.boot.version>2.3.8.RELEASE</spring.boot.version>
-        <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
-        <spring-cloud-alibaba.version>2.2.0.RELEASE</spring-cloud-alibaba.version>
-        <spring-cloud-starter-alibaba-nacos-config.version>2.2.3.RELEASE</spring-cloud-starter-alibaba-nacos-config.version>
-        <spring-cloud-starter-alibaba-nacos-discovery.version>2.2.3.RELEASE</spring-cloud-starter-alibaba-nacos-discovery.version>
+        <spring-boot.version>2.6.13</spring-boot.version>
+        <spring-cloud.version>2021.0.5</spring-cloud.version>
+        <spring-cloud-alibaba.version>2021.0.5.0</spring-cloud-alibaba.version>
+        <spring-cloud-starter-alibaba-nacos-config.version>2021.1</spring-cloud-starter-alibaba-nacos-config.version>
+        <spring-cloud-starter-alibaba-nacos-discovery.version>2021.1</spring-cloud-starter-alibaba-nacos-discovery.version>
         <servlet-api.version>3.0-alpha-1</servlet-api.version>
         <javax-el-api.version>3.0.1-b06</javax-el-api.version>
         <spring-cloud-starter-openfeign.version>4.0.4</spring-cloud-starter-openfeign.version>
@@ -81,6 +89,8 @@
         <poi.version>5.2.3</poi.version>
         <jackson.version>2.15.2</jackson.version>
         <aspectjweaver.version>1.9.19</aspectjweaver.version>
+        <spring-cloud-starter-bootstrap.version>4.0.3</spring-cloud-starter-bootstrap.version>
+        <nacos-client.version>2.2.3</nacos-client.version>
         <port.licence>9000</port.licence>
     </properties>
 
@@ -123,6 +133,22 @@
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
                 <version>${spring-cloud-starter-alibaba-nacos-discovery.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.alibaba.nacos</groupId>
+                        <artifactId>nacos-client</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.nacos</groupId>
+                <artifactId>nacos-client</artifactId>
+                <version>${nacos-client.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-bootstrap</artifactId>
+                <version>${spring-cloud-starter-bootstrap.version}</version>
             </dependency>
             <!--    fastJson    -->
             <dependency>
@@ -242,47 +268,12 @@
         </dependencies>
     </dependencyManagement>
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven-compiler-plugin.version}</version>
-                    <configuration>
-                        <encoding>UTF-8</encoding>
-                        <source>1.8</source>
-                        <target>1.8</target>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>3.2.1</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>3.2.0</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>${spring.boot.version}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>repackage</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-assembly-plugin</artifactId>
-                    <version>2.6</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

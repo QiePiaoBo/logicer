@@ -45,15 +45,15 @@
     </appender>
 
     <!--  开发环境和测试环境，日志输出到控制台  -->
-    <springProfile name="dev|test">
+<!--    <springProfile name="dev|pre">-->
         <!--控制台和日志文件输出级别-->
         <root level="INFO">
             <appender-ref ref="console"/>
         </root>
-    </springProfile>
+<!--    </springProfile>-->
 
-    <!--  所有环境 日志都以json的格式输出到文件  -->
-    <root level="INFO">
-        <appender-ref ref="jsonFile"/>
-    </root>
+<!--    &lt;!&ndash;  所有环境 日志都以json的格式输出到文件  &ndash;&gt;-->
+<!--    <root level="INFO">-->
+<!--        <appender-ref ref="jsonFile"/>-->
+<!--    </root>-->
 </configuration>

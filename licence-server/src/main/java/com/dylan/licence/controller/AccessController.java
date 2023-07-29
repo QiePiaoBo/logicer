@@ -29,6 +29,11 @@ public class AccessController {
     @Resource
     private IAccessService accessService;
 
+    @GetMapping("test")
+    public String getTest() {
+        return "Hello World.";
+    }
+
     /**
      * 分页获取access
      * @param page
