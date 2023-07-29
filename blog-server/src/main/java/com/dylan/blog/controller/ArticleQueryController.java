@@ -1,6 +1,6 @@
 package com.dylan.blog.controller;
 
-import com.dylan.blog.entity.dto.ArticleDto;
+import com.dylan.blog.dto.ArticleDto;
 import com.dylan.blog.service.impl.ArticleQueryService;
 import com.dylan.framework.model.result.DataResult;
 import com.dylan.logicer.base.logger.MyLogger;

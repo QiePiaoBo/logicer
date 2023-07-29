@@ -1,6 +1,6 @@
 package com.dylan.blog.controller;
 
-import com.dylan.blog.service.UserService;
+import com.dylan.blog.service.impl.UserService;
 import com.dylan.framework.annos.AdminPermission;
 import com.dylan.framework.model.info.Message;
 import com.dylan.framework.model.info.Status;

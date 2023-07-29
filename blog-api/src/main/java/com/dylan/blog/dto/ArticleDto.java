@@ -1,4 +1,4 @@
-package com.dylan.blog.entity.dto;
+package com.dylan.blog.dto;
 
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;

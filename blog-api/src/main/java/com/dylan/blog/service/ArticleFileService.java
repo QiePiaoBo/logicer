@@ -1,7 +1,7 @@
 package com.dylan.blog.service;
 
 
-import com.dylan.blog.entity.dto.ArticleDto;
+import com.dylan.blog.dto.ArticleDto;
 import com.dylan.framework.model.result.DataResult;
 
 /**

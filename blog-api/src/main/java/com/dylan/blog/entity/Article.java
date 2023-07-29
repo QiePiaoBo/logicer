@@ -1,8 +1,5 @@
 package com.dylan.blog.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -15,13 +12,11 @@ import java.util.Date;
  * @since 2020-06-14 20:24:19
  */
 @Data
-@TableName("article")
 public class Article implements Serializable {
     private static final long serialVersionUID = -66199659751436277L;
     /**
     * 文章主键
     */
-    @TableId(type = IdType.AUTO)
     private Integer id;
     /**
     * 文章名

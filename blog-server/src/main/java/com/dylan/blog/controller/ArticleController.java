@@ -2,7 +2,7 @@ package com.dylan.blog.controller;
 
 
 import com.dylan.blog.entity.Article;
-import com.dylan.blog.entity.dto.ArticleDto;
+import com.dylan.blog.dto.ArticleDto;
 import com.dylan.blog.service.ArticleFileService;
 import com.dylan.blog.service.ArticleService;
 import com.dylan.framework.annos.AdminPermission;

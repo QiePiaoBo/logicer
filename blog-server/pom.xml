@@ -19,6 +19,10 @@
     <dependencies>
         <dependency>
             <groupId>com.dylan</groupId>
+            <artifactId>blog-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.dylan</groupId>
             <artifactId>file-api</artifactId>
         </dependency>
         <dependency>
@@ -80,12 +84,6 @@
             <groupId>org.redisson</groupId>
             <artifactId>redisson</artifactId>
         </dependency>
-        <!--    es    -->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>-->
-<!--        </dependency>-->
-
         <!--        引入springboot-test-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

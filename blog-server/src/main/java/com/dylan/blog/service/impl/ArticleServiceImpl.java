@@ -7,7 +7,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.dylan.blog.entity.Article;
 import com.dylan.blog.mapper.ArticleMapper;
 import com.dylan.blog.service.ArticleService;
-import com.dylan.blog.service.UserService;
 import com.dylan.framework.model.info.Message;
 import com.dylan.framework.model.info.Status;
 import com.dylan.framework.model.result.DataResult;
