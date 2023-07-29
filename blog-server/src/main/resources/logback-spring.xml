@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <!--  spring容器中的变量  -->
+    <springProperty scope="context" name="appName" source="spring.application.name" defaultValue="" />
+    <!--  日志保留时长（天）  -->
+    <springProperty scope="context" name="maxHistory" source="logging.logback.rollingpolicy.max-history" defaultValue="30" />
+    <!--  日志文件路径  -->
+    <springProperty scope="context" name="logDir" source="logging.file.path" defaultValue="/home/java/logs" />
+
+    <contextName>${appName}</contextName>
+
+    <!--  彩色日志依赖的渲染类  -->
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+    <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
+    <!--  将文本中的 " 修改为 \" 打印json格式的时候会用到 在需要输出文本的地方使用这里定义的 %strmsg 而不是 %message -->
+    <conversionRule conversionWord="strmsg" converterClass="com.dylan.framework.logconverter.LogJsonConverter" />
+
+    <!--  彩色日志格式  -->
+    <property name="CONSOLE_LOG_PATH"
+              value="%clr(%d{yyyy-MM-dd HH:mm:ss:SSS}){faint} %clr(%5p) %clr(${PID:-- }) %clr(---){faint} %clr([%t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wex" />
+    <!--  普通日志格式  -->
+    <property name="FILE_LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:-- } --- [%t] %-40.40logger{39} : %m%n%wex"/>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${CONSOLE_LOG_PATH}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="jsonFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--See http://logback.qos.ch/manual/appenders.html#RollingFileAppender -->
+        <!--and http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy -->
+        <!--for further documentation -->
+        <encoder>
+            <pattern>
+                {"timestamp": "%date{"yyyy-MM-dd HH:mm:ss:SSS"}","app": "${applicationName}","level": "%level","pid": "${PID:-}","thread": "%thread","class": "%logger","method": "%method","line": "%line","strmsg": "%strmsg","statck_trace":"%xEx"}\n
+            </pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logDir}/${appName}/output_%d{yyyy-MM-dd'.log'}</fileNamePattern>
+            <maxHistory>${maxHistory}</maxHistory>
+            <totalSizeCap>15GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <!--  开发环境和测试环境，日志输出到控制台  -->
+    <!--    <springProfile name="dev|pre">-->
+    <!--控制台和日志文件输出级别-->
+    <root level="INFO">
+        <appender-ref ref="jsonFile"/>
+        <appender-ref ref="console"/>
+    </root>
+    <!--    </springProfile>-->
+
+    <!--    &lt;!&ndash;  所有环境 日志都以json的格式输出到文件  &ndash;&gt;-->
+    <!--    <root level="INFO">-->
+    <!--        <appender-ref ref="jsonFile"/>-->
+    <!--    </root>-->
+</configuration>

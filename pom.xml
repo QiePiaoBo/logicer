@@ -22,6 +22,8 @@
         <module>framework-model</module>
         <module>file-api</module>
         <module>file-server</module>
+        <module>blog-api</module>
+        <module>blog-server</module>
     </modules>
 
     <profiles>
@@ -141,6 +143,16 @@
             <dependency>
                 <groupId>com.dylan</groupId>
                 <artifactId>file-server</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dylan</groupId>
+                <artifactId>blog-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dylan</groupId>
+                <artifactId>blog-server</artifactId>
                 <version>${revision}</version>
             </dependency>
             <!--      hibernate-validator      -->
