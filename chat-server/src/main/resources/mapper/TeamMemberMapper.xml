@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dylan.chat.dal.mapper.TeamMemberMapper">
+    <resultMap id="teamMemberMap" type="com.dylan.chat.dal.entity.TeamMemberEntity">
+    </resultMap>
+
+    <sql id="Table_Fields">
+        id, user_id, user_type, team_id, created_at, updated_at, del_flag
+    </sql>
+
+    <sql id="Table_Name">
+        `lgc_talk_team_member`
+    </sql>
+
+</mapper>

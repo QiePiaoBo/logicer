@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dylan.chat.dal.mapper.MsgRecordMapper">
+
+    <resultMap type="com.dylan.chat.dal.entity.MsgRecordEntity" id="msgRecordMap">
+        <result property="msgId" column="msg_id" jdbcType="BIGINT"/>
+        <result property="sessionId" column="session_id" jdbcType="INTEGER"/>
+        <result property="msgType" column="msg_type" jdbcType="INTEGER"/>
+        <result property="msgAreaType" column="msg_area_type" jdbcType="INTEGER"/>
+        <result property="fromId" column="from_id" jdbcType="INTEGER"/>
+        <result property="toId" column="to_id" jdbcType="INTEGER"/>
+        <result property="msgContent" column="msg_content" jdbcType="VARCHAR"/>
+        <result property="msgHash" column="msg_hash" jdbcType="VARCHAR"/>
+        <result property="msgTimestamp" column="msg_timestamp" jdbcType="VARCHAR"/>
+        <result property="delFlag" column="del_flag" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Table_Fields">
+        msg_id
+        ,session_id,msg_type,msg_area_type,from_id,to_id,msg_content,msg_hash,msg_timestamp,del_flag
+    </sql>
+
+    <sql id="Table_Name">
+        lgc_talk_msg_record
+    </sql>
+
+    <select id="queryMsgRecords" resultType="com.dylan.chat.dal.entity.MsgRecordEntity">
+        select
+        <include refid="Table_Fields"/>
+        from
+        <include refid="Table_Name"/>
+        <if test="partition != null and partition != ''">
+            PARTITION (${partition})
+        </if>
+        where del_flag = 0 and msg_type = 1
+        <if test="fromId != null">
+            and `from_id` = #{fromId}
+        </if>
+        <if test="msgAreaType != null">
+            and `msg_area_type` = #{msgAreaType}
+        </if>
+        <if test="sessionId != null">
+            and `session_id` = #{sessionId}
+        </if>
+        <if test="toId != null">
+            and `to_id` = #{toId}
+        </if>
+    </select>
+
+    <insert id="batchInsertMsgRecord" parameterType="java.util.List">
+        <choose>
+            <when test="list != null and list.size > 0">
+                <foreach collection="list" item="item" index="index" separator=";">
+                    INSERT INTO
+                    <include refid="Table_Name"/>(
+                    del_flag
+                    <if test="item.sessionId != null">, session_id</if>
+                    <if test="item.fromId != null">, from_id</if>
+                    <if test="item.toId != null">, to_id</if>
+                    <if test="item.msgType != null">, msg_type</if>
+                    <if test="item.msgAreaType != null">, msg_area_type</if>
+                    <if test="item.msgContent != null">, msg_content</if>
+                    <if test="item.msgHash != null">, msg_hash</if>
+                    )
+                    VALUES (
+                    0
+                    <if test="item.sessionId != null">, #{item.sessionId}</if>
+                    <if test="item.msgType != null">, #{item.msgType}</if>
+                    <if test="item.msgAreaType != null">, #{item.msgAreaType}</if>
+                    <if test="item.fromId != null">, #{item.fromId}</if>
+                    <if test="item.toId != null">, #{item.toId}</if>
+                    <if test="item.msgContent != null">, #{item.msgContent}</if>
+                    <if test="item.msgHash != null">, #{item.msgHash}</if>
+                    )
+                </foreach>
+            </when>
+            <otherwise>
+                select 1 = 1;
+            </otherwise>
+        </choose>
+
+    </insert>
+
+</mapper>

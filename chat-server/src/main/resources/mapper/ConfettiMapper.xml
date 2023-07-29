@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dylan.chat.dal.mapper.ConfettiMapper">
+    <resultMap id="confettiMap" type="com.dylan.chat.dal.entity.ConfettiEntity">
+    </resultMap>
+
+    <sql id="Table_Fields">
+        id
+        , user_id, title, content, created_at, updated_at, del_flag
+    </sql>
+
+    <sql id="Table_Name">
+        `lgc_confetti`
+    </sql>
+
+    <insert id="addConfetti" parameterType="com.dylan.chat.model.ConfettiInsertModel" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO
+        <include refid="Table_Name"/>(
+        del_flag
+        <if test="userId != null">, user_id</if>
+        <if test="title != null">, title</if>
+        <if test="content != null">, content</if>
+        )
+        VALUES (
+        0
+        <if test="userId != null">, #{userId}</if>
+        <if test="title != null">, #{title}</if>
+        <if test="content != null">, #{content}</if>
+        )
+    </insert>
+
+    <insert id="addOrUpdateConfettiBatch" parameterType="java.util.List">
+        <choose>
+            <when test="confettiList!=null and confettiList.size > 0">
+                INSERT into <include refid="Table_Name"/> (id, user_id, title, content, del_flag)
+                VALUES
+                <foreach collection="confettiList" item="item" separator=",">
+                    (#{item.id}, #{item.userId}, #{item.title}, #{item.content}, #{item.delFlag})
+                </foreach>
+                ON DUPLICATE KEY UPDATE
+                user_id = VALUES(user_id),
+                title = VALUES(title),
+                content = VALUES(content),
+                created_at = VALUES(created_at),
+                updated_at = VALUES(updated_at),
+                del_flag = VALUES(del_flag)
+            </when>
+            <otherwise>
+                select 1 = 2
+            </otherwise>
+        </choose>
+    </insert>
+
+    <select id="getConfettiForUser" resultMap="confettiMap">
+        select * from
+        <include refid="Table_Name"/>
+        where `del_flag` = 0
+        <if test="queryModel.id != null">
+            and `id` = #{queryModel.id}
+        </if>
+        <if test="queryModel.userId != null">
+            and `user_id` = #{queryModel.userId}
+        </if>
+        <if test="queryModel.title != null">
+            and `title` like CONCAT('%', #{queryModel.title}, '%')
+        </if>
+    </select>
+
+    <select id="getConfettiOfIds" resultMap="confettiMap">
+        select * from
+        <include refid="Table_Name"/>
+        where `del_flag` = 0
+        <choose>
+            <when test="ids != null and ids.size > 0">
+                and `id` in
+                <foreach collection="ids" item="id" open="(" close=")" separator="," index="index">
+                    #{id}
+                </foreach>
+            </when>
+            <otherwise>
+                1=2
+            </otherwise>
+        </choose>
+    </select>
+
+</mapper>

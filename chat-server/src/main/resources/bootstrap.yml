@@ -1,0 +1,46 @@
+server:
+  port: @port.chat@
+spring:
+  application:
+    name: @application.name@
+  profiles:
+    active: @profile-name@
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      config:
+        server-addr: logicer.top:8848
+        namespace: @config.namespace@
+        file-extension: yaml
+        refresh-enabled: true
+        enable-remote-sync-config: true
+        extension-configs:
+          - {dataId: common.yaml, group: 'DEFAULT_GROUP', refresh: true}
+          - {dataId: base_db.yaml, group: 'DEFAULT_GROUP', refresh: true}
+          - {dataId: redis.yaml, group: 'DEFAULT_GROUP', refresh: true}
+          - {data-id: rabbit.yaml, group: 'DEFAULT_GROUP', refresh: true}
+        username: nacos
+        password: 19970413
+        context-path: /nacos
+      discovery:
+        server-addr: logicer.top:8848
+        username: nacos
+        password: 19970413
+        service: @application.name@
+        namespace: @config.namespace@
+        ip: 127.0.0.1
+  session:
+    store-type: redis
+mybatis-plus:
+  mapper-locations: classpath:mybatis/mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    call-setters-on-nulls: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  logback:
+    rollingpolicy:
+      max-history: 30
+  file:
+    path: /home/java/logs

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dylan.chat.dal.mapper.SessionMapper">
+
+    <resultMap type="com.dylan.chat.dal.entity.SessionEntity" id="sessionMap">
+        <result property="sessionId" column="session_id" jdbcType="INTEGER"/>
+        <result property="senderId" column="sender_id" jdbcType="INTEGER"/>
+        <result property="recipientId" column="recipient_id" jdbcType="INTEGER"/>
+        <result property="talkTeamId" column="talk_team_id" jdbcType="INTEGER"/>
+        <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+        <result property="expirationAt" column="expiration_at" jdbcType="TIMESTAMP"/>
+        <result property="delFlag" column="del_flag" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Table_Fields">
+        session_id,sender_id,recipient_id,talk_team_id,created_at,expiration_at,del_flag
+    </sql>
+
+    <sql id="Table_Name">
+        lgc_talk_session
+    </sql>
+
+    <insert id="batchInsertSession" parameterType="java.util.List">
+        <choose>
+            <when test="list != null and list.size > 0">
+                <foreach collection="list" item="item" index="index" separator=";">
+                    INSERT INTO
+                    <include refid="Table_Name"/>(
+                    del_flag
+                    <if test="item.senderId != null">, sender_id</if>
+                    <if test="item.recipientId != null">, recipient_id</if>
+                    <if test="item.talkTeamId != null">, talk_team_id</if>
+                    )
+                    VALUES (
+                    0
+                    <if test="item.senderId != null">, #{item.senderId}</if>
+                    <if test="item.recipientId != null">, #{item.recipientId}</if>
+                    <if test="item.talkTeamId != null">, #{item.talkTeamId}</if>
+                    )
+                </foreach>
+            </when>
+            <otherwise>
+                select 1 = 1;
+            </otherwise>
+        </choose>
+    </insert>
+    <insert id="insertSession" parameterType="com.dylan.chat.model.SessionInsertModel" useGeneratedKeys="true" keyProperty="sessionId">
+            INSERT INTO
+            <include refid="Table_Name"/>(
+            del_flag
+            <if test="senderId != null">, sender_id</if>
+            <if test="recipientId != null">, recipient_id</if>
+            <if test="talkTeamId != null">, talk_team_id</if>
+            )
+            VALUES (
+            0
+            <if test="senderId != null">, #{senderId}</if>
+            <if test="recipientId != null">, #{recipientId}</if>
+            <if test="talkTeamId != null">, #{talkTeamId}</if>
+            )
+    </insert>
+    <select id="querySessions" resultType="com.dylan.chat.dal.entity.SessionEntity">
+        select
+        <include refid="Table_Fields"/>
+        from
+        <include refid="Table_Name"/>
+        where del_flag = 0
+        <if test="sessionId != null">
+            and `session_id` = #{sessionId}
+        </if>
+        <if test="senderId != null">
+            and `sender_id` = #{senderId}
+        </if>
+        <if test="recipientId != null">
+            and `recipient_id` = #{recipientId}
+        </if>
+        <if test="talkTeamId != null">
+            and `talk_team_id` = #{talkTeamId}
+        </if>
+    </select>
+
+    <select id="getSessionByUserName" resultType="com.dylan.chat.dal.entity.SessionEntity">
+        SELECT lgc_talk_session.session_id,lgc_talk_session.sender_id,lgc_talk_session.recipient_id,
+               lgc_talk_session.talk_team_id,lgc_talk_session.created_at,lgc_talk_session.expiration_at,
+               lgc_talk_session.del_flag
+        FROM  <include refid="Table_Name"/>
+                 JOIN lgc_user AS sender ON lgc_talk_session.sender_id = sender.id
+                 JOIN lgc_user AS receiver ON lgc_talk_session.recipient_id = receiver.id
+        WHERE sender.user_name = #{userName} AND receiver.user_name = #{talkWith} AND lgc_talk_session.del_flag = 0
+    </select>
+
+</mapper>

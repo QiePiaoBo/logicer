@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dylan.chat.dal.mapper.BlacklistMapper">
+    <resultMap id="blacklistMap" type="com.dylan.chat.dal.entity.BlacklistEntity">
+    </resultMap>
+
+    <sql id="Table_Fields">
+        id, block_user_id, blocked_user_id, block_reason, created_at, expiration_at, del_flag
+    </sql>
+
+    <sql id="Table_Name">
+        `lgc_talk_blacklist`
+    </sql>
+
+    <insert id="addBlacklist" parameterType="com.dylan.chat.model.BlacklistInsertModel" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+        <include refid="Table_Name"/>(
+        del_flag
+        <if test="blockUserId != null">, block_user_id</if>
+        <if test="blockedUserId != null">, blocked_user_id</if>
+        <if test="blockReason != null">, block_reason</if>
+        )
+        VALUES (
+        0
+        <if test="blockUserId != null">, #{blockUserId}</if>
+        <if test="blockedUserId != null">, #{blockedUserId}</if>
+        <if test="blockReason != null">, #{blockReason}</if>
+        )
+    </insert>
+
+</mapper>

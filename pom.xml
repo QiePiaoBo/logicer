@@ -24,6 +24,8 @@
         <module>file-server</module>
         <module>blog-api</module>
         <module>blog-server</module>
+        <module>chat-api</module>
+        <module>chat-server</module>
     </modules>
 
     <profiles>
@@ -154,6 +156,16 @@
             <dependency>
                 <groupId>com.dylan</groupId>
                 <artifactId>blog-server</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dylan</groupId>
+                <artifactId>chat-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dylan</groupId>
+                <artifactId>chat-server</artifactId>
                 <version>${revision}</version>
             </dependency>
             <!--  七牛  -->
