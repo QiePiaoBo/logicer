@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dylan.blog.mapper.ArticleMapper">
+
+    <resultMap type="com.dylan.blog.entity.Article" id="ArticleMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="fileName" column="file_name" jdbcType="VARCHAR"/>
+        <result property="subTitle" column="sub_title" jdbcType="VARCHAR"/>
+        <result property="description" column="description" jdbcType="VARCHAR"/>
+        <result property="fileType" column="file_type" jdbcType="VARCHAR"/>
+        <result property="filePath" column="file_path" jdbcType="VARCHAR"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="isDel" column="is_del" jdbcType="VARCHAR"/>
+        <result property="isLock" column="is_lock" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ArticleMap">
+        select
+          *
+        from article
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ArticleMap">
+        select
+          id, file_name, sub_title, description, file_type, file_path, user_id, create_time, is_del, is_lock
+        from article
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ArticleMap">
+        select
+          id, file_name, sub_title, description, file_type, file_path, user_id, create_time, is_del, is_lock
+        from article
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="fileName != null and fileName != ''">
+                and file_name = #{fileName}
+            </if>
+            <if test="subTitle != null and subTitle != ''">
+                and sub_title = #{subTitle}
+            </if>
+            <if test="description != null and description != ''">
+                and description = #{description}
+            </if>
+            <if test="fileType != null and fileType != ''">
+                and file_type = #{fileType}
+            </if>
+            <if test="filePath != null and filePath != ''">
+                and file_path = #{filePath}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="isDel != null and isDel != ''">
+                and is_del = #{isDel}
+            </if>
+            <if test="isLock != null and isLock != ''">
+                and is_lock = #{isLock}
+            </if>
+        </where>
+    </select>
+
+    <!--  查询某用户发布作品的天数  -->
+    <select id="queryWithCreateTime" resultType="java.util.Date">
+        select create_time from article where user_id = #{id} and is_del = 0 and is_lock = 0
+    </select>
+
+    <select id="queryArticlesInOneDay" resultMap="ArticleMap">
+        select id, file_name, sub_title, description, file_type, file_path, user_id, create_time, is_del, is_lock
+         from article where date_format(create_time,'%Y-%m-%d') = #{createTime} and user_id = #{authorId}
+    </select>
+
+    <insert id="saveSelective" parameterType="com.mylog.business.blog.entity.Article" useGeneratedKeys="true" keyProperty="id">
+        insert into
+            `article`(file_name, sub_title, description, file_type,
+                      file_path, user_id, create_time, is_lock)
+        values
+            (#{fileName}, #{subTitle}, #{description}, #{fileType}, #{filePath}, #{userId}, #{createTime}, #{isLock})
+    </insert>
+
+
+</mapper>

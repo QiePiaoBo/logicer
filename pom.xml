@@ -326,13 +326,20 @@
     </dependencyManagement>
     <build>
         <!-- 打包名称 -->
-<!--        <finalName>${project.artifactId}-${revision}</finalName>-->
+        <finalName>${project.artifactId}-${revision}</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>
+        <!--    单测使用主工程的资源    -->
+        <testResources>
+            <testResource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -1,6 +1,7 @@
 package com.dylan.licence.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.dylan.framework.model.entity.Person;
@@ -250,5 +251,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             e.fillInStackTrace();
         }
         return DataResult.getBuilder().data(person).build();
+    }
+
+    @Override
+    public HttpResult getUserNameId(List<String> userNames) {
+        if (CollectionUtils.isEmpty(userNames)){
+            return DataResult.fail().data("Error, empty param found").build();
+        }
+        return DataResult.getBuilder().data(userMapper.getUserNameId(userNames)).build();
     }
 }

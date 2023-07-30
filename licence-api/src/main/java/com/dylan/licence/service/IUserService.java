@@ -8,6 +8,8 @@ import com.dylan.licence.entity.User;
 import com.dylan.licence.model.dto.UserDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 
+import java.util.List;
+
 
 /**
  * <p>
@@ -73,4 +75,11 @@ public interface IUserService {
      * @return
      */
     HttpResult getCurrentUser();
+
+    /**
+     * 根据用户名获取用户名Id映射
+     * @param userNames
+     * @return
+     */
+    HttpResult getUserNameId(List<String> userNames);
 }

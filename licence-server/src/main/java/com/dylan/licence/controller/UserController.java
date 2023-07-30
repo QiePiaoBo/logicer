@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * @author Dylan
@@ -134,4 +135,10 @@ public class UserController {
     public HttpResult checkHavePermission(@Param("uri") String url){
         return userAccessService.hasPermission(url);
     }
+
+    @GetMapping("test")
+    public HttpResult test() {
+        return userService.getUserNameId(Arrays.asList("dylan", "lucifer"));
+    }
+
 }

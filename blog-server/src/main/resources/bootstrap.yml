@@ -33,7 +33,7 @@ spring:
   session:
     store-type: redis
 mybatis-plus:
-  mapper-locations: classpath:mybatis/mapper/*Mapper.xml
+  mapper-locations: classpath:mapper/*Mapper.xml
   configuration:
     map-underscore-to-camel-case: true
     call-setters-on-nulls: true
