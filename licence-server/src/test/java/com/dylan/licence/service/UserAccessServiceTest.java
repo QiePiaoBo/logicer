@@ -20,7 +20,7 @@ import javax.annotation.Resource;
 public class UserAccessServiceTest {
 
     @Resource
-    private IUserAccessService userAccessService;
+    private UserAccessService userAccessService;
 
     @Test
     public void test1(){

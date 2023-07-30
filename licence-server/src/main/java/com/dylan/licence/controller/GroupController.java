@@ -3,7 +3,7 @@ package com.dylan.licence.controller;
 import com.dylan.framework.model.page.MyPage;
 import com.dylan.framework.model.result.HttpResult;
 import com.dylan.licence.model.dto.GroupDTO;
-import com.dylan.licence.service.IGroupService;
+import com.dylan.licence.service.GroupService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +26,7 @@ import javax.annotation.Resource;
 public class GroupController {
 
     @Resource
-    private IGroupService groupService;
+    private GroupService groupService;
 
     /**
      * 分页获取用户组

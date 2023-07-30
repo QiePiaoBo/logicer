@@ -12,7 +12,7 @@ import java.util.List;
  * @Description IRoleService
  * @Date 5/9/2022 11:25 AM
  */
-public interface IRoleService {
+public interface RoleService {
 
     /**
      * 分页查询角色列表

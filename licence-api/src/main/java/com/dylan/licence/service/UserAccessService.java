@@ -7,7 +7,7 @@ import com.dylan.framework.model.result.HttpResult;
  * @Description IUserAccessService
  * @Date 5/11/2022 2:28 PM
  */
-public interface IUserAccessService {
+public interface UserAccessService {
 
     /**
      * 根据用户id获取其所拥有的权限

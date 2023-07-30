@@ -4,7 +4,7 @@ package com.dylan.licence.controller;
 import com.dylan.framework.model.result.DataResult;
 import com.dylan.framework.model.result.HttpResult;
 import com.dylan.licence.model.dto.UserInfoDTO;
-import com.dylan.licence.service.IUserInfoService;
+import com.dylan.licence.service.UserInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +27,7 @@ import java.util.Objects;
 public class UserInfoController {
 
     @Resource
-    private IUserInfoService userInfoService;
+    private UserInfoService userInfoService;
 
     /**
      * 根据userId查询该用户的信息

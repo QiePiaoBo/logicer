@@ -11,7 +11,7 @@ import com.dylan.licence.entity.Access;
 import com.dylan.licence.mapper.RoleAccessMapper;
 import com.dylan.licence.mapper.UserMapper;
 import com.dylan.licence.model.vo.AccessVO;
-import com.dylan.licence.service.IUserAccessService;
+import com.dylan.licence.service.UserAccessService;
 import com.dylan.licence.transformer.AccessTransformer;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
  * @Date 5/11/2022 2:29 PM
  */
 @Service
-public class UserAccessServiceImpl implements IUserAccessService {
+public class UserAccessServiceImpl implements UserAccessService {
 
     @Resource
     private RoleAccessMapper roleAccessMapper;

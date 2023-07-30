@@ -8,7 +8,7 @@ import com.dylan.framework.model.result.HttpResult;
  * @Description TODO
  * @Date 5/11/2022 9:39 AM
  */
-public interface IRoleAccessService {
+public interface RoleAccessService {
 
     /**
      * 根据角色id获取权限列表

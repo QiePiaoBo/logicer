@@ -4,7 +4,7 @@ package com.dylan.licence.controller;
 import com.dylan.framework.annos.AdminPermission;
 import com.dylan.framework.model.result.HttpResult;
 import com.dylan.licence.model.dto.UserDTO;
-import com.dylan.licence.service.IUserService;
+import com.dylan.licence.service.UserService;
 import com.dylan.logicer.base.logger.MyLogger;
 import com.dylan.logicer.base.logger.MyLoggerFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserActController {
     private static final MyLogger logger = MyLoggerFactory.getLogger(UserActController.class);
     @Autowired
-    IUserService userService;
+    UserService userService;
 
     /**
      * 登入

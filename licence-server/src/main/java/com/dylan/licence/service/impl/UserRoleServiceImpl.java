@@ -2,9 +2,9 @@ package com.dylan.licence.service.impl;
 
 import com.dylan.framework.model.result.HttpResult;
 import com.dylan.licence.mapper.UserRoleMapper;
-import com.dylan.licence.service.IRoleService;
-import com.dylan.licence.service.IUserRoleService;
-import com.dylan.licence.service.IUserService;
+import com.dylan.licence.service.RoleService;
+import com.dylan.licence.service.UserRoleService;
+import com.dylan.licence.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,13 +16,13 @@ import java.util.List;
  * @Date : 2022/5/10 - 23:11
  */
 @Service
-public class UserRoleServiceImpl implements IUserRoleService {
+public class UserRoleServiceImpl implements UserRoleService {
 
     @Resource
-    private IUserService userService;
+    private UserService userService;
 
     @Resource
-    private IRoleService roleService;
+    private RoleService roleService;
 
     @Resource
     private UserRoleMapper userRoleMapper;

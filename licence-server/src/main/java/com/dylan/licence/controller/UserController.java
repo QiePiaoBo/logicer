@@ -7,11 +7,11 @@ import com.dylan.framework.model.page.MyPage;
 import com.dylan.framework.model.result.DataResult;
 import com.dylan.framework.model.result.HttpResult;
 import com.dylan.licence.model.dto.UserDTO;
-import com.dylan.licence.service.IUserAccessService;
-import com.dylan.licence.service.IUserRoleService;
-import com.dylan.licence.service.IUserService;
+import com.dylan.licence.service.UserAccessService;
+import com.dylan.licence.service.UserRoleService;
+import com.dylan.licence.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.repository.query.Param;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -37,13 +37,13 @@ import java.util.Arrays;
 public class UserController {
 
     @Resource
-    private IUserService userService;
+    private UserService userService;
 
     @Resource
-    private IUserRoleService userRoleService;
+    private UserRoleService userRoleService;
 
     @Resource
-    private IUserAccessService userAccessService;
+    private UserAccessService userAccessService;
 
     /**
      * 获取所有用户
@@ -138,7 +138,7 @@ public class UserController {
 
     @GetMapping("test")
     public HttpResult test() {
-        return userService.getUserNameId(Arrays.asList("dylan", "lucifer"));
+        return DataResult.success().data(userService.getUserNameId(Arrays.asList("dylan", "lucifer"))).build();
     }
 
 }

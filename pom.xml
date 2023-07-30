@@ -3,17 +3,10 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.13</version>
-    </parent>
     <groupId>com.dylan</groupId>
     <artifactId>logicer</artifactId>
     <version>${revision}</version>
     <packaging>pom</packaging>
-
-
     <modules>
         <module>logicer-base</module>
         <module>licence-api</module>
@@ -83,15 +76,12 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!--    version    -->
         <spring-boot.version>2.6.13</spring-boot.version>
         <spring-cloud.version>2021.0.5</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.0.5.0</spring-cloud-alibaba.version>
-        <spring-cloud-starter-alibaba-nacos-config.version>2021.1</spring-cloud-starter-alibaba-nacos-config.version>
-        <spring-cloud-starter-alibaba-nacos-discovery.version>2021.1</spring-cloud-starter-alibaba-nacos-discovery.version>
         <servlet-api.version>3.0-alpha-1</servlet-api.version>
         <javax-el-api.version>3.0.1-b06</javax-el-api.version>
-        <spring-cloud-starter-openfeign.version>4.0.4</spring-cloud-starter-openfeign.version>
-        <es.version>3.1.2</es.version>
         <redisson.version>3.13.6</redisson.version>
         <mybatis-plus-boot-starter.version>3.5.3.1</mybatis-plus-boot-starter.version>
         <druid.version>1.2.18</druid.version>
@@ -99,15 +89,19 @@
         <poi.version>5.2.3</poi.version>
         <jackson.version>2.15.2</jackson.version>
         <aspectjweaver.version>1.9.19</aspectjweaver.version>
-        <spring-cloud-starter-bootstrap.version>4.0.3</spring-cloud-starter-bootstrap.version>
-        <nacos-client.version>2.2.3</nacos-client.version>
         <mybatis-plus-extension.version>3.5.3.1</mybatis-plus-extension.version>
+        <mysql.version>8.0.22</mysql.version>
         <qiniu.version>7.2.29</qiniu.version>
+        <dubbo.version>3.2.4</dubbo.version>
         <port.gateway>8888</port.gateway>
         <port.licence>9000</port.licence>
         <port.file>9001</port.file>
         <port.blog>9002</port.blog>
         <port.chat>9003</port.chat>
+        <dubbo.port.licence>21000</dubbo.port.licence>
+        <dubbo.port.file>21001</dubbo.port.file>
+        <dubbo.port.blog>21002</dubbo.port.blog>
+        <dubbo.port.chat>21003</dubbo.port.chat>
     </properties>
 
     <dependencyManagement>
@@ -168,45 +162,51 @@
                 <artifactId>chat-server</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <!--    spring-cloud-alibaba dependencies    -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--      spring-cloud dependencies      -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--    spring-boot  dependencies    -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!--  七牛  -->
             <dependency>
                 <groupId>com.qiniu</groupId>
                 <artifactId>qiniu-java-sdk</artifactId>
                 <version>${qiniu.version}</version>
             </dependency>
+
             <!--      hibernate-validator      -->
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-validator</artifactId>
                 <version>${hibernate-validator.version}</version>
             </dependency>
-            <!--    nacos配置 nacos-discovery 默认集成ribbon -->
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-                <version>${spring-cloud-starter-alibaba-nacos-config.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-                <version>${spring-cloud-starter-alibaba-nacos-discovery.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.nacos</groupId>
-                <artifactId>nacos-client</artifactId>
-                <version>${nacos-client.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-bootstrap</artifactId>
-                <version>${spring-cloud-starter-bootstrap.version}</version>
-            </dependency>
+
             <!--    fastJson    -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
             </dependency>
+
             <!--    servlet     -->
             <dependency>
                 <groupId>javax.servlet</groupId>
@@ -214,6 +214,7 @@
                 <version>${servlet-api.version}</version>
                 <scope>provided</scope>
             </dependency>
+
             <!--    javax    -->
             <dependency>
                 <groupId>javax.el</groupId>
@@ -225,6 +226,7 @@
                 <artifactId>javax.el</artifactId>
                 <version>${javax-el-api.version}</version>
             </dependency>
+
             <!-- mybatisPlus 核心库 -->
             <dependency>
                 <groupId>com.baomidou</groupId>
@@ -254,28 +256,6 @@
                 <artifactId>druid</artifactId>
                 <version>${druid.version}</version>
             </dependency>
-            <!--  spring cloud  -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <!--    feign     -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-openfeign</artifactId>
-                <version>${spring-cloud-starter-openfeign.version}</version>
-            </dependency>
-            <!--  spring cloud alibaba  -->
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring-cloud-alibaba.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
             <!--    POI     -->
             <dependency>
                 <groupId>org.apache.poi</groupId>
@@ -299,12 +279,6 @@
                 <artifactId>redisson</artifactId>
                 <version>${redisson.version}</version>
             </dependency>
-            <!--    es    -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
-                <version>${es.version}</version>
-            </dependency>
             <!--      jackson      -->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
@@ -321,6 +295,14 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-annotations</artifactId>
                 <version>${jackson.version}</version>
+            </dependency>
+            <!-- Dubbo -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-bom</artifactId>
+                <version>3.0.2.1</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

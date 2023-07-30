@@ -13,7 +13,7 @@ import com.dylan.licence.entity.Group;
 import com.dylan.licence.mapper.GroupMapper;
 import com.dylan.licence.model.dto.GroupDTO;
 import com.dylan.licence.model.vo.GroupVO;
-import com.dylan.licence.service.IGroupService;
+import com.dylan.licence.service.GroupService;
 import com.dylan.licence.transformer.GroupTransformer;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
  * @Date 5/10/2022 4:06 PM
  */
 @Service
-public class GroupServiceImpl implements IGroupService {
+public class GroupServiceImpl implements GroupService {
 
     @Resource
     private GroupMapper mapper;

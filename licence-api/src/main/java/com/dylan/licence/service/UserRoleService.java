@@ -8,7 +8,7 @@ import com.dylan.framework.model.result.HttpResult;
  * @Description IUserRoleService
  * @Date : 2022/5/10 - 23:11
  */
-public interface IUserRoleService {
+public interface UserRoleService {
 
     /**
      * 获取用户的角色列表

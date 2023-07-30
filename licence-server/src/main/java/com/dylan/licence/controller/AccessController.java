@@ -4,7 +4,7 @@ package com.dylan.licence.controller;
 import com.dylan.framework.model.page.MyPage;
 import com.dylan.framework.model.result.HttpResult;
 import com.dylan.licence.model.dto.AccessDTO;
-import com.dylan.licence.service.IAccessService;
+import com.dylan.licence.service.AccessService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +27,7 @@ import javax.annotation.Resource;
 public class AccessController {
 
     @Resource
-    private IAccessService accessService;
+    private AccessService accessService;
 
     @GetMapping("test")
     public String getTest() {

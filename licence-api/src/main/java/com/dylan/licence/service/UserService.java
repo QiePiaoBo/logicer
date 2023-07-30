@@ -1,12 +1,12 @@
 package com.dylan.licence.service;
 
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.dylan.framework.model.page.MyPage;
 import com.dylan.framework.model.result.HttpResult;
-import com.dylan.licence.entity.User;
+import com.dylan.licence.model.UserNameIdModel;
 import com.dylan.licence.model.dto.UserDTO;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -19,8 +19,9 @@ import java.util.List;
  * @author Dylan
  * @since 2020-05-24
  */
+@Component
 @FeignClient(name = "${spring.application.name}")
-public interface IUserService {
+public interface UserService {
 
     /**
      * 获取用户列表
@@ -81,5 +82,5 @@ public interface IUserService {
      * @param userNames
      * @return
      */
-    HttpResult getUserNameId(List<String> userNames);
+    List<UserNameIdModel> getUserNameId(List<String> userNames);
 }

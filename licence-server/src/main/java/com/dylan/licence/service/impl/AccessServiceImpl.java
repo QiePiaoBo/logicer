@@ -13,7 +13,7 @@ import com.dylan.licence.entity.Access;
 import com.dylan.licence.mapper.AccessMapper;
 import com.dylan.licence.model.dto.AccessDTO;
 import com.dylan.licence.model.vo.AccessVO;
-import com.dylan.licence.service.IAccessService;
+import com.dylan.licence.service.AccessService;
 import com.dylan.licence.transformer.AccessTransformer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @Service
-public class AccessServiceImpl implements IAccessService {
+public class AccessServiceImpl implements AccessService {
 
     @Resource
     private AccessMapper mapper;

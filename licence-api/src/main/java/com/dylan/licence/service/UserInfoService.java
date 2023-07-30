@@ -9,7 +9,7 @@ import com.dylan.licence.model.dto.UserInfoDTO;
  * @Description IUserInfoService
  * @Date 5/7/2022 4:41 PM
  */
-public interface IUserInfoService {
+public interface UserInfoService {
 
     /**
      * 根据userId获取改用户的详细信息

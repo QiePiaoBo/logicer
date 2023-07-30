@@ -18,7 +18,7 @@ spring:
         extension-configs:
           - {dataId: common.yaml, group: 'DEFAULT_GROUP', refresh: true}
           - {dataId: base_db.yaml, group: 'DEFAULT_GROUP', refresh: true}
-          - {dataId: redis.yaml, group: 'DEFAULT_GROUP', refresh: true}
+#          - {dataId: redis.yaml, group: 'DEFAULT_GROUP', refresh: true}
           - {data-id: rabbit.yaml, group: 'DEFAULT_GROUP', refresh: true}
         username: nacos
         password: 19970413
@@ -44,3 +44,23 @@ logging:
       max-history: 30
   file:
     path: /home/java/logs
+dubbo:
+  application:
+    name: @application.name@
+  registry:
+    address: nacos://logicer.top:8848/nacos
+    username: nacos
+    password: 19970413
+    dynamic: true
+  protocol:
+    port: @dubbo.port.licence@
+    name: dubbo
+#  monitor:
+#    username: nacos
+#    password: 19970413
+  metadata-report:
+    username: nacos
+    password: 19970413
+  config-center:
+    username: nacos
+    password: 19970413

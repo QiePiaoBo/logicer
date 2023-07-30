@@ -2,16 +2,17 @@ package com.dylan.chat.service;
 
 import com.dylan.chat.entity.SessionEntity;
 import com.dylan.chat.mapper.SessionMapper;
-import com.dylan.chat.mapper.UserMapper;
 import com.dylan.chat.model.SessionInsertModel;
 import com.dylan.chat.model.SessionQueryModel;
-import com.dylan.chat.model.UserNameIdModel;
 import com.dylan.chat.model.converter.SessionConverter;
 import com.dylan.chat.model.vo.LgcTalkSessionVO;
 import com.dylan.framework.utils.Safes;
+import com.dylan.licence.model.UserNameIdModel;
+import com.dylan.licence.service.UserService;
 import com.dylan.logicer.base.logger.MyLogger;
 import com.dylan.logicer.base.logger.MyLoggerFactory;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -34,8 +35,8 @@ public class SessionServiceImpl implements SessionService {
     @Resource
     private SessionMapper sessionMapper;
 
-    @Resource
-    private UserMapper userMapper;
+    @Autowired
+    private UserService userService;
 
 
     /**
@@ -154,7 +155,7 @@ public class SessionServiceImpl implements SessionService {
      */
     @Override
     public Map<String, Integer> getUserNameIdMap(List<String> userNames) {
-        List<UserNameIdModel> userNameIds = userMapper.getUserNameId(userNames);
+        List<UserNameIdModel> userNameIds = userService.getUserNameId(userNames);
         Map<String, Integer> userNameIdMap = Safes.of(userNameIds).stream().filter(m -> m.getId() > 0).collect(Collectors.toMap(UserNameIdModel::getUserName, UserNameIdModel::getId, (v1, v2) -> v2));
         if (userNameIdMap.size() != userNames.size()) {
             logger.error("<getOrCreateSession> Error getting username id map : {}", userNameIds);

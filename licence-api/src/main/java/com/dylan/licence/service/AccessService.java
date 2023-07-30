@@ -13,7 +13,7 @@ import java.util.List;
  * @Description IAccessService
  * @Date : 2022/5/9 - 23:44
  */
-public interface IAccessService {
+public interface AccessService {
 
     /**
      * 分页获取权限

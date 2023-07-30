@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.dylan.framework.model.entity.Person;
+import com.dylan.framework.model.exception.MyException;
 import com.dylan.framework.model.info.Message;
 import com.dylan.framework.model.info.Status;
 import com.dylan.framework.model.page.MyPage;
@@ -18,11 +19,13 @@ import com.dylan.framework.utils.Safes;
 import com.dylan.licence.entity.User;
 import com.dylan.licence.enumcenter.GroupEnum;
 import com.dylan.licence.mapper.UserMapper;
+import com.dylan.licence.model.UserNameIdModel;
 import com.dylan.licence.model.dto.UserDTO;
 import com.dylan.licence.model.vo.UserVO;
-import com.dylan.licence.service.IUserService;
+import com.dylan.licence.service.UserService;
 import com.dylan.licence.transformer.UserTransformer;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
@@ -42,7 +45,8 @@ import java.util.Objects;
 @Slf4j
 @Service
 @RefreshScope
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
+@DubboService(version = "1.0.0")
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
     @Resource
     private UserMapper userMapper;
@@ -254,10 +258,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     }
 
     @Override
-    public HttpResult getUserNameId(List<String> userNames) {
+    public List<UserNameIdModel> getUserNameId(List<String> userNames) {
         if (CollectionUtils.isEmpty(userNames)){
-            return DataResult.fail().data("Error, empty param found").build();
+            throw new MyException("Error, empty param found");
         }
-        return DataResult.getBuilder().data(userMapper.getUserNameId(userNames)).build();
+        return userMapper.getUserNameId(userNames);
     }
 }

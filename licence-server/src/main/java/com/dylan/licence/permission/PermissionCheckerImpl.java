@@ -6,7 +6,7 @@ import com.dylan.framework.model.result.HttpResult;
 import com.dylan.framework.model.vo.PersonVo;
 import com.dylan.framework.session.UserContext;
 import com.dylan.framework.utils.PermissionChecker;
-import com.dylan.licence.service.IUserAccessService;
+import com.dylan.licence.service.UserAccessService;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -25,7 +25,7 @@ import java.util.Objects;
 public class PermissionCheckerImpl implements PermissionChecker {
 
     @Resource
-    private IUserAccessService userAccessService;
+    private UserAccessService userAccessService;
 
     @Value("${permissionCheckGrade:1}")
     private Integer permissionCheckGrade;

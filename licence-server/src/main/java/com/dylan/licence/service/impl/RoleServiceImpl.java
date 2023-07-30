@@ -12,7 +12,7 @@ import com.dylan.licence.entity.Role;
 import com.dylan.licence.mapper.RoleMapper;
 import com.dylan.licence.model.dto.RoleDTO;
 import com.dylan.licence.model.vo.RoleVO;
-import com.dylan.licence.service.IRoleService;
+import com.dylan.licence.service.RoleService;
 import com.dylan.licence.transformer.RoleTransformer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @Service
-public class RoleServiceImpl implements IRoleService {
+public class RoleServiceImpl implements RoleService {
 
     @Resource
     private RoleMapper mapper;

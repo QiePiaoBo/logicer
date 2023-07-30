@@ -10,7 +10,7 @@ import com.dylan.licence.model.dto.GroupDTO;
  * @Description IGroupService
  * @Date 5/10/2022 4:06 PM
  */
-public interface IGroupService {
+public interface GroupService {
 
     /**
      * 分页获取用户组

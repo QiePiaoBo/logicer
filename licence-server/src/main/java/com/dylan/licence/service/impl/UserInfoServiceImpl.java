@@ -11,7 +11,7 @@ import com.dylan.licence.entity.UserInfo;
 import com.dylan.licence.mapper.UserInfoMapper;
 import com.dylan.licence.model.dto.UserInfoDTO;
 import com.dylan.licence.model.vo.UserInfoVO;
-import com.dylan.licence.service.IUserInfoService;
+import com.dylan.licence.service.UserInfoService;
 import com.dylan.licence.transformer.UserInfoTransformer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -28,7 +28,7 @@ import java.util.Objects;
  */
 @Slf4j
 @Service
-public class UserInfoServiceImpl implements IUserInfoService {
+public class UserInfoServiceImpl implements UserInfoService {
 
     @Resource
     private UserInfoMapper mapper;

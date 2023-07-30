@@ -4,9 +4,9 @@ package com.dylan.licence.controller;
 import com.dylan.framework.model.page.MyPage;
 import com.dylan.framework.model.result.HttpResult;
 import com.dylan.licence.model.dto.RoleDTO;
-import com.dylan.licence.service.IRoleAccessService;
-import com.dylan.licence.service.IRoleService;
-import org.springframework.data.repository.query.Param;
+import com.dylan.licence.service.RoleAccessService;
+import com.dylan.licence.service.RoleService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -28,9 +28,9 @@ import javax.annotation.Resource;
 public class RoleController {
 
     @Resource
-    private IRoleService roleService;
+    private RoleService roleService;
     @Resource
-    private IRoleAccessService roleAccessService;
+    private RoleAccessService roleAccessService;
 
     /**
      * 分页获取角色

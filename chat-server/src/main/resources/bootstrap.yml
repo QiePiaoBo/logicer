@@ -44,3 +44,9 @@ logging:
       max-history: 30
   file:
     path: /home/java/logs
+dubbo:
+  registry:
+    address: nacos://logicer.top:8848
+  protocol:
+    port: @dubbo.port.chat@
+    name: dubbo

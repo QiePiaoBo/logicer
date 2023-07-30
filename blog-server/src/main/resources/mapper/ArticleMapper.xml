@@ -80,7 +80,7 @@
          from article where date_format(create_time,'%Y-%m-%d') = #{createTime} and user_id = #{authorId}
     </select>
 
-    <insert id="saveSelective" parameterType="com.mylog.business.blog.entity.Article" useGeneratedKeys="true" keyProperty="id">
+    <insert id="saveSelective" parameterType="com.dylan.blog.entity.Article" useGeneratedKeys="true" keyProperty="id">
         insert into
             `article`(file_name, sub_title, description, file_type,
                       file_path, user_id, create_time, is_lock)
