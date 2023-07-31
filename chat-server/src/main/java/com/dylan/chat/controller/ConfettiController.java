@@ -61,8 +61,4 @@ public class ConfettiController {
         return confettiService.mergeConfetti(model);
     }
 
-    @RequestMapping(value = "test-dubbo", method = RequestMethod.GET)
-    public HttpResult getUserNameIdMap() {
-        return DataResult.success().data(userService.getUserNameId(Arrays.asList("dylan", "duke"))).build();
-    }
 }
