@@ -1,7 +1,8 @@
-package com.dylan.chat.entity;
+package com.dylan.blog.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -10,7 +11,7 @@ import java.time.LocalDateTime;
  * @Date 6/20/2023 5:14 PM
  */
 @Data
-public class ConfettiEntity {
+public class ConfettiEntity implements Serializable {
 
 
     private Integer id;

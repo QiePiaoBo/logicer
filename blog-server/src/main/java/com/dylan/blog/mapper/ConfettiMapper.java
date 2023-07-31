@@ -1,9 +1,8 @@
-package com.dylan.chat.mapper;
+package com.dylan.blog.mapper;
 
-
-import com.dylan.chat.entity.ConfettiEntity;
-import com.dylan.chat.model.ConfettiInsertModel;
-import com.dylan.chat.model.ConfettiQueryModel;
+import com.dylan.blog.entity.ConfettiEntity;
+import com.dylan.blog.model.ConfettiInsertModel;
+import com.dylan.blog.model.ConfettiQueryModel;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

@@ -1,12 +1,13 @@
-package com.dylan.chat.service;
+package com.dylan.blog.service.impl;
 
-import com.dylan.chat.entity.ConfettiEntity;
-import com.dylan.chat.mapper.ConfettiMapper;
-import com.dylan.chat.model.ConfettiInsertModel;
-import com.dylan.chat.model.ConfettiMergeModel;
-import com.dylan.chat.model.ConfettiQueryModel;
-import com.dylan.chat.model.converter.ConfettiConverter;
-import com.dylan.chat.model.vo.ConfettiVO;
+import com.dylan.blog.converter.ConfettiConverter;
+import com.dylan.blog.entity.ConfettiEntity;
+import com.dylan.blog.mapper.ConfettiMapper;
+import com.dylan.blog.model.ConfettiInsertModel;
+import com.dylan.blog.model.ConfettiMergeModel;
+import com.dylan.blog.model.ConfettiQueryModel;
+import com.dylan.blog.service.ConfettiService;
+import com.dylan.blog.vo.ConfettiVO;
 import com.dylan.framework.model.result.DataResult;
 import com.dylan.framework.model.result.HttpResult;
 import com.dylan.framework.utils.Safes;

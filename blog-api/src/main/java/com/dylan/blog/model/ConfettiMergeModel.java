@@ -1,11 +1,12 @@
-package com.dylan.chat.model;
+package com.dylan.blog.model;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Data
-public class ConfettiMergeModel {
+public class ConfettiMergeModel implements Serializable {
 
     private Integer curUserId;
 

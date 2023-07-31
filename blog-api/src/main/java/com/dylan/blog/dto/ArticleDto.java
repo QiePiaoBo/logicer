@@ -3,12 +3,14 @@ package com.dylan.blog.dto;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.Serializable;
+
 /**
  * 输入参数
  * @author Dylan
  */
 @Data
-public class ArticleDto {
+public class ArticleDto implements Serializable {
     /**
      * 文件本体
      */

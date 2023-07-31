@@ -1,8 +1,8 @@
-package com.dylan.chat.service;
+package com.dylan.blog.service;
 
-import com.dylan.chat.model.ConfettiInsertModel;
-import com.dylan.chat.model.ConfettiMergeModel;
-import com.dylan.chat.model.ConfettiQueryModel;
+import com.dylan.blog.model.ConfettiInsertModel;
+import com.dylan.blog.model.ConfettiMergeModel;
+import com.dylan.blog.model.ConfettiQueryModel;
 import com.dylan.framework.model.result.HttpResult;
 
 public interface ConfettiService {

@@ -1,6 +1,6 @@
 package com.dylan.blog.controller;
 
-import com.dylan.blog.service.impl.UserService;
+import com.dylan.blog.service.impl.LicService;
 import com.dylan.framework.annos.AdminPermission;
 import com.dylan.framework.model.info.Message;
 import com.dylan.framework.model.info.Status;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LicController {
 
     @Autowired
-    UserService userService;
+    LicService licService;
 
     /**
      * 获取当前登录用户
@@ -28,7 +28,7 @@ public class LicController {
     @AdminPermission
     @RequestMapping("getUser")
     public HttpResult getUser(){
-        PersonVo userVO = userService.getUser();
+        PersonVo userVO = licService.getUser();
         return new HttpResult(Status.SUCCESS.getStatus(), Message.SUCCESS.getMsg(), userVO);
     }
 

@@ -12,6 +12,7 @@ import com.dylan.licence.service.UserService;
 import com.dylan.logicer.base.logger.MyLogger;
 import com.dylan.logicer.base.logger.MyLoggerFactory;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +36,7 @@ public class SessionServiceImpl implements SessionService {
     @Resource
     private SessionMapper sessionMapper;
 
-    @Autowired
+    @DubboReference(version = "1.0.0")
     private UserService userService;
 
 

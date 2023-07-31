@@ -1,11 +1,9 @@
 package com.dylan.licence.service;
 
-
 import com.dylan.framework.model.page.MyPage;
 import com.dylan.framework.model.result.HttpResult;
 import com.dylan.licence.model.UserNameIdModel;
 import com.dylan.licence.model.dto.UserDTO;
-
 import java.util.List;
 
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dylan.chat.mapper.ConfettiMapper">
-    <resultMap id="confettiMap" type="com.dylan.chat.entity.ConfettiEntity">
+<mapper namespace="com.dylan.blog.mapper.ConfettiMapper">
+    <resultMap id="confettiMap" type="com.dylan.blog.entity.ConfettiEntity">
     </resultMap>
 
     <sql id="Table_Fields">
@@ -13,7 +13,7 @@
         `lgc_confetti`
     </sql>
 
-    <insert id="addConfetti" parameterType="com.dylan.chat.model.ConfettiInsertModel" useGeneratedKeys="true"
+    <insert id="addConfetti" parameterType="com.dylan.blog.model.ConfettiInsertModel" useGeneratedKeys="true"
             keyProperty="id">
         INSERT INTO
         <include refid="Table_Name"/>(

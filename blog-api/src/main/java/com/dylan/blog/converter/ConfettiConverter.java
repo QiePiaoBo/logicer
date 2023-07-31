@@ -1,10 +1,10 @@
-package com.dylan.chat.model.converter;
+package com.dylan.blog.converter;
 
 
-import com.dylan.chat.entity.ConfettiEntity;
-import com.dylan.chat.model.ConfettiInsertModel;
-import com.dylan.chat.model.vo.ConfettiListVO;
-import com.dylan.chat.model.vo.ConfettiVO;
+import com.dylan.blog.entity.ConfettiEntity;
+import com.dylan.blog.model.ConfettiInsertModel;
+import com.dylan.blog.vo.ConfettiListVO;
+import com.dylan.blog.vo.ConfettiVO;
 import org.springframework.beans.BeanUtils;
 
 public class ConfettiConverter {

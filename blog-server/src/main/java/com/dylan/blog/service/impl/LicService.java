@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
  * @author Dylan
  */
 @Service
-public class UserService{
+public class LicService {
     /**
      * 获取当前登录用户
      * @return

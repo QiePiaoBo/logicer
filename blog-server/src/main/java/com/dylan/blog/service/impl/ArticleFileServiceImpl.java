@@ -37,7 +37,7 @@ public class ArticleFileServiceImpl implements ArticleFileService {
     private static final MyLogger log = MyLoggerFactory.getLogger(ArticleFileServiceImpl.class);
 
     @Resource
-    UserService userService;
+    LicService licService;
     @Resource
     ArticleService articleService;
 
@@ -152,7 +152,7 @@ public class ArticleFileServiceImpl implements ArticleFileService {
      */
     private DataResult insertToDatabase(Response response, String filePath, ArticleDto articleDto){
         // 插入数据库
-        PersonVo currentUser = userService.getUser();
+        PersonVo currentUser = licService.getUser();
         Article article = new Article();
         if (currentUser != null){
             BeanUtils.copyProperties(articleDto, article);

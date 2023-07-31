@@ -1,10 +1,10 @@
-package com.dylan.chat.controller;
+package com.dylan.blog.controller;
 
 
-import com.dylan.chat.model.ConfettiInsertModel;
-import com.dylan.chat.model.ConfettiMergeModel;
-import com.dylan.chat.model.ConfettiQueryModel;
-import com.dylan.chat.service.ConfettiService;
+import com.dylan.blog.model.ConfettiInsertModel;
+import com.dylan.blog.model.ConfettiMergeModel;
+import com.dylan.blog.model.ConfettiQueryModel;
+import com.dylan.blog.service.ConfettiService;
 import com.dylan.framework.model.result.DataResult;
 import com.dylan.framework.model.result.HttpResult;
 import com.dylan.licence.model.UserNameIdModel;

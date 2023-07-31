@@ -1,8 +1,9 @@
-package com.dylan.chat.model;
+package com.dylan.blog.model;
 
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Objects;
  * @Date 6/20/2023 5:14 PM
  */
 @Data
-public class ConfettiQueryModel {
+public class ConfettiQueryModel implements Serializable {
 
     private Integer id;
 
