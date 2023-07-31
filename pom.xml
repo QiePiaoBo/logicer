@@ -90,6 +90,7 @@
         <jackson.version>2.15.2</jackson.version>
         <aspectjweaver.version>1.9.19</aspectjweaver.version>
         <mybatis-plus-extension.version>3.5.3.1</mybatis-plus-extension.version>
+        <guava.version>30.1.1-jre</guava.version>
         <mysql.version>8.0.22</mysql.version>
         <qiniu.version>7.2.29</qiniu.version>
         <dubbo.version>3.2.4</dubbo.version>
@@ -185,6 +186,12 @@
                 <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <!--      guava      -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
             </dependency>
             <!--  七牛  -->
             <dependency>

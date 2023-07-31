@@ -10,8 +10,8 @@ import com.dylan.framework.model.result.HttpResult;
 import com.dylan.licence.model.UserNameIdModel;
 import com.dylan.licence.service.UserService;
 import lombok.NonNull;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,7 +25,7 @@ import java.util.List;
 @RequestMapping("confetti")
 public class ConfettiController {
 
-    @Autowired
+    @DubboReference(version = "1.0.0")
     private UserService userService;
 
     @Resource
@@ -61,8 +61,8 @@ public class ConfettiController {
         return confettiService.mergeConfetti(model);
     }
 
-    @RequestMapping(value = "test-feign", method = RequestMethod.GET)
+    @RequestMapping(value = "test-dubbo", method = RequestMethod.GET)
     public HttpResult getUserNameIdMap() {
-        return null;
+        return DataResult.success().data(userService.getUserNameId(Arrays.asList("dylan", "duke"))).build();
     }
 }

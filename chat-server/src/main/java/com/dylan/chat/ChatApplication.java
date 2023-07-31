@@ -13,7 +13,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication(scanBasePackages = {"com.dylan.chat","com.dylan.framework", "com.dylan.licence"})
 @EnableDiscoveryClient
-@EnableFeignClients
 public class ChatApplication {
 
     public static void main(String[] args) {
