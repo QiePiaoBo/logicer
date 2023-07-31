@@ -64,7 +64,6 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-pool2</artifactId>
         </dependency>
-
         <!-- 引入nacos，作为工具类被引入时会自动加载nacos -->
         <!-- nacos配置 -->
         <dependency>
