@@ -1,6 +1,5 @@
 package com.dylan.licence;
 
-
 import com.dylan.logicer.base.logger.MyLogger;
 import com.dylan.logicer.base.logger.MyLoggerFactory;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;

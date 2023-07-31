@@ -6,7 +6,6 @@ import com.dylan.licence.service.RoleService;
 import com.dylan.licence.service.UserRoleService;
 import com.dylan.licence.service.UserService;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.util.List;
 

@@ -1,6 +1,5 @@
 package com.dylan.licence.service.impl;
 
-
 import com.dylan.framework.model.exception.MyException;
 import com.dylan.framework.model.result.DataResult;
 import com.dylan.framework.model.result.HttpResult;

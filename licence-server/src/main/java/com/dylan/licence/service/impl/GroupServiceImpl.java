@@ -1,6 +1,5 @@
 package com.dylan.licence.service.impl;
 
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.dylan.framework.model.exception.MyException;
@@ -16,7 +15,6 @@ import com.dylan.licence.model.vo.GroupVO;
 import com.dylan.licence.service.GroupService;
 import com.dylan.licence.transformer.GroupTransformer;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Objects;

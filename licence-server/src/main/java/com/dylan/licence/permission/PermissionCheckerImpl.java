@@ -1,6 +1,5 @@
 package com.dylan.licence.permission;
 
-
 import com.dylan.framework.model.info.Status;
 import com.dylan.framework.model.result.HttpResult;
 import com.dylan.framework.model.vo.PersonVo;
@@ -11,7 +10,6 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.Resource;
 import java.util.Objects;
 

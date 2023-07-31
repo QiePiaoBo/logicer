@@ -3,7 +3,6 @@ package com.dylan.licence.mapper;
 import com.dylan.licence.entity.Access;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
 
 /**

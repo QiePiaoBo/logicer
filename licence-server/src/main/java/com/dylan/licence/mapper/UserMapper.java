@@ -1,13 +1,11 @@
 package com.dylan.licence.mapper;
 
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.dylan.framework.model.page.MyPage;
 import com.dylan.licence.entity.User;
 import com.dylan.licence.model.UserNameIdModel;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
 
 /**

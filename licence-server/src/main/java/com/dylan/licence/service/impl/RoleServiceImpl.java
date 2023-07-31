@@ -1,7 +1,6 @@
 package com.dylan.licence.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-
 import com.dylan.framework.model.exception.MyException;
 import com.dylan.framework.model.page.MyPage;
 import com.dylan.framework.model.result.DataResult;
@@ -17,7 +16,6 @@ import com.dylan.licence.transformer.RoleTransformer;
 import com.dylan.logicer.base.logger.MyLogger;
 import com.dylan.logicer.base.logger.MyLoggerFactory;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;

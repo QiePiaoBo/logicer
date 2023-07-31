@@ -1,12 +1,10 @@
 package com.dylan.licence.service.impl;
 
-
 import com.dylan.framework.model.result.HttpResult;
 import com.dylan.licence.mapper.RoleAccessMapper;
 import com.dylan.licence.service.AccessService;
 import com.dylan.licence.service.RoleAccessService;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.util.List;
 
