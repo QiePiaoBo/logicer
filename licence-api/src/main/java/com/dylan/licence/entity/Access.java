@@ -1,9 +1,6 @@
 package com.dylan.licence.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
@@ -11,12 +8,8 @@ import java.sql.Timestamp;
  * @Description 权限实体类
  * @Date : 2022/5/9 - 23:25
  */
-@TableName("lgc_access")
-public class Access {
+public class Access implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
-    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     private String accessCode;

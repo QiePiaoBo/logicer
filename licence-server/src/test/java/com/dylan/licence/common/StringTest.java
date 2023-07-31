@@ -1,7 +1,9 @@
 package com.dylan.licence.common;
 
 import com.dylan.framework.utils.AesUtil;
-import lombok.extern.slf4j.Slf4j;
+import com.dylan.licence.mapper.UserMapperTest;
+import com.dylan.logicer.base.logger.MyLogger;
+import com.dylan.logicer.base.logger.MyLoggerFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
@@ -10,9 +12,9 @@ import org.junit.Test;
  * @Description StringTest
  * @Date : 2022/5/11 - 23:08
  */
-@Slf4j
 public class StringTest {
 
+    private static final MyLogger logger = MyLoggerFactory.getLogger(UserMapperTest.class);
     @Test
     public void subStringBeforeTest(){
         String allUrl = "http://www.baidu.com/**/asdasd";
@@ -23,10 +25,10 @@ public class StringTest {
     public void aesTest(){
 
         String encrypt = AesUtil.encrypt("HelloWorld", "dylan");
-        log.info(encrypt);
+        logger.info(encrypt);
 
         String decrypt = AesUtil.decrypt(encrypt, "dylan");
-        log.info(decrypt);
+        logger.info(decrypt);
 
     }
 

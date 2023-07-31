@@ -15,7 +15,8 @@ import com.dylan.licence.model.dto.AccessDTO;
 import com.dylan.licence.model.vo.AccessVO;
 import com.dylan.licence.service.AccessService;
 import com.dylan.licence.transformer.AccessTransformer;
-import lombok.extern.slf4j.Slf4j;
+import com.dylan.logicer.base.logger.MyLogger;
+import com.dylan.logicer.base.logger.MyLoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -28,12 +29,13 @@ import java.util.stream.Collectors;
  * @Description AccessService
  * @Date : 2022/5/9 - 23:45
  */
-@Slf4j
 @Service
 public class AccessServiceImpl implements AccessService {
 
     @Resource
     private AccessMapper mapper;
+
+    private static final MyLogger logger = MyLoggerFactory.getLogger(AccessServiceImpl.class);
 
     @Override
     public HttpResult getPagedAccess(MyPage myPage) {
@@ -73,7 +75,7 @@ public class AccessServiceImpl implements AccessService {
         Access access = AccessTransformer.accessDTO2Access(accessDTO);
         int inserted = mapper.insert(access);
         if (inserted <= 0) {
-            log.error("Error insert access: {}", access);
+            logger.error("Error insert access: {}", access);
         }
         Access returnAccess = mapper
                 .selectOne(query.eq("access_code", accessDTO.getAccessCode()));

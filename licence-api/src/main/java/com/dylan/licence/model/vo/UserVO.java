@@ -1,9 +1,5 @@
 package com.dylan.licence.model.vo;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
-import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
@@ -15,13 +11,7 @@ import java.io.Serializable;
  * @author Dylan
  * @since 2020-05-24
  */
-@Data
-@ToString
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
 public class UserVO implements Serializable {
-
-    private static final long serialVersionUID = 1L;
 
     /**
      * 用户id
@@ -47,4 +37,47 @@ public class UserVO implements Serializable {
     private Integer userType;
 
 
+
+    public UserVO() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getUserGroup() {
+        return userGroup;
+    }
+
+    public void setUserGroup(Integer userGroup) {
+        this.userGroup = userGroup;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+    }
+
+    public Integer getUserType() {
+        return userType;
+    }
+
+    public void setUserType(Integer userType) {
+        this.userType = userType;
+    }
 }

@@ -1,10 +1,12 @@
 package com.dylan.licence.model.dto;
 
+import java.io.Serializable;
+
 /**
  * @author Dylan
  * @Date : 2022/5/9 - 23:29
  */
-public class AccessDTO {
+public class AccessDTO implements Serializable {
 
     private Integer id;
 

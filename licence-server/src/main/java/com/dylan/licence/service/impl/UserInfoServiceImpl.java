@@ -13,7 +13,8 @@ import com.dylan.licence.model.dto.UserInfoDTO;
 import com.dylan.licence.model.vo.UserInfoVO;
 import com.dylan.licence.service.UserInfoService;
 import com.dylan.licence.transformer.UserInfoTransformer;
-import lombok.extern.slf4j.Slf4j;
+import com.dylan.logicer.base.logger.MyLogger;
+import com.dylan.logicer.base.logger.MyLoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -26,13 +27,13 @@ import java.util.Objects;
  * @Description UserInfoServiceImpl
  * @Date 5/7/2022 4:43 PM
  */
-@Slf4j
 @Service
 public class UserInfoServiceImpl implements UserInfoService {
 
     @Resource
     private UserInfoMapper mapper;
 
+    private static final MyLogger logger = MyLoggerFactory.getLogger(UserInfoServiceImpl.class);
     /**
      * 根据userId获取该用户对应的信息
      * @param userId
@@ -58,7 +59,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         Safes.of(userInfos).forEach(m ->{
             userInfoVOS.add(UserInfoTransformer.userInfo2UserInfoVO(m));
         });
-        log.info("MyPage: {}, userInfoVos: {}", myPage, userInfoVOS);
+        logger.info("MyPage: {}, userInfoVos: {}", myPage, userInfoVOS);
         return PageDataResult
                 .success()
                 .page(page)
@@ -79,7 +80,7 @@ public class UserInfoServiceImpl implements UserInfoService {
             return DataResult.fail().build();
         }
         UserInfo userInfo = UserInfoTransformer.userInfoDTO2UserInfo(userInfoDTO);
-        log.info("UserInfo to insert : {}", userInfo);
+        logger.info("UserInfo to insert : {}", userInfo);
         int updated = mapper.updateById(userInfo);
         if (updated <= 0){
             return DataResult.fail(Status.UPDATE_ERROR.getStatus(), Message.UPDATE_ERROR.getMsg()).build();

@@ -1,11 +1,13 @@
 package com.dylan.licence.model.vo;
 
+import java.io.Serializable;
+
 /**
  * @Classname RoleVO
  * @Description RoleVO
  * @Date 5/9/2022 11:08 AM
  */
-public class RoleVO {
+public class RoleVO implements Serializable {
 
     private Integer id;
 

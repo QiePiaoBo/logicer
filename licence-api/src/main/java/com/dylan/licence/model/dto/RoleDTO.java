@@ -1,11 +1,13 @@
 package com.dylan.licence.model.dto;
 
+import java.io.Serializable;
+
 /**
  * @Classname RoleDTO
  * @Description RoleDTO
  * @Date 5/9/2022 11:06 AM
  */
-public class RoleDTO {
+public class RoleDTO implements Serializable {
 
     private Integer id;
 

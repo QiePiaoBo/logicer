@@ -1,7 +1,5 @@
 package com.dylan.licence.model;
 
-import lombok.Data;
-
 import java.io.Serializable;
 
 /**
@@ -9,11 +7,33 @@ import java.io.Serializable;
  * @Description UserNameIdModel
  * @Date 6/30/2023 11:07 AM
  */
-@Data
 public class UserNameIdModel implements Serializable {
 
     private String userName;
 
     private Integer id;
 
+    public UserNameIdModel() {
+    }
+
+    public UserNameIdModel(String userName, Integer id) {
+        this.userName = userName;
+        this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }

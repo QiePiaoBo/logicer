@@ -7,7 +7,6 @@ import com.dylan.licence.model.dto.UserDTO;
 import com.dylan.licence.service.UserService;
 import com.dylan.logicer.base.logger.MyLogger;
 import com.dylan.logicer.base.logger.MyLoggerFactory;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,10 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Dylan
  * 用户行为中心
  */
-@Slf4j
 @RestController
 @RequestMapping("act")
 public class UserActController {
+
     private static final MyLogger logger = MyLoggerFactory.getLogger(UserActController.class);
     @Autowired
     UserService userService;

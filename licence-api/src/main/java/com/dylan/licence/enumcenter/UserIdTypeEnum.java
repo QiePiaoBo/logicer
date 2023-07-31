@@ -1,11 +1,13 @@
 package com.dylan.licence.enumcenter;
 
+import java.io.Serializable;
+
 /**
  * @Classname UserIdTypeEnum
  * @Description UserIdTypeEnum
  * @Date 5/7/2022 5:00 PM
  */
-public enum UserIdTypeEnum {
+public enum UserIdTypeEnum implements Serializable {
 
     /**
      * 中华人民共和国居民身份证

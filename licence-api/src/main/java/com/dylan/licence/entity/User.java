@@ -1,8 +1,5 @@
 package com.dylan.licence.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -15,12 +12,9 @@ import java.sql.Timestamp;
  * @author Dylan
  * @since 2020-05-24
  */
-@TableName("lgc_user")
 public class User implements Serializable {
 
-    private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     private String userName;

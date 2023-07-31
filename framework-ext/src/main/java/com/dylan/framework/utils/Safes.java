@@ -2,7 +2,6 @@ package com.dylan.framework.utils;
 
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -65,7 +64,7 @@ public class Safes {
     }
 
     public static <T> T first(Collection<T> source) {
-        if (CollectionUtils.isEmpty(source)) {
+        if (Objects.isNull(source) || source.size() == 0) {
             return null;
         }
         T t = null;

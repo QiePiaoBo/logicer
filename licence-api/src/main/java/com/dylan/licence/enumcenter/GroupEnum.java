@@ -1,9 +1,11 @@
 package com.dylan.licence.enumcenter;
 
+import java.io.Serializable;
+
 /**
  * @author Dylan
  */
-public enum  GroupEnum {
+public enum  GroupEnum implements Serializable {
 
     /**
      * 超级管理员

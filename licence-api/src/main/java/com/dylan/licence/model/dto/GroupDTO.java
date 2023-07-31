@@ -1,11 +1,13 @@
 package com.dylan.licence.model.dto;
 
+import java.io.Serializable;
+
 /**
  * @Classname GroupDTO
  * @Description GroupDTO
  * @Date 5/10/2022 3:52 PM
  */
-public class GroupDTO {
+public class GroupDTO implements Serializable {
 
     private Integer id;
 

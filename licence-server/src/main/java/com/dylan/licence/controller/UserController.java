@@ -10,7 +10,8 @@ import com.dylan.licence.model.dto.UserDTO;
 import com.dylan.licence.service.UserAccessService;
 import com.dylan.licence.service.UserRoleService;
 import com.dylan.licence.service.UserService;
-import lombok.extern.slf4j.Slf4j;
+import com.dylan.logicer.base.logger.MyLogger;
+import com.dylan.logicer.base.logger.MyLoggerFactory;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +32,6 @@ import java.util.Arrays;
  * @since 2020-05-24
  * 用户管理中心
  */
-@Slf4j
 @RestController
 @RequestMapping("user")
 public class UserController {
@@ -44,6 +44,8 @@ public class UserController {
 
     @Resource
     private UserAccessService userAccessService;
+
+    private static final MyLogger logger = MyLoggerFactory.getLogger(UserController.class);
 
     /**
      * 获取所有用户
@@ -69,7 +71,9 @@ public class UserController {
     @AdminPermission
     @GetMapping("/{id:\\d+}")
     public HttpResult getUserById(@PathVariable Integer id){
-        return userService.selectOne(UserDTO.builder().id(id).build());
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(id);
+        return userService.selectOne(userDTO);
     }
 
     /**
@@ -90,7 +94,9 @@ public class UserController {
     @AdminPermission(userType = 1)
     @DeleteMapping("/{id:\\d+}")
     public HttpResult deleteUser(@PathVariable Integer id){
-        return userService.deleteOne(UserDTO.builder().id(id).build());
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(id);
+        return userService.deleteOne(userDTO);
     }
 
     /**

@@ -1,10 +1,12 @@
 package com.dylan.licence.model.vo;
 
+import java.io.Serializable;
+
 /**
  * @author Dylan
  * @Date : 2022/5/9 - 23:30
  */
-public class AccessVO {
+public class AccessVO implements Serializable {
 
     private Integer id;
 

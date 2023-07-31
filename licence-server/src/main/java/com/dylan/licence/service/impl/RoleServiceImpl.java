@@ -14,7 +14,8 @@ import com.dylan.licence.model.dto.RoleDTO;
 import com.dylan.licence.model.vo.RoleVO;
 import com.dylan.licence.service.RoleService;
 import com.dylan.licence.transformer.RoleTransformer;
-import lombok.extern.slf4j.Slf4j;
+import com.dylan.logicer.base.logger.MyLogger;
+import com.dylan.logicer.base.logger.MyLoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -28,13 +29,13 @@ import java.util.stream.Collectors;
  * @Description RoleServiceImpl
  * @Date 5/9/2022 11:26 AM
  */
-@Slf4j
 @Service
 public class RoleServiceImpl implements RoleService {
 
     @Resource
     private RoleMapper mapper;
 
+    private static final MyLogger logger = MyLoggerFactory.getLogger(RoleServiceImpl.class);
     /**
      * 分页查询角色
      * @param myPage
@@ -72,7 +73,7 @@ public class RoleServiceImpl implements RoleService {
         }
         int insert = mapper.insert(role);
         if (insert <= 0){
-            log.error("Error insert {}", roleDTO);
+            logger.error("Error insert {}", roleDTO);
         }
         Role inserted = mapper.selectOne(Wrappers.query(new Role()).eq("role_code", role.getRoleCode()));
         return DataResult.getBuilder().data(RoleTransformer.role2RoleVO(inserted)).build();

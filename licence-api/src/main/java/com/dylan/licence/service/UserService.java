@@ -5,8 +5,6 @@ import com.dylan.framework.model.page.MyPage;
 import com.dylan.framework.model.result.HttpResult;
 import com.dylan.licence.model.UserNameIdModel;
 import com.dylan.licence.model.dto.UserDTO;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -19,8 +17,6 @@ import java.util.List;
  * @author Dylan
  * @since 2020-05-24
  */
-@Component
-@FeignClient(name = "${spring.application.name}")
 public interface UserService {
 
     /**

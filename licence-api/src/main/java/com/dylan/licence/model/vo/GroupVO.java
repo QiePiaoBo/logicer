@@ -1,11 +1,13 @@
 package com.dylan.licence.model.vo;
 
+import java.io.Serializable;
+
 /**
  * @Classname GroupVO
  * @Description GroupVO
  * @Date 5/10/2022 3:53 PM
  */
-public class GroupVO {
+public class GroupVO  implements Serializable {
 
     private Integer id;
 

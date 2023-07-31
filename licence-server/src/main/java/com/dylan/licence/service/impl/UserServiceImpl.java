@@ -24,7 +24,8 @@ import com.dylan.licence.model.dto.UserDTO;
 import com.dylan.licence.model.vo.UserVO;
 import com.dylan.licence.service.UserService;
 import com.dylan.licence.transformer.UserTransformer;
-import lombok.extern.slf4j.Slf4j;
+import com.dylan.logicer.base.logger.MyLogger;
+import com.dylan.logicer.base.logger.MyLoggerFactory;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -42,7 +43,6 @@ import java.util.Objects;
  * @author Dylan
  * @since 2020-05-24
  */
-@Slf4j
 @Service
 @RefreshScope
 @DubboService(version = "1.0.0")
@@ -52,6 +52,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private UserMapper userMapper;
     @Resource
     private PasswordService passwordService;
+
+    private static final MyLogger logger = MyLoggerFactory.getLogger(UserServiceImpl.class);
+
 
     /**
      * 获取用户列表
@@ -65,7 +68,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         Safes.of(userList).forEach(u -> {
             userVOList.add(UserTransformer.user2UserVo(u));
         });
-        log.info("MyPage : {}", page);
+        logger.info("MyPage : {}", page);
         return PageDataResult
                 .success()
                 .data(userVOList)

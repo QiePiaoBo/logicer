@@ -2,7 +2,6 @@ package com.dylan.licence.transformer;
 
 import com.dylan.framework.model.entity.Person;
 import com.dylan.framework.model.vo.PersonVo;
-import com.dylan.framework.utils.Safes;
 import com.dylan.licence.entity.User;
 import com.dylan.licence.model.dto.UserDTO;
 import com.dylan.licence.model.vo.UserVO;
@@ -28,8 +27,8 @@ public class UserTransformer {
         }
         userVO.setId(user.getId());
         userVO.setUserGroup(user.getUserGroup());
-        userVO.setUserName(Safes.of(user.getUserName()));
-        userVO.setUserPhone(Safes.of(user.getUserPhone()));
+        userVO.setUserName(Objects.isNull(user.getUserName()) ? "" : user.getUserName());
+        userVO.setUserPhone(Objects.isNull(user.getUserPhone()) ? "" : user.getUserPhone());
         userVO.setUserType(user.getUserType());
         return userVO;
     }
@@ -47,9 +46,9 @@ public class UserTransformer {
         person.setId(user.getId());
         person.setUserGroup(user.getUserGroup());
         person.setUserType(user.getUserType());
-        person.setUserPassword(Safes.of(user.getUserPassword()));
-        person.setUserName(Safes.of(user.getUserName()));
-        person.setUserPhone(Safes.of(user.getUserPhone()));
+        person.setUserPassword(Objects.isNull(user.getUserPassword()) ? "" : user.getUserPassword());
+        person.setUserName(Objects.isNull(user.getUserName()) ? "" : user.getUserName());
+        person.setUserPhone(Objects.isNull(user.getUserPhone()) ? "" : user.getUserPhone());
         return person;
     }
 
@@ -83,8 +82,8 @@ public class UserTransformer {
         }
         userVO.setId(userDTO.getId());
         userVO.setUserGroup(userDTO.getUserGroup());
-        userVO.setUserName(Safes.of(userDTO.getUserName()));
-        userVO.setUserPhone(Safes.of(userDTO.getUserPhone()));
+        userVO.setUserName(Objects.isNull(userDTO.getUserName()) ? "" : userDTO.getUserName());
+        userVO.setUserPhone(Objects.isNull(userDTO.getUserPhone()) ? "" : userDTO.getUserPhone());
         userVO.setUserType(userDTO.getUserType());
         return userVO;
     }
@@ -101,8 +100,8 @@ public class UserTransformer {
         }
         personVo.setId(person.getId());
         personVo.setUserGroup(person.getUserGroup());
-        personVo.setUserName(Safes.of(person.getUserName()));
-        personVo.setUserPhone(Safes.of(person.getUserPhone()));
+        personVo.setUserName(Objects.isNull(person.getUserName()) ? "" : person.getUserName());
+        personVo.setUserPhone(Objects.isNull(person.getUserPhone()) ? "" : person.getUserPhone());
         personVo.setUserType(person.getUserType());
         return personVo;
     }
@@ -119,8 +118,8 @@ public class UserTransformer {
         }
         userVO.setId(personVo.getId());
         userVO.setUserGroup(personVo.getUserGroup());
-        userVO.setUserPhone(Safes.of(personVo.getUserPhone()));
-        userVO.setUserName(Safes.of(personVo.getUserName()));
+        userVO.setUserPhone(Objects.isNull(personVo.getUserPhone()) ? "" : personVo.getUserPhone());
+        userVO.setUserName(Objects.isNull(personVo.getUserName()) ? "" : personVo.getUserName());
         userVO.setUserType(personVo.getUserType());
         return userVO;
     }

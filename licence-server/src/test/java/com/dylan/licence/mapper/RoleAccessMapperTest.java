@@ -3,7 +3,8 @@ package com.dylan.licence.mapper;
 
 import com.dylan.framework.utils.PermissionChecker;
 import com.dylan.licence.entity.Access;
-import lombok.extern.slf4j.Slf4j;
+import com.dylan.logicer.base.logger.MyLogger;
+import com.dylan.logicer.base.logger.MyLoggerFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +19,6 @@ import java.util.List;
  * @Description UserMapperTest
  * @Date 5/11/2022 2:56 PM
  */
-@Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class RoleAccessMapperTest {
@@ -28,13 +28,14 @@ public class RoleAccessMapperTest {
 
     @Resource
     private PermissionChecker permissionChecker;
+    private static final MyLogger logger = MyLoggerFactory.getLogger(UserMapperTest.class);
 
     @Test
     public void getRoleId4UserFromGroup(){
         List<Integer> roleIds = new ArrayList<>();
         roleIds.add(1);
         List<Access> accesses4RoleIds = roleAccessMapper.getAccesses4RoleIds(roleIds);
-        log.info("accesses for roleIds is : {}", accesses4RoleIds);
+        logger.info("accesses for roleIds is : {}", accesses4RoleIds);
     }
 
     @Test

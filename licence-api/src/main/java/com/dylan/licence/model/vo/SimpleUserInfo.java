@@ -1,11 +1,13 @@
 package com.dylan.licence.model.vo;
 
+import java.io.Serializable;
+
 /**
  * @Classname SimpleUserInfo
  * @Description SimpleUserInfo
  * @Date 5/7/2022 5:00 PM
  */
-public class SimpleUserInfo {
+public class SimpleUserInfo implements Serializable {
 
     private Integer id;
 

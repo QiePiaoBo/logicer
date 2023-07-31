@@ -1,7 +1,9 @@
 package com.dylan.licence.service;
 
 import com.dylan.framework.model.result.HttpResult;
-import lombok.extern.slf4j.Slf4j;
+import com.dylan.licence.mapper.UserMapperTest;
+import com.dylan.logicer.base.logger.MyLogger;
+import com.dylan.logicer.base.logger.MyLoggerFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +16,6 @@ import javax.annotation.Resource;
  * @Description UserAccessServiceTest
  * @Date 5/11/2022 2:50 PM
  */
-@Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserAccessServiceTest {
@@ -22,10 +23,11 @@ public class UserAccessServiceTest {
     @Resource
     private UserAccessService userAccessService;
 
+    private static final MyLogger logger = MyLoggerFactory.getLogger(UserMapperTest.class);
     @Test
     public void test1(){
         HttpResult accesses4User = userAccessService.getAccesses4User(1);
-        log.info("accesses 4 user 1 is : {}", accesses4User);
+        logger.info("accesses 4 user 1 is : {}", accesses4User);
     }
 
 

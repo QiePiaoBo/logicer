@@ -1,8 +1,6 @@
 package com.dylan.licence.transformer;
 
 
-
-import com.dylan.framework.utils.Safes;
 import com.dylan.licence.entity.Role;
 import com.dylan.licence.model.dto.RoleDTO;
 import com.dylan.licence.model.vo.RoleVO;
@@ -48,9 +46,9 @@ public class RoleTransformer {
         }
         roleVO.setId(role.getId());
         roleVO.setPid(role.getPid());
-        roleVO.setRoleCode(Safes.of(role.getRoleCode()));
-        roleVO.setRoleName(Safes.of(role.getRoleName()));
-        roleVO.setRoleDescription(Safes.of(role.getRoleDescription()));
+        roleVO.setRoleCode(Objects.isNull(role.getRoleCode()) ? "" : role.getRoleCode());
+        roleVO.setRoleName(Objects.isNull(role.getRoleName()) ? "" : role.getRoleName());
+        roleVO.setRoleDescription(Objects.isNull(role.getRoleDescription()) ? "" : role.getRoleDescription());
         roleVO.setRoleSort(role.getRoleSort());
         roleVO.setRoleStatus(role.getRoleStatus());
         return roleVO;

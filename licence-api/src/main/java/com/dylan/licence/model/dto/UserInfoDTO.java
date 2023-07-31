@@ -1,11 +1,13 @@
 package com.dylan.licence.model.dto;
 
+import java.io.Serializable;
+
 /**
  * @Classname UserInfoDTO
  * @Description UserInfoDTO
  * @Date 5/7/2022 4:59 PM
  */
-public class UserInfoDTO {
+public class UserInfoDTO implements Serializable {
 
     private Integer id;
 

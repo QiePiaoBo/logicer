@@ -1,6 +1,5 @@
 package com.dylan.licence.transformer;
 
-import com.dylan.framework.utils.Safes;
 import com.dylan.licence.entity.UserInfo;
 import com.dylan.licence.model.dto.UserInfoDTO;
 import com.dylan.licence.model.vo.UserInfoVO;
@@ -27,9 +26,9 @@ public class UserInfoTransformer {
         userInfoVO.setId(userInfo.getId());
         userInfoVO.setUserId(userInfo.getUserId());
         userInfoVO.setGender(userInfo.getGender());
-        userInfoVO.setMail(Safes.of(userInfo.getMail()));
-        userInfoVO.setRealName(Safes.of(userInfo.getRealName()));
-        userInfoVO.setWechatCode(Safes.of(userInfo.getWechatCode()));
+        userInfoVO.setMail(Objects.isNull(userInfo.getMail()) ? "" : userInfo.getMail());
+        userInfoVO.setRealName(Objects.isNull(userInfo.getRealName()) ? "" : userInfo.getRealName());
+        userInfoVO.setWechatCode(Objects.isNull(userInfo.getWechatCode())? "" : userInfo.getWechatCode());
         return userInfoVO;
     }
 
