@@ -14,7 +14,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @SpringBootApplication(scanBasePackages = {"com.dylan.licence", "com.dylan.framework"})
 @EnableDiscoveryClient
-@EnableDubbo(scanBasePackages = "com.dylan.licence")
+@EnableDubbo
 public class LicenceApplication {
 
     private static final MyLogger logger = MyLoggerFactory.getLogger(LicenceApplication.class);

@@ -1,10 +1,10 @@
 server:
-  port: @port.licence@
+  port: ${port.licence}
 spring:
   application:
-    name: @application.name@
+    name: ${application.name}
   profiles:
-    active: @profile-name@
+    active: ${profile-name}
   main:
     allow-bean-definition-overriding: true
   cloud:
@@ -46,19 +46,23 @@ logging:
     path: /home/java/logs
 dubbo:
   application:
-    name: @application.name@
+    name: ${application.name}
+  protocol:
+    port: @dubbo.port.licence@
+    name: dubbo
   registry:
     address: nacos://logicer.top:8848?username=nacos&password=19970413
     parameters: {namespace: '89293a11-6102-49af-98a4-6e755af1b412'} # 这个配置会使dubbo服务注册到指定的namespace中 改变的是服务列表的命名空间
     dynamic: true
-  protocol:
-    port: @dubbo.port.licence@
-    name: dubbo
+    group: ${profile-name}
   metadata-report:
     address: ${dubbo.registry.address}
     parameters: {namespace: '89293a11-6102-49af-98a4-6e755af1b412'} # 这个配置改变的是该Dubbo服务的配置列表中的命名空间 不配置的话就会写到默认空间
+    protocol: nacos
+    group: ${profile-name}
   config-center:
     address: ${dubbo.registry.address}
+    group: ${profile-name}
 #  monitor: # 如果要使用monitor需要进行额外的配置 添加依赖或自己实现dubboSPI扩展
 #    address: ${dubbo.registry.address}
 #    parameters: {namespace: '89293a11-6102-49af-98a4-6e755af1b412'}

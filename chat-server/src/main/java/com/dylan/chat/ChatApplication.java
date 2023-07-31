@@ -10,7 +10,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @Description ChatApplication
  * @Date 6/16/2022 5:56 PM
  */
-
 @SpringBootApplication(scanBasePackages = {"com.dylan.chat","com.dylan.framework", "com.dylan.licence"})
 @EnableDiscoveryClient
 public class ChatApplication {

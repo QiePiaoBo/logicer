@@ -51,4 +51,4 @@ dubbo:
   registry:
     address: nacos://logicer.top:8848?username=nacos&password=19970413
     parameters: {namespace: '89293a11-6102-49af-98a4-6e755af1b412'} # 这个配置会使dubbo服务注册到指定的namespace中 改变的是服务列表的命名空间
-    dynamic: true
+    register: false

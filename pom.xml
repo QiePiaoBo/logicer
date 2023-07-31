@@ -99,10 +99,10 @@
         <port.file>9001</port.file>
         <port.blog>9002</port.blog>
         <port.chat>9003</port.chat>
-        <dubbo.port.licence>21000</dubbo.port.licence>
-        <dubbo.port.file>21001</dubbo.port.file>
-        <dubbo.port.blog>21002</dubbo.port.blog>
-        <dubbo.port.chat>21003</dubbo.port.chat>
+        <dubbo.port.file>-1</dubbo.port.file>
+        <dubbo.port.blog>-1</dubbo.port.blog>
+        <dubbo.port.chat>-1</dubbo.port.chat>
+        <dubbo.port.licence>-1</dubbo.port.licence>
     </properties>
 
     <dependencyManagement>
