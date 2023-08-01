@@ -1,0 +1,29 @@
+server:
+  port: 8001
+  name: mytty
+  maxReadIdle: 60
+  maxWriteIdle: 60
+  maxAllIdle: 60
+db:
+  mysql:
+    url: jdbc:mysql://logicer.top:3306/logicer?useUnicode=true&characterEncoding=utf-8&relaxAutoCommit=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+    username: root
+    password: mylog
+    driverClassName: com.mysql.cj.jdbc.Driver
+redis:
+    host: logicer.top
+    port: 6379
+    username:
+    password:
+app:
+  groupId: ${groupId}
+  artifactId: ${artifactId}
+rabbitmq:
+  host: logicer.top
+  port: 5672
+  virtualHost: logicer
+  userName: logicer
+  password: 19970413
+mybatis:
+  mapperScanPackage: com.dylan.logicertalk.dao.mapper
+  mapperFileLocation: mapper

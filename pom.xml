@@ -19,6 +19,7 @@
         <module>blog-server</module>
         <module>chat-api</module>
         <module>chat-server</module>
+        <module>comm-server</module>
     </modules>
 
     <profiles>
