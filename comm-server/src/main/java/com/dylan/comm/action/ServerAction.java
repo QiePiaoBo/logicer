@@ -2,8 +2,8 @@ package com.dylan.comm.action;
 
 import com.dylan.comm.comp.CompManager;
 import com.dylan.comm.config.MyCoreConfig;
-import com.dylan.comm.config.rabbitmq.RabbitMQUtil;
-import com.dylan.comm.config.redis.RedisConfig;
+import com.dylan.comm.config.rabbitmq.RabbitMQCenter;
+import com.dylan.comm.config.redis.RedisCenter;
 import com.dylan.comm.handler.LogicerInitializer;
 import com.dylan.logicer.base.logger.MyLogger;
 import com.dylan.logicer.base.logger.MyLoggerFactory;
@@ -44,7 +44,7 @@ public class ServerAction {
             StatefulRedisConnection<String, String> connection = CompManager.redis_config.getConnection();
             RedisCommands<String, String> redisCommands = CompManager.redis_config.getRedisCommands();
 
-            String result = redisCommands.set("name", "dylan", RedisConfig.setArgs);
+            String result = redisCommands.set("name", "dylan", RedisCenter.setArgs);
             logger.info("Result of set name : {}", result);
             result = redisCommands.get("name");
             logger.info("Result of get name : {}", result);
@@ -68,7 +68,7 @@ public class ServerAction {
 
     public static void prepareMQEnv(){
         logger.info("Preparing env of rabbitmq...");
-        Connection mqConnection = RabbitMQUtil.getMqConnection();
+        Connection mqConnection = RabbitMQCenter.getMqConnection();
         try {
             Channel channel = mqConnection.createChannel();
             // 声明队列

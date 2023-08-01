@@ -15,7 +15,7 @@ import java.time.temporal.ChronoUnit;
  * @Description RedisConfig
  * @Date 7/7/2022 11:33 AM
  */
-public class RedisConfig {
+public class RedisCenter {
 
     private RedisClient redisClient;
 
@@ -28,7 +28,7 @@ public class RedisConfig {
      */
     public static final SetArgs setArgs = SetArgs.Builder.nx().ex(60*60*24);
 
-    public RedisConfig() {
+    public RedisCenter() {
         // 初始化Lettuce客户端
         String redisHost = ConfigReader.getComplexConfigString("redis.host");
         Integer redisPort = ConfigReader.getComplexConfigInteger("redis.port");

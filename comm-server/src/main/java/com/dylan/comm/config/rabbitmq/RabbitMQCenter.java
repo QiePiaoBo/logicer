@@ -13,9 +13,9 @@ import java.util.concurrent.TimeoutException;
  * @author Dylan
  * @Date : 2022/4/14 - 14:01
  */
-public class RabbitMQUtil {
+public class RabbitMQCenter {
 
-    private static final MyLogger logger = MyLoggerFactory.getLogger(RabbitMQUtil.class);
+    private static final MyLogger logger = MyLoggerFactory.getLogger(RabbitMQCenter.class);
 
     private static Connection MQ_CONNECTION = null;
 
@@ -42,7 +42,7 @@ public class RabbitMQUtil {
      */
     public static Connection getMqConnection() {
         if (Objects.isNull(MQ_CONNECTION)){
-            synchronized (RabbitMQUtil.class){
+            synchronized (RabbitMQCenter.class){
                 if (Objects.isNull(MQ_CONNECTION)){
                     try {
                         MQ_CONNECTION = getConnection();

@@ -1,5 +1,2 @@
 configs:
-  - db.yml
-  - redis.yml
-  - mq.yml
   - mytty.yml

@@ -1,6 +1,6 @@
 package com.dylan.comm.mq;
 
-import com.dylan.comm.config.rabbitmq.RabbitMQUtil;
+import com.dylan.comm.config.rabbitmq.RabbitMQCenter;
 import com.dylan.logicer.base.logger.MyLogger;
 import com.dylan.logicer.base.logger.MyLoggerFactory;
 import com.dylan.logicer.base.mq.LogicerTalkMqConstant;
@@ -30,7 +30,7 @@ public class LogicerProducer {
 
     public LogicerProducer() {
         try {
-            this.produceChannel = RabbitMQUtil.getMqConnection().createChannel();
+            this.produceChannel = RabbitMQCenter.getMqConnection().createChannel();
             logger.info("Created produceChannel: {}", produceChannel);
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -1,8 +1,8 @@
 package com.dylan.comm.comp;
 
 import com.dylan.comm.config.ConfigReader;
-import com.dylan.comm.config.mybatisplus.MybatisConfig;
-import com.dylan.comm.config.redis.RedisConfig;
+import com.dylan.comm.config.mybatisplus.MybatisCenter;
+import com.dylan.comm.config.redis.RedisCenter;
 import com.dylan.comm.dao.entity.User;
 import com.dylan.comm.handler.LogicerExecutor;
 import com.dylan.comm.mq.LogicerProducer;
@@ -26,7 +26,7 @@ public class CompManager {
     /**
      * redis设置 包括lettuce的客户端、Connection和Commands
      */
-    public static RedisConfig redis_config = new RedisConfig();
+    public static RedisCenter redis_config = new RedisCenter();
 
     /**
      * guava提供的可以根据value查key的map <userName - socketAddress>
@@ -65,7 +65,7 @@ public class CompManager {
     /**
      * MybatisPlus与数据库交互时应该使用时的必要对象实例
      */
-    public static MybatisConfig mybatis_configuration = new MybatisConfig();
+    public static MybatisCenter mybatis_configuration = new MybatisCenter();
 
     /**
      * LogicerExecutor对象实例

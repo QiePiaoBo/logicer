@@ -2,7 +2,7 @@ package com.dylan.comm.dao.service;
 
 import com.dylan.comm.anno.MyService;
 import com.dylan.comm.comp.CompManager;
-import com.dylan.comm.config.mybatisplus.MybatisConfig;
+import com.dylan.comm.config.mybatisplus.MybatisCenter;
 import com.dylan.comm.dao.entity.User;
 import com.dylan.comm.dao.mapper.UserMapper;
 import com.dylan.logicer.base.util.PasswordUtil;
@@ -14,14 +14,14 @@ import java.util.Objects;
 @MyService
 public class UserService {
 
-    private static final MybatisConfig mybatisConfig = Objects.isNull(CompManager.mybatis_configuration) ? new MybatisConfig() : CompManager.mybatis_configuration;
+    private static final MybatisCenter MYBATIS_CENTER = Objects.isNull(CompManager.mybatis_configuration) ? new MybatisCenter() : CompManager.mybatis_configuration;
 
     /**
      * 获取所有的用户
      * @return
      */
     public List<User> getActiveUsers(){
-        SqlSession sqlSession = mybatisConfig.getSqlSession();
+        SqlSession sqlSession = MYBATIS_CENTER.getSqlSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         if (Objects.isNull(mapper)){
             return new ArrayList<>();
@@ -36,7 +36,7 @@ public class UserService {
      * @return
      */
     public User login(String userName, String password){
-        SqlSession sqlSession = mybatisConfig.getSqlSession();
+        SqlSession sqlSession = MYBATIS_CENTER.getSqlSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         if (Objects.isNull(mapper)){
             return null;

@@ -116,7 +116,23 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!--    dubbo    -->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.nacos</groupId>
+            <artifactId>nacos-client</artifactId>
+        </dependency>
+        <!--    licence    -->
+        <dependency>
+            <groupId>com.dylan</groupId>
+            <artifactId>licence-api</artifactId>
+        </dependency>
+
     </dependencies>
+
     <build>
         <resources>
             <resource>

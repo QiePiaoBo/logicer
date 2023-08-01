@@ -27,3 +27,6 @@ rabbitmq:
 mybatis:
   mapperScanPackage: com.dylan.logicertalk.dao.mapper
   mapperFileLocation: mapper
+dubbo:
+    registry-address: nacos://dylan:19970413@logicer.top:8848
+    application-name: ${artifactId}

@@ -6,7 +6,7 @@ package com.dylan.comm.config.mybatisplus;
  * @Description :
  * @Function :
  */
-public class MysqlConfig {
+public class MysqlCenter {
 
     private String url;
 
@@ -20,7 +20,7 @@ public class MysqlConfig {
 
     private String connectionTestQuery;
 
-    public MysqlConfig(String url, String driverClassName, String userName, String password) {
+    public MysqlCenter(String url, String driverClassName, String userName, String password) {
         this.url = url;
         this.driverClassName = driverClassName;
         this.userName = userName;

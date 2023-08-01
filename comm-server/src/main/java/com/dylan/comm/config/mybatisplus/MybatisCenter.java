@@ -41,13 +41,13 @@ import java.util.jar.JarFile;
  * @Description : 数据源
  * @Function :
  */
-public class MybatisConfig {
+public class MybatisCenter {
 
-    private static final MyLogger logger = MyLoggerFactory.getLogger(MybatisConfig.class);
+    private static final MyLogger logger = MyLoggerFactory.getLogger(MybatisCenter.class);
 
     private SqlSession sqlSession;
 
-    public MybatisConfig() {
+    public MybatisCenter() {
         SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
         MybatisConfiguration configuration = new MybatisConfiguration();
         myMybatisConfig(configuration);
@@ -165,12 +165,12 @@ public class MybatisConfig {
      * @return
      */
     private DataSource initDataSource() {
-        MysqlConfig mysqlConfig = initMysqlConfig();
+        MysqlCenter mysqlCenter = initMysqlConfig();
         HikariDataSource dataSource = new HikariDataSource();
-        dataSource.setJdbcUrl(mysqlConfig.getUrl());
-        dataSource.setDriverClassName(mysqlConfig.getDriverClassName());
-        dataSource.setUsername(mysqlConfig.getUserName());
-        dataSource.setPassword(mysqlConfig.getPassword());
+        dataSource.setJdbcUrl(mysqlCenter.getUrl());
+        dataSource.setDriverClassName(mysqlCenter.getDriverClassName());
+        dataSource.setUsername(mysqlCenter.getUserName());
+        dataSource.setPassword(mysqlCenter.getPassword());
         // 空闲时间超时时间  600000 10分钟
         dataSource.setIdleTimeout(600000);
         // 最小空闲连接数量
@@ -186,13 +186,13 @@ public class MybatisConfig {
      *
      * @return
      */
-    public MysqlConfig initMysqlConfig() {
+    public MysqlCenter initMysqlConfig() {
         Map mysqlConfig = ConfigReader.getComplexConfigMap("db.mysql");
         String url = (String) mysqlConfig.getOrDefault("url", "jdbc:mysql://192.168.2.111:3306/mylog?useUnicode=true&characterEncoding=utf-8&relaxAutoCommit=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true");
         String username = (String) mysqlConfig.getOrDefault("username", "root");
         String password = mysqlConfig.getOrDefault("password", "19970413") + "";
         String driverClass = (String) mysqlConfig.getOrDefault("driverClassName", "com.mysql.cj.jdbc.Driver");
-        return new MysqlConfig(url, driverClass, username, password);
+        return new MysqlCenter(url, driverClass, username, password);
     }
 
 
