@@ -11,7 +11,7 @@ spring:
     nacos:
       config:
         server-addr: logicer.top:8848
-        namespace: @config.namespace@
+        namespace: ${config.namespace}
         file-extension: yaml
         refresh-enabled: true
         enable-remote-sync-config: true
@@ -22,14 +22,13 @@ spring:
           - {data-id: rabbit.yaml, group: 'DEFAULT_GROUP', refresh: true}
         username: nacos
         password: 19970413
-        context-path: /nacos
       discovery:
         server-addr: logicer.top:8848
+        service: ${application.name}
+        namespace: ${config.namespace}
+        ip: 127.0.0.1
         username: nacos
         password: 19970413
-        service: @application.name@
-        namespace: @config.namespace@
-        ip: 127.0.0.1
   session:
     store-type: redis
 mybatis-plus:
@@ -51,19 +50,25 @@ dubbo:
     port: @dubbo.port.licence@
     name: dubbo
   registry:
-    address: nacos://logicer.top:8848?username=dylan&password=19970413
-    parameters: {namespace: 'a4064324-ce85-4574-bdd5-89373f6ee0a4'} # 这个配置会使dubbo服务注册到指定的namespace中 改变的是服务列表的命名空间
+    address: nacos://logicer.top:8848
+    # 这个配置会使dubbo服务注册到指定的namespace中 改变的是服务列表的命名空间
+    parameters: {namespace: 'a4064324-ce85-4574-bdd5-89373f6ee0a4'}
     dynamic: true
     group: ${profile-name}
+    username: nacos
+    password: 19970413
+  config-center:
+    address: nacos://logicer.top:8848
+    username: nacos
+    password: 19970413
+    group: ${profile-name}
+    port: -1
+    default: false
   metadata-report:
-    address: ${dubbo.registry.address}
-    parameters: {namespace: 'a4064324-ce85-4574-bdd5-89373f6ee0a4'} # 这个配置改变的是该Dubbo服务的配置列表中的命名空间 不配置的话就会写到默认空间
+    address: nacos://logicer.top:8848
+    # 这个配置改变的是该Dubbo服务的配置列表中的命名空间 不配置的话就会写到默认空间
+    parameters: {namespace: 'a4064324-ce85-4574-bdd5-89373f6ee0a4'}
     protocol: nacos
     group: ${profile-name}
-  config-center:
-    address: ${dubbo.registry.address}
-    group: ${profile-name}
-#  monitor: # 如果要使用monitor需要进行额外的配置 添加依赖或自己实现dubboSPI扩展
-#    address: ${dubbo.registry.address}
-#    parameters: {namespace: 'a4064324-ce85-4574-bdd5-89373f6ee0a4'}
-#    monitor
+    username: nacos
+    password: 19970413

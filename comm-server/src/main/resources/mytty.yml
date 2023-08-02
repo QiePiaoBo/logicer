@@ -28,5 +28,6 @@ mybatis:
   mapperScanPackage: com.dylan.logicertalk.dao.mapper
   mapperFileLocation: mapper
 dubbo:
-    registry-address: nacos://dylan:19970413@logicer.top:8848
+    registry-address: nacos://logicer.top:8848?username=nacos&password=19970413&nacos.check=false&nacos.retry=0
     application-name: ${artifactId}
+    config-address: nacos://logicer.top:8848?username=nacos&password=19970413&nacos.check=false&nacos.retry=0

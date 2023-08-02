@@ -6,6 +6,7 @@ import com.dylan.logicer.base.logger.MyLoggerFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.common.config.configcenter.DynamicConfiguration;
 import org.apache.dubbo.config.ApplicationConfig;
+import org.apache.dubbo.config.ConfigCenterConfig;
 import org.apache.dubbo.config.ConsumerConfig;
 import org.apache.dubbo.config.ProtocolConfig;
 import org.apache.dubbo.config.ReferenceConfig;
@@ -33,32 +34,37 @@ public class DubboCenter {
      *
      * @return
      */
-    private static <T> ReferenceConfig<T> getReference(Class<T> serviceClass) {
+    private static <T> DubboBootstrap getReference(Class<T> serviceClass) {
         // 读取配置
         String dubboRegistryAddress = ConfigReader.getComplexConfigStringWithDefault("dubbo.registry-address", null);
+        String dubboConfigAddress = ConfigReader.getComplexConfigStringWithDefault("dubbo.config-address", null);
         String dubboAppName = ConfigReader.getComplexConfigStringWithDefault("dubbo.application-name", null);
         if (StringUtils.isBlank(dubboAppName) || StringUtils.isBlank(dubboRegistryAddress)) {
             logger.error("Error, cannot get config for dubbo, registry-address: {}, application-name: {}", dubboRegistryAddress, dubboAppName);
             return null;
         }
-        // application信息
-        ApplicationConfig applicationConfig = new ApplicationConfig();
-        applicationConfig.setName(dubboAppName);
-        // registry信息
-        RegistryConfig registryConfig = new RegistryConfig();
-        registryConfig.setAddress(dubboRegistryAddress);
-        registryConfig.setPassword("19970413");
-        registryConfig.setUsername("dylan");
-        registryConfig.setRegister(false);
         Map<String, String> map = new HashMap<>();
         map.put("namespace", "a4064324-ce85-4574-bdd5-89373f6ee0a4");
+        RegistryConfig registryConfig = new RegistryConfig(dubboRegistryAddress);
+        registryConfig.setUsername("nacos");
+        registryConfig.setPassword("19970413");
         registryConfig.setParameters(map);
 
+        ConfigCenterConfig configCenterConfig = new ConfigCenterConfig();
+        configCenterConfig.setAddress(dubboConfigAddress);
+        configCenterConfig.setUsername("nacos");
+        configCenterConfig.setPassword("19970413");
+        configCenterConfig.setGroup("dev");
+        configCenterConfig.setNamespace("a4064324-ce85-4574-bdd5-89373f6ee0a4");
+
         ReferenceConfig<T> reference = new ReferenceConfig<>();
-        reference.setRegistry(registryConfig);
-        reference.setApplication(applicationConfig);
         reference.setInterface(serviceClass);
-        return reference;
+
+        return DubboBootstrap.getInstance()
+                .registry(registryConfig)
+//                .configCenter(configCenterConfig)
+                .reference(reference)
+                .start();
     }
 
     /**
@@ -69,17 +75,11 @@ public class DubboCenter {
      * @return
      */
     public static <T> T getService(Class<T> serviceClass) {
-        ReferenceConfig<T> reference;
-        if (referenceConfigMap.containsKey(serviceClass)) {
-            reference = (ReferenceConfig<T>) referenceConfigMap.get(serviceClass);
-        } else {
-            reference = getReference(serviceClass);
-        }
-        if (Objects.isNull(reference)) {
-            logger.error("Error getting instance for class : {}", serviceClass);
+        DubboBootstrap bootstrap = getReference(serviceClass);
+        if (Objects.isNull(bootstrap)){
             throw new RuntimeException("Error getting instance for class : " + serviceClass.getName());
         }
-        return reference.get();
+        return bootstrap.getCache().get(serviceClass);
     }
 
 }
