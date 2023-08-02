@@ -116,21 +116,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!--    dubbo    -->
-        <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo-registry-nacos</artifactId>
-        </dependency>
-        <!--    licence    -->
-        <dependency>
-            <groupId>com.dylan</groupId>
-            <artifactId>licence-api</artifactId>
-        </dependency>
-
     </dependencies>
 
     <build>
