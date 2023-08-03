@@ -1,17 +1,17 @@
 server:
-  port: @port.blog@
+  port: ${port.blog}
 spring:
   application:
-    name: @application.name@
+    name: ${application.name}
   profiles:
-    active: @profile-name@
+    active: ${profile-name}
   main:
     allow-bean-definition-overriding: true
   cloud:
     nacos:
       config:
         server-addr: logicer.top:8848
-        namespace: @config.namespace@
+        namespace: ${config.namespace}
         file-extension: yaml
         refresh-enabled: true
         enable-remote-sync-config: true
@@ -27,8 +27,8 @@ spring:
         server-addr: logicer.top:8848
         username: nacos
         password: 19970413
-        service: @application.name@
-        namespace: @config.namespace@
+        service: ${application.name}
+        namespace: ${config.namespace}
         ip: 127.0.0.1
   session:
     store-type: redis
@@ -46,7 +46,7 @@ logging:
     path: /home/java/logs
 dubbo:
   application:
-    name: @application.name@
+    name: ${application.name}
   registry:
     address: nacos://logicer.top:8848?username=nacos&password=19970413
     parameters: {namespace: 'a4064324-ce85-4574-bdd5-89373f6ee0a4'} # 这个配置会使dubbo服务注册到指定的namespace中 改变的是服务列表的命名空间

@@ -47,7 +47,7 @@ dubbo:
   application:
     name: ${application.name}
   protocol:
-    port: @dubbo.port.licence@
+    port: ${dubbo.port.licence}
     name: dubbo
   registry:
     address: nacos://logicer.top:8848
