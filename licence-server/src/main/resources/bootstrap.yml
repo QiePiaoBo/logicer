@@ -10,9 +10,9 @@ spring:
   cloud:
     nacos:
       config:
-        server-addr: logicer.top:8848
-        username: nacos
-        password: 19970413
+        server-addr: ${nacos.remote-address}
+        username: ${nacos.username}
+        password: ${nacos.password}
         namespace: ${config.namespace}
         file-extension: yaml
         enable-remote-sync-config: true
@@ -21,9 +21,9 @@ spring:
           - {dataId: base_db.yaml, group: 'DEFAULT_GROUP', refresh: true}
           - {data-id: rabbit.yaml, group: 'DEFAULT_GROUP', refresh: true}
       discovery:
-        server-addr: logicer.top:8848
-        username: nacos
-        password: 19970413
+        server-addr: ${nacos.remote-address}
+        username: ${nacos.username}
+        password: ${nacos.password}
         namespace: ${config.namespace}
 mybatis-plus:
   mapper-locations: classpath:mapper/*Mapper.xml
@@ -44,25 +44,19 @@ dubbo:
     port: ${dubbo.port.licence}
     name: dubbo
   registry:
-    address: nacos://logicer.top:8848
+    address: ${dubbo.nacos-address}
     # 这个配置会使dubbo服务注册到指定的namespace中 改变的是服务列表的命名空间
-    parameters: {namespace: 'a4064324-ce85-4574-bdd5-89373f6ee0a4'}
+    parameters: {namespace: 'ddce2ce9-574d-4369-a42c-6628feafd4bc'}
     dynamic: true
     group: ${profile-name}
-    username: nacos
-    password: 19970413
   config-center:
-    address: nacos://logicer.top:8848
-    username: nacos
-    password: 19970413
+    address: ${dubbo.nacos-address}
     group: ${profile-name}
     port: -1
     default: false
   metadata-report:
-    address: nacos://logicer.top:8848
+    address: ${dubbo.nacos-address}
     # 这个配置改变的是该Dubbo服务的配置列表中的命名空间 不配置的话就会写到默认空间
-    parameters: {namespace: 'a4064324-ce85-4574-bdd5-89373f6ee0a4'}
+    parameters: {namespace: 'ddce2ce9-574d-4369-a42c-6628feafd4bc'}
     protocol: nacos
     group: ${profile-name}
-    username: nacos
-    password: 19970413
