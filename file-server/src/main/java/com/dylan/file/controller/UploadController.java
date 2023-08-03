@@ -21,9 +21,9 @@ public class UploadController {
     @Resource
     private QiNiuService qiNiuService;
 
-    @RequestMapping("qiniu")
-    public DataResult upload2Qiniu(@ModelAttribute FileStorageDTO dto){
-        return qiNiuService.upload2QiNiu(dto);
-    }
+//    @RequestMapping("qiniu")
+//    public DataResult upload2Qiniu(@ModelAttribute FileStorageDTO dto){
+//        return qiNiuService.upload2QiNiu(dto);
+//    }
 
 }
