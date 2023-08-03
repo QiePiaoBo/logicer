@@ -321,6 +321,9 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
+                <includes>
+                    <include>**/*</include>
+                </includes>
             </resource>
         </resources>
         <!--    单测使用主工程的资源    -->
@@ -328,6 +331,9 @@
             <testResource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
+                <includes>
+                    <include>**/*</include>
+                </includes>
             </testResource>
         </testResources>
         <pluginManagement>

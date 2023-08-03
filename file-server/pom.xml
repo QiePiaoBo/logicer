@@ -23,11 +23,6 @@
             <groupId>com.dylan</groupId>
             <artifactId>file-api</artifactId>
         </dependency>
-        <!--    spring-cloud-starter    -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter</artifactId>
-        </dependency>
         <!--        引入springboot-starter-web-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

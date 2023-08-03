@@ -34,11 +34,6 @@
             <groupId>com.dylan</groupId>
             <artifactId>framework-ext</artifactId>
         </dependency>
-        <!--    spring-cloud-starter    -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter</artifactId>
-        </dependency>
         <!--        springboot依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

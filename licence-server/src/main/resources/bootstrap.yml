@@ -11,26 +11,20 @@ spring:
     nacos:
       config:
         server-addr: logicer.top:8848
+        username: nacos
+        password: 19970413
         namespace: ${config.namespace}
         file-extension: yaml
-        refresh-enabled: true
         enable-remote-sync-config: true
         extension-configs:
           - {dataId: common.yaml, group: 'DEFAULT_GROUP', refresh: true}
           - {dataId: base_db.yaml, group: 'DEFAULT_GROUP', refresh: true}
-#          - {dataId: redis.yaml, group: 'DEFAULT_GROUP', refresh: true}
           - {data-id: rabbit.yaml, group: 'DEFAULT_GROUP', refresh: true}
-        username: nacos
-        password: 19970413
       discovery:
         server-addr: logicer.top:8848
-        service: ${application.name}
-        namespace: ${config.namespace}
-        ip: 127.0.0.1
         username: nacos
         password: 19970413
-  session:
-    store-type: redis
+        namespace: ${config.namespace}
 mybatis-plus:
   mapper-locations: classpath:mapper/*Mapper.xml
   configuration:
