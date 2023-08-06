@@ -20,6 +20,7 @@ spring:
           - {dataId: common.yaml, group: 'DEFAULT_GROUP', refresh: true}
           - {dataId: base_db.yaml, group: 'DEFAULT_GROUP', refresh: true}
           - {data-id: rabbit.yaml, group: 'DEFAULT_GROUP', refresh: true}
+        context-path: /nacos
       discovery:
         server-addr: ${nacos.remote-address}
         username: ${nacos.username}

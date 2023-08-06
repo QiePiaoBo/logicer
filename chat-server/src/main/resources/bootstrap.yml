@@ -9,8 +9,10 @@ spring:
     allow-bean-definition-overriding: true
   cloud:
     nacos:
+#      username: ${nacos.username}
+#      password: ${nacos.password}
       config:
-        server-addr: logicer.top:8848
+        server-addr: ${nacos.remote-address}
         namespace: ${config.namespace}
         file-extension: yaml
         refresh-enabled: true
@@ -20,13 +22,13 @@ spring:
           - {dataId: base_db.yaml, group: 'DEFAULT_GROUP', refresh: true}
           - {dataId: redis.yaml, group: 'DEFAULT_GROUP', refresh: true}
           - {data-id: rabbit.yaml, group: 'DEFAULT_GROUP', refresh: true}
-        username: nacos
-        password: 19970413
+        username: ${nacos.username}
+        password: ${nacos.password}
         context-path: /nacos
       discovery:
-        server-addr: logicer.top:8848
-        username: nacos
-        password: 19970413
+        server-addr: ${nacos.remote-address}
+        username: ${nacos.username}
+        password: ${nacos.password}
         service: ${application.name}
         namespace: ${config.namespace}
         ip: 127.0.0.1

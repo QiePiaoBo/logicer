@@ -1,6 +1,5 @@
 package com.dylan.chat.consumer;
 
-import com.alibaba.nacos.shaded.com.google.common.collect.Queues;
 import com.dylan.chat.mapper.MsgRecordMapper;
 import com.dylan.chat.model.MsgInsertModel;
 import com.dylan.chat.model.converter.MsgRecordConverter;
@@ -11,6 +10,7 @@ import com.dylan.logicer.base.logger.MyLoggerFactory;
 import com.dylan.logicer.base.logicer.*;
 import com.dylan.logicer.base.mq.LogicerTalkMqConstant;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.google.common.collect.Queues;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Qualifier;
