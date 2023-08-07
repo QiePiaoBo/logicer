@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.dylan</groupId>
@@ -356,6 +356,7 @@
                     <configuration>
                         <fork>true</fork>
                         <executable>true</executable>
+                        <outputDirectory>/home/logicer/java/lib</outputDirectory>
                     </configuration>
                 </plugin>
                 <!--      用于指定项目源码的JDK版本和编译后的版本和编码方式      -->
