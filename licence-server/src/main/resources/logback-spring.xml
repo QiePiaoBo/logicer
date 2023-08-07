@@ -34,7 +34,7 @@
         <!--for further documentation -->
         <encoder>
             <pattern>
-                {"timestamp": "%date{"yyyy-MM-dd HH:mm:ss:SSS"}","app": "${applicationName}","level": "%level","pid": "${PID:-}","thread": "%thread","class": "%logger","method": "%method","line": "%line","strmsg": "%strmsg","statck_trace":"%xEx"}\n
+                {"timestamp": "%date{"yyyy-MM-dd HH:mm:ss:SSS"}","app": "${appName}","level": "%level","pid": "${PID:-}","thread": "%thread","class": "%logger","method": "%method","line": "%line","strmsg": "%strmsg","statck_trace":"%xEx"}\n
             </pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
