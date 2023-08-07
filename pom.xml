@@ -38,7 +38,7 @@
                 <config.namespace></config.namespace>
                 <service.ip>127.0.0.1</service.ip>
                 <logging.file.max-history>10</logging.file.max-history>
-                <dubbo.nacos-address>nacos://www.localpossession.com.cn:8848</dubbo.nacos-address>
+                <dubbo.nacos-address>nacos://logicer.top:8848</dubbo.nacos-address>
                 <nacos.remote-address>logicer.top:8848</nacos.remote-address>
                 <nacos.username>nacos</nacos.username>
                 <nacos.password>19970413</nacos.password>
