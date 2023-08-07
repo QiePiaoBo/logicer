@@ -69,50 +69,14 @@
         </dependency>
 
     </dependencies>
-    <build>
 
+    <build>
         <plugins>
             <!--      spring-boot打包      -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <fork>true</fork>
-                    <executable>true</executable>
-                </configuration>
             </plugin>
-            <!--      用于指定项目源码的JDK版本和编译后的版本和编码方式      -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
-            <!--      用于将源文件打包成jar文件      -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <!--      用于将Maven项目中的各种资源文件复制到指定的输出目录中      -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-            </plugin>
-
         </plugins>
-
     </build>
 </project>

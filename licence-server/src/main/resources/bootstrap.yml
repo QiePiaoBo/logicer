@@ -9,18 +9,6 @@ spring:
     allow-bean-definition-overriding: true
   cloud:
     nacos:
-      config:
-        server-addr: ${nacos.remote-address}
-        username: ${nacos.username}
-        password: ${nacos.password}
-        namespace: ${config.namespace}
-        file-extension: yaml
-        enable-remote-sync-config: true
-        extension-configs:
-          - {dataId: common.yaml, group: 'DEFAULT_GROUP', refresh: true}
-          - {dataId: base_db.yaml, group: 'DEFAULT_GROUP', refresh: true}
-          - {data-id: rabbit.yaml, group: 'DEFAULT_GROUP', refresh: true}
-        context-path: /nacos
       discovery:
         server-addr: ${nacos.remote-address}
         username: ${nacos.username}
@@ -44,6 +32,8 @@ dubbo:
   protocol:
     port: ${dubbo.port.licence}
     name: dubbo
+  consumer:
+    check: false
   registry:
     address: ${dubbo.nacos-address}
     # 这个配置会使dubbo服务注册到指定的namespace中 改变的是服务列表的命名空间

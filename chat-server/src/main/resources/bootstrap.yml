@@ -9,31 +9,11 @@ spring:
     allow-bean-definition-overriding: true
   cloud:
     nacos:
-#      username: ${nacos.username}
-#      password: ${nacos.password}
-      config:
-        server-addr: ${nacos.remote-address}
-        namespace: ${config.namespace}
-        file-extension: yaml
-        refresh-enabled: true
-        enable-remote-sync-config: true
-        extension-configs:
-          - {dataId: common.yaml, group: 'DEFAULT_GROUP', refresh: true}
-          - {dataId: base_db.yaml, group: 'DEFAULT_GROUP', refresh: true}
-          - {dataId: redis.yaml, group: 'DEFAULT_GROUP', refresh: true}
-          - {data-id: rabbit.yaml, group: 'DEFAULT_GROUP', refresh: true}
-        username: ${nacos.username}
-        password: ${nacos.password}
-        context-path: /nacos
       discovery:
         server-addr: ${nacos.remote-address}
         username: ${nacos.username}
         password: ${nacos.password}
-        service: ${application.name}
         namespace: ${config.namespace}
-        ip: 127.0.0.1
-  session:
-    store-type: redis
 mybatis-plus:
   mapper-locations: classpath:mapper/*Mapper.xml
   configuration:
@@ -46,14 +26,28 @@ logging:
       max-history: 30
   file:
     path: /home/java/logs
-
 dubbo:
   application:
     name: ${application.name}
-  registry:
-    address: ${dubbo.nacos-address}
-    parameters: {namespace: 'ddce2ce9-574d-4369-a42c-6628feafd4bc'} # 这个配置会使dubbo服务注册到指定的namespace中 改变的是服务列表的命名空间
-    register: false
-    group: ${profile-name}
+  protocol:
+    port: ${dubbo.port.chat}
+    name: dubbo
   consumer:
     check: false
+  registry:
+    address: ${dubbo.nacos-address}
+    # 这个配置会使dubbo服务注册到指定的namespace中 改变的是服务列表的命名空间
+    parameters: {namespace: 'ddce2ce9-574d-4369-a42c-6628feafd4bc'}
+    dynamic: true
+    group: ${profile-name}
+  config-center:
+    address: ${dubbo.nacos-address}
+    group: ${profile-name}
+    port: -1
+    default: false
+  metadata-report:
+    address: ${dubbo.nacos-address}
+    # 这个配置改变的是该Dubbo服务的配置列表中的命名空间 不配置的话就会写到默认空间
+    parameters: {namespace: 'ddce2ce9-574d-4369-a42c-6628feafd4bc'}
+    protocol: nacos
+    group: ${profile-name}
