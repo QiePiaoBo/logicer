@@ -19,6 +19,10 @@
             <groupId>com.dylan</groupId>
             <artifactId>framework-model</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-annotation</artifactId>
+        </dependency>
     </dependencies>
     <build>
 

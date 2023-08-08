@@ -1,6 +1,8 @@
 package com.dylan.licence.entity;
 
 
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -12,6 +14,7 @@ import java.sql.Timestamp;
  * @author Dylan
  * @since 2020-05-24
  */
+@TableName("lgc_user")
 public class User implements Serializable {
 
 

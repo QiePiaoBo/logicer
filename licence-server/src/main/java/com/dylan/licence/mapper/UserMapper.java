@@ -1,5 +1,6 @@
 package com.dylan.licence.mapper;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.dylan.framework.model.page.MyPage;
 import com.dylan.licence.entity.User;
@@ -59,4 +60,10 @@ public interface UserMapper extends BaseMapper<User> {
      */
     List<UserNameIdModel> getUserNameId(List<String> userNames);
 
+    /**
+     * 根据Id获取用户
+     * @param userId
+     * @return
+     */
+    User getUserById(@Param("id") Integer userId);
 }

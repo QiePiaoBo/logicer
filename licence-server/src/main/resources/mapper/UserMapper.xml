@@ -21,6 +21,14 @@
         limit #{myPage.startNo}, #{myPage.pageSize}
     </select>
 
+    <select id="getUserById" resultMap="systemUserMap">
+        SELECT
+        <include refid="TableField"/>
+        FROM
+        <include refid="TableName"/>
+        where id = #{id} and del_flag = 0
+    </select>
+
     <select id="selectUserTotal" resultType="java.lang.Long">
         SELECT
         count(*)

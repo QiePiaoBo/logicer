@@ -1,5 +1,7 @@
 package com.dylan.licence.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -8,6 +10,7 @@ import java.sql.Timestamp;
  * @Description Group
  * @Date 5/10/2022 3:50 PM
  */
+@TableName("lgc_group")
 public class Group implements Serializable {
 
     private Integer id;
