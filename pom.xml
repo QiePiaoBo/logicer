@@ -11,7 +11,7 @@
         <module>logicer-base</module>
         <module>licence-api</module>
         <module>licence-server</module>
-        <module>framework-ext</module>
+        <module>framework-web</module>
         <module>framework-model</module>
         <module>file-api</module>
         <module>file-server</module>
@@ -120,7 +120,7 @@
             </dependency>
             <dependency>
                 <groupId>com.dylan</groupId>
-                <artifactId>framework-ext</artifactId>
+                <artifactId>framework-web</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>

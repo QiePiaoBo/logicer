@@ -28,7 +28,7 @@
         </dependency>
         <dependency>
             <groupId>com.dylan</groupId>
-            <artifactId>framework-ext</artifactId>
+            <artifactId>framework-web</artifactId>
         </dependency>
         <!-- 引入nacos，作为工具类被引入时会自动加载nacos -->
         <!-- nacos配置 -->

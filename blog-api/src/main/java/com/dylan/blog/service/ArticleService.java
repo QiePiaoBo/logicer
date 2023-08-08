@@ -1,7 +1,6 @@
 package com.dylan.blog.service;
 
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.dylan.blog.entity.Article;
 import com.dylan.framework.model.result.DataResult;
 
@@ -13,7 +12,7 @@ import java.util.List;
  * @author Dylan
  * @since 2020-06-14 20:24:19
  */
-public interface ArticleService extends IService<Article> {
+public interface ArticleService{
 
     /**
      * 获取符合条件的文章

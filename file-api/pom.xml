@@ -20,7 +20,7 @@
 
         <dependency>
             <groupId>com.dylan</groupId>
-            <artifactId>framework-ext</artifactId>
+            <artifactId>framework-web</artifactId>
         </dependency>
         <!--  七牛  -->
         <dependency>

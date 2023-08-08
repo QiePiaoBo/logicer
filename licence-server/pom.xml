@@ -77,7 +77,7 @@
         </dependency>
         <dependency>
             <groupId>com.dylan</groupId>
-            <artifactId>framework-ext</artifactId>
+            <artifactId>framework-web</artifactId>
         </dependency>
         <!--    dubbo    -->
         <dependency>

@@ -1,6 +1,5 @@
 package com.dylan.blog.model;
 
-import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
@@ -11,7 +10,6 @@ import java.util.Objects;
  * @Description MsgRecordEntity
  * @Date 6/20/2023 5:14 PM
  */
-@Data
 public class ConfettiQueryModel implements Serializable {
 
     private Integer id;
@@ -22,6 +20,30 @@ public class ConfettiQueryModel implements Serializable {
      * 标题
      */
     private String title;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     /**
      * QueryModel要求三个参数必须有一个值不为空

@@ -5,7 +5,6 @@ import com.dylan.blog.entity.ConfettiEntity;
 import com.dylan.blog.model.ConfettiInsertModel;
 import com.dylan.blog.vo.ConfettiListVO;
 import com.dylan.blog.vo.ConfettiVO;
-import org.springframework.beans.BeanUtils;
 
 public class ConfettiConverter {
 
@@ -16,7 +15,10 @@ public class ConfettiConverter {
      */
     public static ConfettiVO getConfettiVO(ConfettiEntity entity){
         ConfettiVO confettiVO = new ConfettiListVO();
-        BeanUtils.copyProperties(entity, confettiVO);
+        confettiVO.setContent(entity.getContent());
+        confettiVO.setId(entity.getId());
+        confettiVO.setTitle(entity.getTitle());
+        confettiVO.setUserId(entity.getUserId());
         return confettiVO;
     }
 
@@ -27,7 +29,10 @@ public class ConfettiConverter {
      */
     public static ConfettiVO getConfettiVO(ConfettiInsertModel insertModel){
         ConfettiVO confettiVO = new ConfettiVO();
-        BeanUtils.copyProperties(insertModel, confettiVO);
+        confettiVO.setId(insertModel.getId());
+        confettiVO.setTitle(insertModel.getTitle());
+        confettiVO.setUserId(insertModel.getUserId());
+        confettiVO.setContent(insertModel.getContent());
         return confettiVO;
     }
 

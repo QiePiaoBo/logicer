@@ -32,7 +32,7 @@
         </dependency>
         <dependency>
             <groupId>com.dylan</groupId>
-            <artifactId>framework-ext</artifactId>
+            <artifactId>framework-web</artifactId>
         </dependency>
         <!--        springboot依赖-->
         <dependency>

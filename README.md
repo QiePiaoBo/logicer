@@ -20,7 +20,7 @@
     * netty服务
   * framework-model
     * 框架通用实体对象
-  * framework-ext   
+  * framework-web   
     * 框架扩展，包括一些工具类和自定义组件
   * logicer-base
     * 自定义通信协议，通用组件、工具等
