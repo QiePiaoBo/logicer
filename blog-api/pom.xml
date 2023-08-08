@@ -18,9 +18,20 @@
     </properties>
 
     <dependencies>
+        <!-- 作为工具类 提供核心功能所要依赖的包 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <dependency>
             <groupId>com.dylan</groupId>
-            <artifactId>framework-web</artifactId>
+            <artifactId>framework-model</artifactId>
         </dependency>
     </dependencies>
     <build>
