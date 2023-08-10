@@ -36,7 +36,7 @@
     <!-- 日志输出级别 -->
     <root level="${log.level}">
         <appender-ref ref="STDOUT" />
-        <appender-ref ref="FILE"/>
+<!--        <appender-ref ref="FILE"/>-->
     </root>
 </configuration>
 <!--        &lt;!&ndash; show parameters for hibernate sql 专为 Hibernate 定制 &ndash;&gt;-->

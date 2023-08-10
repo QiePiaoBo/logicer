@@ -48,7 +48,7 @@
 <!--    <springProfile name="dev|pre">-->
         <!--控制台和日志文件输出级别-->
         <root level="INFO">
-            <appender-ref ref="jsonFile"/>
+<!--            <appender-ref ref="jsonFile"/>-->
             <appender-ref ref="console"/>
         </root>
 <!--    </springProfile>-->
