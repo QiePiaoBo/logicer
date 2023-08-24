@@ -26,3 +26,5 @@ logging:
       max-history: 30
   file:
     path: /home/java/logs
+  level:
+    com.baomidou.mybatisplus.core.executor.BaseExecutor: ERROR
