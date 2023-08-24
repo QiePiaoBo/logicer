@@ -50,8 +50,8 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         if (null != article.getId()){
             articleQueryWrapper.eq("id", article.getId());
         }
-        if (null != article.getFileName()){
-            articleQueryWrapper.like("file_name", article.getFileName());
+        if (null != article.getTitle()){
+            articleQueryWrapper.like("file_name", article.getTitle());
         }
         if (null != article.getSubTitle()){
             articleQueryWrapper.like("sub_title", article.getSubTitle());
@@ -124,8 +124,8 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         // 根据id获取目标记录
        Article aimArticle = articleMapper.queryById(article.getId());
        // 修改非空的某几种属性
-        if (article.getFileName() != null){
-            aimArticle.setFileName(article.getFileName());
+        if (article.getTitle() != null){
+            aimArticle.setTitle(article.getTitle());
         }
         if (article.getSubTitle() != null){
             aimArticle.setSubTitle(article.getSubTitle());

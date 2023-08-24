@@ -18,7 +18,7 @@ public class Article implements Serializable {
     /**
     * 文章名
     */
-    private String fileName;
+    private String title;
     /**
     * 文章二级标题
     */
@@ -60,12 +60,12 @@ public class Article implements Serializable {
         this.id = id;
     }
 
-    public String getFileName() {
-        return fileName;
+    public String getTitle() {
+        return title;
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getSubTitle() {
