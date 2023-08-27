@@ -41,7 +41,7 @@ public class GlobalConfig {
                         //是否发送Cookie信息
                         .allowCredentials(true)
                         //放行哪些原始域
-                        .allowedOriginPatterns("*://localhost:*", "*://logicer.top:*")
+                        .allowedOriginPatterns("*://localhost:*", "*://logicer.top:*", "*logicer.top*")
                         //放行哪些原始域(头部信息)
                         .allowedHeaders("*");
                         //暴露哪些头部信息（因为跨域访问默认不能获取全部头部信息）
@@ -58,8 +58,10 @@ public class GlobalConfig {
     @Bean
     public DefaultCookieSerializer cookieSerializer() {
         DefaultCookieSerializer serializer = new DefaultCookieSerializer();
-        serializer.setSameSite("None");
-        serializer.setUseSecureCookie(true);
+        // 确定跨域时传输cookie 设置为null DefaultCookieSerializer中就不会在Set-Cookie中添加sameSite=xxx字符串
+        serializer.setSameSite(null);
+        // 不强制使用https
+        serializer.setUseSecureCookie(false);
         return serializer;
     }
 

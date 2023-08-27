@@ -39,7 +39,7 @@ public class AuthInterceptor implements HandlerInterceptor{
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        logger.info("Got request, param is : {}", JsonUtil.getString(request.getParameterMap()));
+        logger.info("Got request, url is {} origin is {}, param is : {}", request.getRequestURL(), request.getHeader("Origin"), JsonUtil.getString(request.getParameterMap()));
         if (!(handler instanceof HandlerMethod)) {
             return true;
         } else {
