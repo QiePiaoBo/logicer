@@ -14,6 +14,10 @@ spring:
         username: ${nacos.username}
         password: ${nacos.password}
         namespace: ${config.namespace}
+  session:
+    redis:
+      namespace: LGC:SESSION
+
 mybatis-plus:
   mapper-locations: classpath:mapper/*Mapper.xml
   configuration:
