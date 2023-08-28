@@ -2,9 +2,9 @@ package com.dylan.licence.controller;
 
 import com.dylan.framework.model.result.DataResult;
 import com.dylan.framework.model.result.HttpResult;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,13 +22,16 @@ import java.util.Map;
 @RequestMapping("logicer")
 public class LogicerController {
 
+    @Autowired
+    private Environment environment;
+
     @Value("${logicer.home.data.title: 学海无涯}")
     private String homeDataTitle;
 
-    @Value("#{'${logicer.home.data.favors:}'.split(',')}")
+    @Value("#{'${logicer.home.data.favors: Java,React,Harmony,Esp32,TCP,Debian CentOS Ubuntu}'.split(',')}")
     private List<String> favors;
 
-    @Value("#{${logicer.home.data.proverbs:{key1:'default1', key2:'default2'}}}")
+    @Value("#{${logicer.home.data.proverbs: {first:'枕月绾袖临风 扣舷独饮千钟', second:'不见韶华白首 浮生一梦从容'}}}")
     private Map<String, String> proverbs;
 
     /**
@@ -36,11 +39,11 @@ public class LogicerController {
      * @return
      */
     @GetMapping("get-home-data")
-    public HttpResult getPagedGroup() throws JsonProcessingException {
-        Map<String, String> homeDataMap = new HashMap<>();
-        homeDataMap.put("title", "学海无涯");
-        homeDataMap.put("favors", "[]");
-        homeDataMap.put("proverbs", new ObjectMapper().writeValueAsString(proverbs));
+    public HttpResult getPagedGroup() {
+        Map<String, Object> homeDataMap = new HashMap<>();
+        homeDataMap.put("title", homeDataTitle);
+        homeDataMap.put("favors", favors);
+        homeDataMap.put("proverbs", proverbs);
         return DataResult.success().data(homeDataMap).build();
     }
 

@@ -9,6 +9,12 @@ spring:
     allow-bean-definition-overriding: true
   cloud:
     nacos:
+      config:
+        server-addr: logicer.top:8848
+        file-extension: yaml
+        namespace: ${config.namespace}
+        extension-configs:
+          - {dataId: common.yaml, group: 'DEFAULT_GROUP', refresh: true}
       discovery:
         server-addr: ${nacos.remote-address}
         username: ${nacos.username}
