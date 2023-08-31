@@ -20,6 +20,10 @@
         <!--    引入自定义库    -->
         <dependency>
             <groupId>com.dylan</groupId>
+            <artifactId>blog-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.dylan</groupId>
             <artifactId>licence-api</artifactId>
         </dependency>
         <dependency>

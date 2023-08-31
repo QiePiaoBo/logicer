@@ -2,6 +2,7 @@ package com.dylan.blog.service;
 
 
 import com.dylan.blog.entity.Article;
+import com.dylan.blog.vo.ArticleVO;
 import com.dylan.framework.model.result.DataResult;
 
 import java.util.List;
@@ -20,6 +21,13 @@ public interface ArticleService{
      * @return
      */
     DataResult queryRight(Article article);
+
+    /**
+     * 获取文章简略信息列表
+     * @return
+     */
+    List<ArticleVO> getArticleList();
+
     /**
      * 通过ID查询单条数据
      *

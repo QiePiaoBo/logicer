@@ -1,12 +1,12 @@
 package com.dylan.licence.controller;
 
+import com.dylan.blog.entity.Article;
+import com.dylan.blog.service.ArticleService;
+import com.dylan.blog.vo.ArticleVO;
 import com.dylan.framework.model.result.DataResult;
 import com.dylan.framework.model.result.HttpResult;
 import com.dylan.licence.config.HomeDataLoader;
-import com.google.common.collect.Maps;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +32,9 @@ public class LogicerController {
     @Resource
     private HomeDataLoader homeDataLoader;
 
+    @DubboReference(version = "1.0.0")
+    private ArticleService articleService;
+
     /**
      * 分页获取用户组
      * @return
@@ -39,15 +42,10 @@ public class LogicerController {
     @GetMapping("get-home-data")
     public HttpResult getPagedGroup() {
         Map<String, Object> homeDataMap = new HashMap<>();
+        List<ArticleVO> articleVOS = articleService.getArticleList();
         String defaultTitle = "LOGICER";
-        List<String> defaultFavors = Arrays.asList("P1","P2","P3","P4","P5","P6");
-        Map<String,String> defaultProverbs = Stream.of(new String[][] {
-                { "first", "天" },
-                { "second", "地" },
-        }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
         homeDataMap.put("title", Objects.isNull(homeDataLoader.getTitle()) ? defaultTitle : homeDataLoader.getTitle());
-        homeDataMap.put("favors", Objects.isNull(homeDataLoader.getFavors()) ? defaultFavors : homeDataLoader.getFavors());
-        homeDataMap.put("proverbs", Objects.isNull(homeDataLoader.getProverbs()) ? defaultProverbs : homeDataLoader.getProverbs());
+        homeDataMap.put("articles", articleVOS);
         return DataResult.success().data(homeDataMap).build();
     }
 

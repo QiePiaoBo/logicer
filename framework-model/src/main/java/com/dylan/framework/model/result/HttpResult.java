@@ -1,13 +1,15 @@
 package com.dylan.framework.model.result;
 
 
+import java.io.Serializable;
+
 /**
  * @author Dylan
  * @Date : Created in 10:51 2021/3/12
  * @Description : http相关的result
  * @Function :
  */
-public class HttpResult {
+public class HttpResult implements Serializable {
 
     /**
      * 返回码

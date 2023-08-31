@@ -4,11 +4,13 @@ package com.dylan.framework.model.result;
 import com.dylan.framework.model.info.Message;
 import com.dylan.framework.model.info.Status;
 
+import java.io.Serializable;
+
 /**
  * @author Dylan
  * @description 数据相关的result
  */
-public class DataResult extends HttpResult{
+public class DataResult extends HttpResult implements Serializable {
     /**
      * 成功
      * @return

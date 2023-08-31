@@ -4,17 +4,23 @@ package com.dylan.blog.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.dylan.blog.converter.ArticleConverter;
 import com.dylan.blog.entity.Article;
 import com.dylan.blog.mapper.ArticleMapper;
 import com.dylan.blog.service.ArticleService;
+import com.dylan.blog.vo.ArticleVO;
 import com.dylan.framework.model.info.Message;
 import com.dylan.framework.model.info.Status;
 import com.dylan.framework.model.result.DataResult;
+import com.dylan.framework.utils.Safes;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.DubboService;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * (Article)表服务实现类
@@ -22,8 +28,10 @@ import java.util.List;
  * @author Dylan
  * @since 2020-06-14 20:24:19
  */
-@Service
 @Slf4j
+@Service
+@RefreshScope
+@DubboService(version = "1.0.0")
 public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> implements ArticleService {
 
     @Resource
@@ -43,10 +51,8 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     public DataResult queryRight(Article article) {
         DataResult dataResult;
         QueryWrapper<Article> articleQueryWrapper = new QueryWrapper<>();
-        if ( null == licService.getUser() || licService.getUser().getUserGroup() >1) {
-            articleQueryWrapper.eq("is_del", 0);
-            articleQueryWrapper.eq("is_lock", 0);
-        }
+        articleQueryWrapper.eq("is_del", 0);
+        articleQueryWrapper.eq("is_lock", 0);
         if (null != article.getId()){
             articleQueryWrapper.eq("id", article.getId());
         }
@@ -71,6 +77,19 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         return DataResult.getBuilder(Status.QUERY_ERROR.getStatus(), Message.QUERY_ERROR.getMsg()).build();
     }
 
+    /**
+     * 获取文章简略信息列表
+     *
+     * @return
+     */
+    @Override
+    public List<ArticleVO> getArticleList() {
+        QueryWrapper<Article> articleQueryWrapper = new QueryWrapper<>();
+        articleQueryWrapper.eq("is_del", 0);
+        articleQueryWrapper.eq("is_lock", 0);
+        List<Article> list = articleMapper.selectList(articleQueryWrapper);
+        return Safes.of(list).stream().map(ArticleConverter::getArticleVO).collect(Collectors.toList());
+    }
 
     /**
      * 通过ID查询单条数据
