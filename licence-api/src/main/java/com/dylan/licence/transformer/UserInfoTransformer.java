@@ -1,8 +1,10 @@
 package com.dylan.licence.transformer;
 
+import com.dylan.licence.entity.User;
 import com.dylan.licence.entity.UserInfo;
 import com.dylan.licence.model.dto.UserInfoDTO;
 import com.dylan.licence.model.vo.UserInfoVO;
+import com.dylan.licence.model.vo.UserVO;
 
 import java.util.Objects;
 
@@ -51,6 +53,16 @@ public class UserInfoTransformer {
         userInfo.setIdCode(userInfoDTO.getIdCode());
         userInfo.setWechatCode(userInfoDTO.getWechatCode());
         return userInfo;
+    }
+
+    public static UserVO getUserVO(User user){
+        UserVO userVO = new UserVO();
+        userVO.setId(user.getId());
+        userVO.setUserGroup(user.getUserGroup());
+        userVO.setUserName(user.getUserName());
+        userVO.setUserPhone(user.getUserPhone());
+        userVO.setUserType(user.getUserType());
+        return userVO;
     }
 
 

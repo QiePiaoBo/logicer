@@ -8,6 +8,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
   session:
+    store-type: redis
     redis:
       namespace: LGC:SESSION
   cloud:

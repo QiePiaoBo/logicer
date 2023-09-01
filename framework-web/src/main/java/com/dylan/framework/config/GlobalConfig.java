@@ -4,6 +4,9 @@ import com.dylan.logicer.base.logger.MyLogger;
 import com.dylan.logicer.base.logger.MyLoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.session.data.redis.config.ConfigureRedisAction;
 import org.springframework.session.web.http.DefaultCookieSerializer;
 import org.springframework.session.web.http.HttpSessionIdResolver;
@@ -73,5 +76,17 @@ public class GlobalConfig {
     @Bean
     public static ConfigureRedisAction configureRedisAction(){
         return ConfigureRedisAction.NO_OP;
+    }
+
+    @Bean
+    public static RedisTemplate<String, Object> lgcRedisTemplate(RedisConnectionFactory connectionFactory){
+        RedisTemplate<String, Object> template = new RedisTemplate<>();
+        template.setConnectionFactory(connectionFactory);
+
+        // 设置序列化器
+        Jackson2JsonRedisSerializer<Object> serializer = new Jackson2JsonRedisSerializer<>(Object.class);
+        template.setDefaultSerializer(serializer);
+
+        return template;
     }
 }

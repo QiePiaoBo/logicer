@@ -21,6 +21,7 @@ spring:
         password: ${nacos.password}
         namespace: ${config.namespace}
   session:
+    store-type: redis
     redis:
       namespace: LGC:SESSION
 
