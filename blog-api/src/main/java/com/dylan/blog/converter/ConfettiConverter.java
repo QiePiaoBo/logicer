@@ -14,11 +14,12 @@ public class ConfettiConverter {
      * @return
      */
     public static ConfettiVO getConfettiVO(ConfettiEntity entity){
-        ConfettiVO confettiVO = new ConfettiListVO();
+        ConfettiListVO confettiVO = new ConfettiListVO();
         confettiVO.setContent(entity.getContent());
         confettiVO.setId(entity.getId());
         confettiVO.setTitle(entity.getTitle());
         confettiVO.setUserId(entity.getUserId());
+        confettiVO.setCreatedAt(entity.getCreatedAt());
         return confettiVO;
     }
 

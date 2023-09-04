@@ -71,10 +71,10 @@ public class ConfettiServiceImpl implements ConfettiService {
         List<ConfettiEntity> entities = confettiMapper.getConfettiForUser(queryModel);
         List<ConfettiVO> confettiVOList = Safes.of(entities).stream().map(ConfettiConverter::getConfettiVO).collect(Collectors.toList());
         // 补充userName属性
-//        Safes.of(confettiVOList).forEach(m -> {
-//            UserVO userVO = userBaseInfoService.getUserVOById(m.getUserId());
-//            m.setUserName(userVO.getUserName());
-//        });
+        Safes.of(confettiVOList).forEach(m -> {
+            UserVO userVO = userBaseInfoService.getUserVOById(m.getUserId());
+            m.setUserName(userVO.getUserName());
+        });
         return DataResult.getBuilder().data(confettiVOList).build();
     }
 
