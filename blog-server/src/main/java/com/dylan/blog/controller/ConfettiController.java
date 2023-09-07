@@ -39,7 +39,7 @@ public class ConfettiController {
      */
     @RequestMapping(value = "get-voucher", method = RequestMethod.GET)
     public HttpResult getVoucherForUser(@Param("userName") @NonNull String userName){
-        List<UserNameIdModel> res = userService.getUserNameId(Arrays.asList(userName));
+        List<UserNameIdModel> res = userService.getUserNameIdMap(Arrays.asList(userName));
         if (res.size() == 1){
             return DataResult.success().data(res.get(0)).build();
         }

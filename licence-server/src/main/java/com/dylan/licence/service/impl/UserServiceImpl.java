@@ -260,7 +260,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public List<UserNameIdModel> getUserNameId(List<String> userNames) {
+    public List<UserNameIdModel> getUserNameIdMap(List<String> userNames) {
         if (CollectionUtils.isEmpty(userNames)){
             throw new MyException("Error, empty param found");
         }

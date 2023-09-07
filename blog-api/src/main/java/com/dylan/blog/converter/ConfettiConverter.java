@@ -19,6 +19,7 @@ public class ConfettiConverter {
         confettiVO.setId(entity.getId());
         confettiVO.setTitle(entity.getTitle());
         confettiVO.setUserId(entity.getUserId());
+        confettiVO.setLockFlag(entity.getLockFlag());
         confettiVO.setCreatedAt(entity.getCreatedAt());
         return confettiVO;
     }
@@ -34,6 +35,7 @@ public class ConfettiConverter {
         confettiVO.setTitle(insertModel.getTitle());
         confettiVO.setUserId(insertModel.getUserId());
         confettiVO.setContent(insertModel.getContent());
+        confettiVO.setLockFlag(insertModel.getLockFlag());
         return confettiVO;
     }
 

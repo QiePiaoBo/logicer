@@ -15,6 +15,16 @@ public class ConfettiVO implements Serializable {
 
     private String content;
 
+    private Integer lockFlag;
+
+    public Integer getLockFlag() {
+        return lockFlag;
+    }
+
+    public void setLockFlag(Integer lockFlag) {
+        this.lockFlag = lockFlag;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -53,5 +63,25 @@ public class ConfettiVO implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("{")
+                .append("\"id\":")
+                .append(id)
+                .append(", \"userId\":")
+                .append(userId)
+                .append(", \"userName\":")
+                .append(userName)
+                .append(", \"title\":")
+                .append(title)
+                .append(", \"content\":")
+                .append(content)
+                .append(", \"lockFlag\":")
+                .append(lockFlag)
+                .append('}');
+        return sb.toString();
     }
 }

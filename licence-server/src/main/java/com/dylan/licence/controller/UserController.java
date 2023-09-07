@@ -143,7 +143,7 @@ public class UserController {
 
     @GetMapping("test")
     public HttpResult test() {
-        return DataResult.success().data(userService.getUserNameId(Arrays.asList("dylan", "lucifer"))).build();
+        return DataResult.success().data(userService.getUserNameIdMap(Arrays.asList("dylan", "lucifer"))).build();
     }
 
 }

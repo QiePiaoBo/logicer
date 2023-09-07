@@ -25,6 +25,16 @@ public class ConfettiEntity implements Serializable {
 
     private Integer delFlag;
 
+    private Integer lockFlag;
+
+    public Integer getLockFlag() {
+        return lockFlag;
+    }
+
+    public void setLockFlag(Integer lockFlag) {
+        this.lockFlag = lockFlag;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -79,5 +89,29 @@ public class ConfettiEntity implements Serializable {
 
     public void setDelFlag(Integer delFlag) {
         this.delFlag = delFlag;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("{")
+                .append("\"id\":")
+                .append(id)
+                .append(", \"userId\":")
+                .append(userId)
+                .append(", \"title\":")
+                .append(title)
+                .append(", \"content\":")
+                .append(content)
+                .append(", \"createdAt\":")
+                .append(createdAt)
+                .append(", \"updatedAt\":")
+                .append(updatedAt)
+                .append(", \"delFlag\":")
+                .append(delFlag)
+                .append(", \"lockFlag\":")
+                .append(lockFlag)
+                .append('}');
+        return sb.toString();
     }
 }

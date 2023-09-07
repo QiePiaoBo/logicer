@@ -76,5 +76,5 @@ public interface UserService {
      * @param userNames
      * @return
      */
-    List<UserNameIdModel> getUserNameId(List<String> userNames);
+    List<UserNameIdModel> getUserNameIdMap(List<String> userNames);
 }

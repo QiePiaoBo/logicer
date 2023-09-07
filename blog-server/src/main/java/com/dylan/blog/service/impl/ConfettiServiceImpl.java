@@ -68,7 +68,12 @@ public class ConfettiServiceImpl implements ConfettiService {
         if (!queryModel.isValid()){
             return DataResult.fail().data("Error param: " + queryModel).build();
         }
-        List<ConfettiEntity> entities = confettiMapper.getConfettiForUser(queryModel);
+        List<ConfettiEntity> entities;
+        if(queryModel.getUserId() == 0){
+            entities = confettiMapper.getConfettiForUsers(queryModel);
+        }else {
+            entities = confettiMapper.getConfettiForUser(queryModel);
+        }
         List<ConfettiVO> confettiVOList = Safes.of(entities).stream().map(ConfettiConverter::getConfettiVO).collect(Collectors.toList());
         // 补充userName属性
         Safes.of(confettiVOList).forEach(m -> {

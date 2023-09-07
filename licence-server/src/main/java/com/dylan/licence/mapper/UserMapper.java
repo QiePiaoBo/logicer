@@ -66,4 +66,11 @@ public interface UserMapper extends BaseMapper<User> {
      * @return
      */
     User getUserById(@Param("id") Integer userId);
+
+    /**
+     * 根据用户Id查询用户列表
+     * @param userIds
+     * @return
+     */
+    List<User> getUsersByIds(List<Integer> userIds);
 }

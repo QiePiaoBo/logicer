@@ -27,6 +27,11 @@ public class ConfettiInsertModel implements Serializable {
     private String content;
 
     /**
+     * 是否锁定
+     */
+    private Integer lockFlag;
+
+    /**
      * 插入时校验参数是否正常
      * @return
      */
@@ -37,6 +42,15 @@ public class ConfettiInsertModel implements Serializable {
         }
         // 用户Id不可为空 标题和内容不可为空
         return !Objects.isNull(getUserId()) && !StringUtils.isBlank(getTitle()) && !StringUtils.isBlank(getContent());
+    }
+
+
+    public Integer getLockFlag() {
+        return lockFlag;
+    }
+
+    public void setLockFlag(Integer lockFlag) {
+        this.lockFlag = lockFlag;
     }
 
     public Integer getId() {

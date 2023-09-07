@@ -1,6 +1,7 @@
 package com.dylan.licence.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.dylan.framework.utils.Safes;
 import com.dylan.licence.entity.User;
 import com.dylan.licence.mapper.UserMapper;
 import com.dylan.licence.model.vo.UserVO;
@@ -17,7 +18,10 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -54,4 +58,9 @@ public class UserBaseInfoServiceImpl extends ServiceImpl<UserMapper, User> imple
         return UserInfoTransformer.getUserVO(user);
     }
 
+    @Override
+    public Map<Integer, String> getUserVOsByIds(List<Integer> userIds) {
+        List<User> users = userMapper.getUsersByIds(userIds);
+        return Safes.of(users).stream().collect(Collectors.toMap(User::getId, User::getUserName));
+    }
 }
