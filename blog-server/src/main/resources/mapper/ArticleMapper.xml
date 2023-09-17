@@ -61,10 +61,10 @@
             <if test="createTime != null">
                 and create_time = #{createTime}
             </if>
-            <if test="isDel != null and isDel != ''">
+            <if test="isDel != null">
                 and is_del = #{isDel}
             </if>
-            <if test="isLock != null and isLock != ''">
+            <if test="isLock != null">
                 and is_lock = #{isLock}
             </if>
         </where>

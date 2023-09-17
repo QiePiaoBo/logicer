@@ -46,4 +46,15 @@ public class ArticleTest {
         logger.info("res: {}", dataResult);
 
     }
+
+    @Test
+    public void testQueryAll() {
+        Article article = new Article();
+        article.setIsDel(0);
+        article.setIsLock(0);
+        List<Article> list = articleMapper.queryAll(article);
+        logger.info("res: {}", list);
+    }
+
+
 }
