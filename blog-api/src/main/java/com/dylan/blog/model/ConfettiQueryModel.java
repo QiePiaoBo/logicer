@@ -55,4 +55,18 @@ public class ConfettiQueryModel implements Serializable {
         }
         return true;
     }
+
+    public String getCacheKey(){
+        StringBuilder sb = new StringBuilder("confettiQueryModel_cache_key");
+        if (Objects.nonNull(id)){
+            sb.append(id).append("_");
+        }
+        if (Objects.nonNull(userId)){
+            sb.append(userId).append("_");
+        }
+        if (StringUtils.isNotBlank(title)){
+            sb.append(title).append("_");
+        }
+        return sb.toString();
+    }
 }

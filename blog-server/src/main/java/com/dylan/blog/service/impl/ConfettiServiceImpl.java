@@ -16,6 +16,8 @@ import com.dylan.licence.service.UserBaseInfoService;
 import com.dylan.logicer.base.logger.MyLogger;
 import com.dylan.logicer.base.logger.MyLoggerFactory;
 import org.apache.dubbo.config.annotation.DubboReference;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -30,6 +32,7 @@ import java.util.stream.Collectors;
  * @Date 6/28/2023 3:27 PM
  */
 @Service
+@CacheConfig(cacheManager = "myCacheManager", cacheNames = {"confettiService"})
 public class ConfettiServiceImpl implements ConfettiService {
 
     private static final MyLogger logger = MyLoggerFactory.getLogger(ConfettiServiceImpl.class);
@@ -64,6 +67,7 @@ public class ConfettiServiceImpl implements ConfettiService {
      * @return
      */
     @Override
+    @Cacheable(key = "#queryModel != null ? #queryModel.getCacheKey():T(com.dylan.blog.config.BlogConstants).CACHE_REDIS_GET_CONFETTI_FOR_USER", unless = "#result == null")
     public HttpResult getConfettiForUser(ConfettiQueryModel queryModel) {
         if (!queryModel.isValid()){
             return DataResult.fail().data("Error param: " + queryModel).build();

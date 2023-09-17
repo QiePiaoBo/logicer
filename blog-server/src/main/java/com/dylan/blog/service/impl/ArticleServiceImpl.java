@@ -12,9 +12,12 @@ import com.dylan.blog.vo.ArticleVO;
 import com.dylan.framework.model.info.Message;
 import com.dylan.framework.model.info.Status;
 import com.dylan.framework.model.result.DataResult;
+import com.dylan.framework.utils.RedisUtil;
 import com.dylan.framework.utils.Safes;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 
@@ -32,13 +35,15 @@ import java.util.stream.Collectors;
 @Service
 @RefreshScope
 @DubboService(version = "1.0.0")
+@CacheConfig(cacheManager = "myCacheManager", cacheNames = {"articleService"})
 public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> implements ArticleService {
 
     @Resource
     private ArticleMapper articleMapper;
 
     @Resource
-    LicService licService;
+    private LicService licService;
+
 
     /**
      * 获取全部符合条件的文章列表
@@ -48,28 +53,12 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
      * @return
      */
     @Override
+    @Cacheable(key = "#article != null ? #article.getCacheKey():T(com.dylan.blog.config.BlogConstants).CACHE_REDIS_QUERY_RIGHT", unless = "#result == null")
     public DataResult queryRight(Article article) {
         DataResult dataResult;
-        QueryWrapper<Article> articleQueryWrapper = new QueryWrapper<>();
-        articleQueryWrapper.eq("is_del", 0);
-        articleQueryWrapper.eq("is_lock", 0);
-        if (null != article.getId()){
-            articleQueryWrapper.eq("id", article.getId());
-        }
-        if (null != article.getTitle()){
-            articleQueryWrapper.like("file_name", article.getTitle());
-        }
-        if (null != article.getSubTitle()){
-            articleQueryWrapper.like("sub_title", article.getSubTitle());
-        }
-        if (null != article.getFileType()){
-            articleQueryWrapper.eq("file_type", article.getFileType());
-        }
-        if (null != article.getUserId()){
-            articleQueryWrapper.eq("user_id", article.getUserId());
-        }
-
-        List<Article> list = articleMapper.selectList(articleQueryWrapper);
+        article.setIsLock(0);
+        article.setIsDel(0);
+        List<Article> list = articleMapper.queryAll(article);
         if (list.size() > 0) {
             dataResult = DataResult.getBuilder().data(list).build();
             return dataResult;
@@ -83,11 +72,12 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
      * @return
      */
     @Override
+    @Cacheable(key = "T(com.dylan.blog.config.BlogConstants).CACHE_REDIS_GET_ARTICLE_LIST", unless = "#result == null")
     public List<ArticleVO> getArticleList() {
-        QueryWrapper<Article> articleQueryWrapper = new QueryWrapper<>();
-        articleQueryWrapper.eq("is_del", 0);
-        articleQueryWrapper.eq("is_lock", 0);
-        List<Article> list = articleMapper.selectList(articleQueryWrapper);
+        Article article = new Article();
+        article.setIsDel(0);
+        article.setIsLock(0);
+        List<Article> list = articleMapper.queryAll(article);
         return Safes.of(list).stream().map(ArticleConverter::getArticleVO).collect(Collectors.toList());
     }
 
