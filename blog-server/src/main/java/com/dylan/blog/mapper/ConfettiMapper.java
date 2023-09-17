@@ -31,6 +31,13 @@ public interface ConfettiMapper {
     List<ConfettiEntity> getConfettiForUser(@Param("queryModel") ConfettiQueryModel queryModel);
 
     /**
+     * 获取所有用户Id下的纸屑
+     * @param queryModel
+     * @return
+     */
+    List<ConfettiEntity> getConfettiForUsers(@Param("queryModel") ConfettiQueryModel queryModel);
+
+    /**
      * 根据Id获取纸屑
      * @param asList
      * @return

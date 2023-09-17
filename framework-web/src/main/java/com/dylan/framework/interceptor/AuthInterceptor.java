@@ -5,7 +5,12 @@ import com.dylan.framework.model.info.Message;
 import com.dylan.framework.model.info.Status;
 import com.dylan.framework.model.result.DataResult;
 import com.dylan.framework.session.UserContext;
+import com.dylan.framework.utils.CookieUtil;
 import com.dylan.framework.utils.PermissionChecker;
+import com.dylan.logicer.base.logger.MyLogger;
+import com.dylan.logicer.base.logger.MyLoggerFactory;
+import com.dylan.logicer.base.util.JsonUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -24,11 +29,17 @@ import java.lang.reflect.Method;
 @Component
 public class AuthInterceptor implements HandlerInterceptor{
 
+    private static final MyLogger logger = MyLoggerFactory.getLogger(AuthInterceptor.class);
+
     @Resource
     private PermissionChecker permissionChecker;
 
+    @Autowired
+    private CookieUtil cookieUtil;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        logger.info("Got request, url is {} origin is {}, param is : {}", request.getRequestURL(), request.getHeader("Origin"), JsonUtil.getString(request.getParameterMap()));
         if (!(handler instanceof HandlerMethod)) {
             return true;
         } else {

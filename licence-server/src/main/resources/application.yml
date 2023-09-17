@@ -1,12 +1,12 @@
 spring:
   datasource:
     username: root
-    password: mylog
-    url: jdbc:mysql://logicer.top:3306/logicer?allowMultiQueries=true
+    password: LGC@199704
+    url: jdbc:mysql://172.26.0.150:3306/logicer?allowMultiQueries=true&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
   redis:
-    host: logicer.top
+    host: 172.26.0.150
     port: 6379
     database: 0
     timeout: 1000

@@ -11,8 +11,11 @@ import com.dylan.blog.vo.ConfettiVO;
 import com.dylan.framework.model.result.DataResult;
 import com.dylan.framework.model.result.HttpResult;
 import com.dylan.framework.utils.Safes;
+import com.dylan.licence.model.vo.UserVO;
+import com.dylan.licence.service.UserBaseInfoService;
 import com.dylan.logicer.base.logger.MyLogger;
 import com.dylan.logicer.base.logger.MyLoggerFactory;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -34,6 +37,8 @@ public class ConfettiServiceImpl implements ConfettiService {
     @Resource
     private ConfettiMapper confettiMapper;
 
+    @DubboReference(version = "1.0.0")
+    private UserBaseInfoService userBaseInfoService;
 
     /**
      * 添加纸屑
@@ -63,8 +68,18 @@ public class ConfettiServiceImpl implements ConfettiService {
         if (!queryModel.isValid()){
             return DataResult.fail().data("Error param: " + queryModel).build();
         }
-        List<ConfettiEntity> entities = confettiMapper.getConfettiForUser(queryModel);
+        List<ConfettiEntity> entities;
+        if(queryModel.getUserId() == 0){
+            entities = confettiMapper.getConfettiForUsers(queryModel);
+        }else {
+            entities = confettiMapper.getConfettiForUser(queryModel);
+        }
         List<ConfettiVO> confettiVOList = Safes.of(entities).stream().map(ConfettiConverter::getConfettiVO).collect(Collectors.toList());
+        // 补充userName属性
+        Safes.of(confettiVOList).forEach(m -> {
+            UserVO userVO = userBaseInfoService.getUserVOById(m.getUserId());
+            m.setUserName(userVO.getUserName());
+        });
         return DataResult.getBuilder().data(confettiVOList).build();
     }
 

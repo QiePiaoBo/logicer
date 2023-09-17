@@ -210,11 +210,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         String queryConditionName = "user_name";
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         if (null == userMapper.selectOne(queryWrapper.eq(queryConditionName, userDTO.getUserName()))){
-            return DataResult.getBuilder(Status.USER_NOT_FOUND.getStatus(), Message.USER_NOT_FOUND.getMsg()).build();
+            return DataResult.getBuilder(Status.USER_NOT_FOUND.getStatus(), Message.USER_NOT_FOUND.getMsg()).data(userDTO).build();
         }
         User user = userMapper.selectOne(queryWrapper.eq(queryConditionName, userDTO.getUserName()));
         if (!passwordService.authenticatePassword(user.getUserPassword(), userDTO.getUserPassword())){
-            return DataResult.getBuilder(Status.ERROR_PASSWORD.getStatus(), Message.ERROR_PASSWORD.getMsg()).build();
+            return DataResult.getBuilder(Status.ERROR_PASSWORD.getStatus(), Message.ERROR_PASSWORD.getMsg()).data(userDTO).build();
         }
         // 验证通过，将当前用户存入session中
         Person p = UserTransformer.user2Person(user);
@@ -260,7 +260,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public List<UserNameIdModel> getUserNameId(List<String> userNames) {
+    public List<UserNameIdModel> getUserNameIdMap(List<String> userNames) {
         if (CollectionUtils.isEmpty(userNames)){
             throw new MyException("Error, empty param found");
         }

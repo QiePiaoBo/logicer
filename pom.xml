@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.dylan</groupId>
@@ -11,7 +11,7 @@
         <module>logicer-base</module>
         <module>licence-api</module>
         <module>licence-server</module>
-        <module>framework-ext</module>
+        <module>framework-web</module>
         <module>framework-model</module>
         <module>file-api</module>
         <module>file-server</module>
@@ -120,7 +120,7 @@
             </dependency>
             <dependency>
                 <groupId>com.dylan</groupId>
-                <artifactId>framework-ext</artifactId>
+                <artifactId>framework-web</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
@@ -250,6 +250,12 @@
             <!-- mybatisPlus 核心库 -->
             <dependency>
                 <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-annotation</artifactId>
+                <version>${mybatis-plus-boot-starter.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus-boot-starter.version}</version>
             </dependency>
@@ -356,6 +362,7 @@
                     <configuration>
                         <fork>true</fork>
                         <executable>true</executable>
+                        <outputDirectory>/home/logicer/java/lib</outputDirectory>
                     </configuration>
                 </plugin>
                 <!--      用于指定项目源码的JDK版本和编译后的版本和编码方式      -->

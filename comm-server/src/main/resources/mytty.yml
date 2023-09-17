@@ -6,12 +6,12 @@ server:
   maxAllIdle: 60
 db:
   mysql:
-    url: jdbc:mysql://logicer.top:3306/logicer?useUnicode=true&characterEncoding=utf-8&relaxAutoCommit=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+    url: jdbc:mysql://172.26.0.150:3306/logicer?allowMultiQueries=true&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&relaxAutoCommit=true&zeroDateTimeBehavior=convertToNull
     username: root
-    password: mylog
+    password: LGC@199704
     driverClassName: com.mysql.cj.jdbc.Driver
 redis:
-    host: logicer.top
+    host: 172.26.0.150
     port: 6379
     username:
     password:

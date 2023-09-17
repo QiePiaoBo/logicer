@@ -21,6 +21,14 @@
         limit #{myPage.startNo}, #{myPage.pageSize}
     </select>
 
+    <select id="getUserById" resultMap="systemUserMap">
+        SELECT
+        <include refid="TableField"/>
+        FROM
+        <include refid="TableName"/>
+        where id = #{id} and del_flag = 0
+    </select>
+
     <select id="selectUserTotal" resultType="java.lang.Long">
         SELECT
         count(*)
@@ -52,7 +60,9 @@
     </select>
 
     <select id="getUserNameId" resultType="com.dylan.licence.model.UserNameIdModel">
-        select user_name, id  from <include refid="TableName" /> where del_flag = 0
+        select user_name, id from
+        <include refid="TableName"/>
+        where del_flag = 0
         <choose>
             <when test="list != null and list.size > 0">
                 and user_name in
@@ -74,4 +84,14 @@
         where
         `id` = #{id}
     </update>
+
+    <select id="getUsersByIds"  resultMap="systemUserMap">
+        SELECT * FROM
+        <include refid="TableName"/>
+        WHERE del_flag = 0 and id IN
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
 </mapper>

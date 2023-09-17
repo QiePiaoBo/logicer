@@ -1,6 +1,5 @@
 package com.dylan.blog.model;
 
-import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
@@ -11,7 +10,6 @@ import java.util.Objects;
  * @Description MsgRecordEntity
  * @Date 6/20/2023 5:14 PM
  */
-@Data
 public class ConfettiInsertModel implements Serializable {
 
     private Integer id;
@@ -29,6 +27,11 @@ public class ConfettiInsertModel implements Serializable {
     private String content;
 
     /**
+     * 是否锁定
+     */
+    private Integer lockFlag;
+
+    /**
      * 插入时校验参数是否正常
      * @return
      */
@@ -41,4 +44,44 @@ public class ConfettiInsertModel implements Serializable {
         return !Objects.isNull(getUserId()) && !StringUtils.isBlank(getTitle()) && !StringUtils.isBlank(getContent());
     }
 
+
+    public Integer getLockFlag() {
+        return lockFlag;
+    }
+
+    public void setLockFlag(Integer lockFlag) {
+        this.lockFlag = lockFlag;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 }

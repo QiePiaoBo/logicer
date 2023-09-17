@@ -1,8 +1,5 @@
 package com.dylan.blog.vo;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
@@ -14,9 +11,6 @@ import java.io.Serializable;
  * @author Dylan
  * @since 2020-05-24
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
 public class UserVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,5 +51,59 @@ public class UserVO implements Serializable {
      */
     private String description;
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getUsergroup() {
+        return usergroup;
+    }
+
+    public void setUsergroup(Integer usergroup) {
+        this.usergroup = usergroup;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

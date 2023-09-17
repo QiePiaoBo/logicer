@@ -7,8 +7,8 @@ package com.dylan.blog.config;
  */
 public class BlogConstants {
 
-    public static final String WINDOWS_FILE_DIR = "E:\\Cache\\storage\\mylog\\";
+    public static final String WINDOWS_FILE_DIR = "E:\\Cache\\storage\\logicer\\";
 
-    public static final String LINUX_FILE_DIR = "/home/file/storage/mylog/";
+    public static final String LINUX_FILE_DIR = "/data/storage/logicer/";
 
 }

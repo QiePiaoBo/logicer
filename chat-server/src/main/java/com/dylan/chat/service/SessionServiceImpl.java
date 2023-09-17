@@ -13,7 +13,6 @@ import com.dylan.logicer.base.logger.MyLogger;
 import com.dylan.logicer.base.logger.MyLoggerFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.DubboReference;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -156,7 +155,7 @@ public class SessionServiceImpl implements SessionService {
      */
     @Override
     public Map<String, Integer> getUserNameIdMap(List<String> userNames) {
-        List<UserNameIdModel> userNameIds = userService.getUserNameId(userNames);
+        List<UserNameIdModel> userNameIds = userService.getUserNameIdMap(userNames);
         Map<String, Integer> userNameIdMap = Safes.of(userNameIds).stream().filter(m -> m.getId() > 0).collect(Collectors.toMap(UserNameIdModel::getUserName, UserNameIdModel::getId, (v1, v2) -> v2));
         if (userNameIdMap.size() != userNames.size()) {
             logger.error("<getOrCreateSession> Error getting username id map : {}", userNameIds);

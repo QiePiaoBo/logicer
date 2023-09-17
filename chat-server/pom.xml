@@ -28,7 +28,7 @@
         </dependency>
         <dependency>
             <groupId>com.dylan</groupId>
-            <artifactId>framework-ext</artifactId>
+            <artifactId>framework-web</artifactId>
         </dependency>
         <!-- 引入nacos，作为工具类被引入时会自动加载nacos -->
         <!-- nacos配置 -->
@@ -53,9 +53,15 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!--        引入springboot-test      -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
         </dependency>
         <!-- mybatisPlus 核心库 -->
         <dependency>
@@ -89,21 +95,8 @@
                     <groupId>log4j</groupId>
                     <artifactId>log4j</artifactId>
                 </exclusion>
-                <!--                <exclusion>-->
-                <!--                    <groupId>org.apache.dubbo</groupId>-->
-                <!--                    <artifactId>dubbo-common</artifactId>-->
-                <!--                </exclusion>-->
-                <!--                <exclusion>-->
-                <!--                    <groupId>org.apache.dubbo</groupId>-->
-                <!--                    <artifactId>dubbo-remoting-api</artifactId>-->
-                <!--                </exclusion>-->
             </exclusions>
         </dependency>
-        <dependency>
-            <groupId>com.alibaba.nacos</groupId>
-            <artifactId>nacos-client</artifactId>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.dubbo/dubbo-spring-boot-starter -->
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>
@@ -118,7 +111,6 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
         </dependency>
-
     </dependencies>
 
     <build>

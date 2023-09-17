@@ -17,6 +17,19 @@
     </properties>
 
     <dependencies>
+        <!--    引入自定义库    -->
+        <dependency>
+            <groupId>com.dylan</groupId>
+            <artifactId>blog-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.dylan</groupId>
+            <artifactId>licence-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.dylan</groupId>
+            <artifactId>framework-web</artifactId>
+        </dependency>
         <!--        引入springboot-starter-web-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -47,16 +60,6 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
         </dependency>
-        <!-- //引入spring session-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.session</groupId>-->
-<!--            <artifactId>spring-session-data-redis</artifactId>-->
-<!--        </dependency>-->
-        <!-- //引入redis-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-data-redis</artifactId>-->
-<!--        </dependency>-->
         <!-- nacos配置 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -70,15 +73,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
-        <!--    引入自定义库    -->
-        <dependency>
-            <groupId>com.dylan</groupId>
-            <artifactId>licence-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.dylan</groupId>
-            <artifactId>framework-ext</artifactId>
-        </dependency>
         <!--    dubbo    -->
         <dependency>
             <groupId>org.apache.dubbo</groupId>
@@ -88,21 +82,12 @@
                     <groupId>log4j</groupId>
                     <artifactId>log4j</artifactId>
                 </exclusion>
-                <!--                <exclusion>-->
-                <!--                    <groupId>org.apache.dubbo</groupId>-->
-                <!--                    <artifactId>dubbo-common</artifactId>-->
-                <!--                </exclusion>-->
-                <!--                <exclusion>-->
-                <!--                    <groupId>org.apache.dubbo</groupId>-->
-                <!--                    <artifactId>dubbo-remoting-api</artifactId>-->
-                <!--                </exclusion>-->
             </exclusions>
         </dependency>
         <dependency>
             <groupId>com.alibaba.nacos</groupId>
             <artifactId>nacos-client</artifactId>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.dubbo/dubbo-spring-boot-starter -->
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>

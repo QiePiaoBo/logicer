@@ -4,7 +4,7 @@
 
     <resultMap type="com.dylan.blog.entity.Article" id="ArticleMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
-        <result property="fileName" column="file_name" jdbcType="VARCHAR"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
         <result property="subTitle" column="sub_title" jdbcType="VARCHAR"/>
         <result property="description" column="description" jdbcType="VARCHAR"/>
         <result property="fileType" column="file_type" jdbcType="VARCHAR"/>
@@ -26,7 +26,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="ArticleMap">
         select
-          id, file_name, sub_title, description, file_type, file_path, user_id, create_time, is_del, is_lock
+          id, title, sub_title, description, file_type, file_path, user_id, create_time, is_del, is_lock
         from article
         limit #{offset}, #{limit}
     </select>
@@ -34,14 +34,14 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="ArticleMap">
         select
-          id, file_name, sub_title, description, file_type, file_path, user_id, create_time, is_del, is_lock
+          id, title, sub_title, description, file_type, file_path, user_id, create_time, is_del, is_lock
         from article
         <where>
             <if test="id != null">
                 and id = #{id}
             </if>
-            <if test="fileName != null and fileName != ''">
-                and file_name = #{fileName}
+            <if test="title != null and title != ''">
+                and title = #{title}
             </if>
             <if test="subTitle != null and subTitle != ''">
                 and sub_title = #{subTitle}
@@ -76,16 +76,16 @@
     </select>
 
     <select id="queryArticlesInOneDay" resultMap="ArticleMap">
-        select id, file_name, sub_title, description, file_type, file_path, user_id, create_time, is_del, is_lock
+        select id, title, sub_title, description, file_type, file_path, user_id, create_time, is_del, is_lock
          from article where date_format(create_time,'%Y-%m-%d') = #{createTime} and user_id = #{authorId}
     </select>
 
     <insert id="saveSelective" parameterType="com.dylan.blog.entity.Article" useGeneratedKeys="true" keyProperty="id">
         insert into
-            `article`(file_name, sub_title, description, file_type,
+            `article`(title, sub_title, description, file_type,
                       file_path, user_id, create_time, is_lock)
         values
-            (#{fileName}, #{subTitle}, #{description}, #{fileType}, #{filePath}, #{userId}, #{createTime}, #{isLock})
+            (#{title}, #{subTitle}, #{description}, #{fileType}, #{filePath}, #{userId}, #{createTime}, #{isLock})
     </insert>
 
 

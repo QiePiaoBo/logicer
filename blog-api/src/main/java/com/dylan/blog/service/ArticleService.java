@@ -1,8 +1,8 @@
 package com.dylan.blog.service;
 
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.dylan.blog.entity.Article;
+import com.dylan.blog.vo.ArticleVO;
 import com.dylan.framework.model.result.DataResult;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
  * @author Dylan
  * @since 2020-06-14 20:24:19
  */
-public interface ArticleService extends IService<Article> {
+public interface ArticleService{
 
     /**
      * 获取符合条件的文章
@@ -21,6 +21,13 @@ public interface ArticleService extends IService<Article> {
      * @return
      */
     DataResult queryRight(Article article);
+
+    /**
+     * 获取文章简略信息列表
+     * @return
+     */
+    List<ArticleVO> getArticleList();
+
     /**
      * 通过ID查询单条数据
      *

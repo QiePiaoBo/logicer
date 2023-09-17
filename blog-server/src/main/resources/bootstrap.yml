@@ -7,8 +7,18 @@ spring:
     active: ${profile-name}
   main:
     allow-bean-definition-overriding: true
+  session:
+    store-type: redis
+    redis:
+      namespace: LGC:SESSION
   cloud:
     nacos:
+      config:
+        server-addr: ${nacos.remote-address}
+        file-extension: yaml
+        namespace: ${config.namespace}
+        extension-configs:
+          - {dataId: common.yaml, group: 'DEFAULT_GROUP', refresh: true}
       discovery:
         server-addr: ${nacos.remote-address}
         username: ${nacos.username}
@@ -26,6 +36,8 @@ logging:
       max-history: 30
   file:
     path: /home/java/logs
+  level:
+    com.baomidou.mybatisplus.core.executor.BaseExecutor: ERROR
 dubbo:
   application:
     name: ${application.name}
@@ -37,7 +49,7 @@ dubbo:
   registry:
     address: ${dubbo.nacos-address}
     # 这个配置会使dubbo服务注册到指定的namespace中 改变的是服务列表的命名空间
-    parameters: {namespace: 'ddce2ce9-574d-4369-a42c-6628feafd4bc'}
+    parameters: {namespace: 'a4064324-ce85-4574-bdd5-89373f6ee0a4'}
     dynamic: true
     group: ${profile-name}
   config-center:
@@ -48,6 +60,6 @@ dubbo:
   metadata-report:
     address: ${dubbo.nacos-address}
     # 这个配置改变的是该Dubbo服务的配置列表中的命名空间 不配置的话就会写到默认空间
-    parameters: {namespace: 'ddce2ce9-574d-4369-a42c-6628feafd4bc'}
+    parameters: {namespace: 'a4064324-ce85-4574-bdd5-89373f6ee0a4'}
     protocol: nacos
     group: ${profile-name}
