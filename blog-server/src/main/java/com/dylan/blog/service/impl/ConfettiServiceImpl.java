@@ -10,6 +10,7 @@ import com.dylan.blog.service.ConfettiService;
 import com.dylan.blog.vo.ConfettiVO;
 import com.dylan.framework.model.result.DataResult;
 import com.dylan.framework.model.result.HttpResult;
+import com.dylan.framework.utils.CacheUtil;
 import com.dylan.framework.utils.Safes;
 import com.dylan.licence.model.vo.UserVO;
 import com.dylan.licence.service.UserBaseInfoService;
@@ -40,6 +41,9 @@ public class ConfettiServiceImpl implements ConfettiService {
     @Resource
     private ConfettiMapper confettiMapper;
 
+    @Resource
+    private CacheUtil cacheUtil;
+
     @DubboReference(version = "1.0.0")
     private UserBaseInfoService userBaseInfoService;
 
@@ -56,6 +60,7 @@ public class ConfettiServiceImpl implements ConfettiService {
         }
         boolean inserted = confettiMapper.addConfetti(model) > 0;
         if (inserted){
+            cacheUtil.deleteCacheOfConfetti();
             return DataResult.getBuilder().data(ConfettiConverter.getConfettiVO(model)).build();
         }else {
             return DataResult.fail().data("Insert error.").build();
@@ -121,6 +126,7 @@ public class ConfettiServiceImpl implements ConfettiService {
         }
         Integer changed = confettiMapper.addOrUpdateConfettiBatch(Arrays.asList(c1, c2));
         if (changed > 0){
+            cacheUtil.deleteCacheOfConfetti();
             return DataResult.success().build();
         }else {
             return DataResult.fail().data("Error add or update.").build();

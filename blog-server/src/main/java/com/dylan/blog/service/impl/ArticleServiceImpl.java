@@ -12,11 +12,15 @@ import com.dylan.blog.vo.ArticleVO;
 import com.dylan.framework.model.info.Message;
 import com.dylan.framework.model.info.Status;
 import com.dylan.framework.model.result.DataResult;
+import com.dylan.framework.utils.CacheUtil;
 import com.dylan.framework.utils.RedisUtil;
 import com.dylan.framework.utils.Safes;
+import com.dylan.logicer.base.logger.MyLogger;
+import com.dylan.logicer.base.logger.MyLoggerFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
@@ -44,6 +48,10 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     @Resource
     private LicService licService;
 
+    @Resource
+    private CacheUtil cacheUtil;
+
+    private static final MyLogger logger = MyLoggerFactory.getLogger(ArticleServiceImpl.class);
 
     /**
      * 获取全部符合条件的文章列表
@@ -116,11 +124,11 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     public Article insert(Article article) {
         int insert = articleMapper.saveSelective(article);
         if (insert > 0) {
+            cacheUtil.deleteCacheOfArticle();
             return article;
         }
         return null;
     }
-
 
     /**
      * 修改数据
