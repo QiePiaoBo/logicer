@@ -19,7 +19,7 @@ import java.util.List;
  */
 @Mapper
 @Component
-@CacheConfig(cacheManager = "myCacheManager", cacheNames = {"articles"})
+@CacheConfig(cacheManager = "lgcCacheManager", cacheNames = {"articles"})
 public interface ArticleMapper extends BaseMapper<Article> {
 
     /**

@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
  * @Date 6/28/2023 3:27 PM
  */
 @Service
-@CacheConfig(cacheManager = "myCacheManager", cacheNames = {"confettiService"})
+@CacheConfig(cacheManager = "lgcCacheManager", cacheNames = {"confettiService"})
 public class ConfettiServiceImpl implements ConfettiService {
 
     private static final MyLogger logger = MyLoggerFactory.getLogger(ConfettiServiceImpl.class);

@@ -1,7 +1,6 @@
 package com.dylan.blog.service.impl;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.dylan.blog.converter.ArticleConverter;
@@ -13,14 +12,12 @@ import com.dylan.framework.model.info.Message;
 import com.dylan.framework.model.info.Status;
 import com.dylan.framework.model.result.DataResult;
 import com.dylan.framework.utils.CacheUtil;
-import com.dylan.framework.utils.RedisUtil;
 import com.dylan.framework.utils.Safes;
 import com.dylan.logicer.base.logger.MyLogger;
 import com.dylan.logicer.base.logger.MyLoggerFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
@@ -39,7 +36,7 @@ import java.util.stream.Collectors;
 @Service
 @RefreshScope
 @DubboService(version = "1.0.0")
-@CacheConfig(cacheManager = "myCacheManager", cacheNames = {"articleService"})
+@CacheConfig(cacheManager = "lgcCacheManager", cacheNames = {"articleService"})
 public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> implements ArticleService {
 
     @Resource

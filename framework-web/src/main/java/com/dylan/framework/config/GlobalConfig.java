@@ -2,8 +2,10 @@ package com.dylan.framework.config;
 
 import com.dylan.logicer.base.logger.MyLogger;
 import com.dylan.logicer.base.logger.MyLoggerFactory;
+import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
@@ -88,5 +90,12 @@ public class GlobalConfig {
         template.setDefaultSerializer(serializer);
 
         return template;
+    }
+
+
+    @Bean
+    public CacheManager lgcCacheManager(RedisConnectionFactory redisConnectionFactory){
+        RedisCacheManager cacheManager = RedisCacheManager.create(redisConnectionFactory);
+        return cacheManager;
     }
 }
