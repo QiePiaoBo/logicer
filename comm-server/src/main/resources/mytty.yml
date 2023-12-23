@@ -19,7 +19,7 @@ app:
   groupId: ${groupId}
   artifactId: ${artifactId}
 rabbitmq:
-  host: logicer.top
+  host: 172.26.0.150
   port: 5672
   virtualHost: logicer
   userName: logicer
