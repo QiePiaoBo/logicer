@@ -47,7 +47,7 @@ public class LogicerNettyClientBuildService {
         nettyClientExecutor.execute(() -> {
             try {
                 if (!logicerNettyClient.isConnecting()){
-                    logicerNettyClient.connect("localhost", 8001);
+                    logicerNettyClient.connect("172.26.0.152", 8001);
                 }else {
                     logger.info("Netty Client already connected, userName: {}, talkWith: {}, msgAreaType: {}", userName, talkWith, msgAreaType);
                 }
