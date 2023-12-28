@@ -31,7 +31,7 @@ public class WebsocketConfig implements WebSocketConfigurer {
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry webSocketHandlerRegistry) {
         webSocketHandlerRegistry
-                .addHandler(myWebSocketHandler(), "/chat")
+                .addHandler(myWebSocketHandler(), "/chat/{curUser}/{aimUser}/{chatType}")
                 .setAllowedOrigins("*")
                 .addInterceptors(webSocketInterceptor);
     }

@@ -1,6 +1,6 @@
 package com.dylan.comm.mqtest;
 
-import com.dylan.comm.config.rabbitmq.RabbitMQCenter;
+import com.dylan.commserver.config.rabbitmq.RabbitMQCenter;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import org.junit.Test;

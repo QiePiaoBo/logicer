@@ -16,6 +16,7 @@ redis:
     username:
     password:
 app:
+#  groupId需要与工程中的包名一致 如com.dylan.comm
   groupId: ${groupId}
   artifactId: ${artifactId}
 rabbitmq:
