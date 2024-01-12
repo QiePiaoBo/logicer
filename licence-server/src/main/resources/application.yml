@@ -29,6 +29,9 @@ spring:
         max-concurrency: 10
         retry:
           enabled: true
+  elasticsearch:
+    password: LGC@199704
+    username: dylan
 qiniu:
   accesskey: k48ML3ZoFFcGdxUcXdYXGgoSArc2yJ61xxIyANLk
   secretkey: vlI9BWwW--uqWuNbuQLQL6DHm0Vqd9uWddcHslc_
