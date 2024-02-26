@@ -18,10 +18,10 @@ public class Book {
     @Field(type = FieldType.Text)
     private String id;
 
-    @Field(analyzer = "ik_max_word")
+    @Field(analyzer = "ik_smart")
     private String title;
 
-    @Field(analyzer = "ik_max_word")
+    @Field(analyzer = "ik_smart")
     private String author;
 
     @Field(type = FieldType.Double)

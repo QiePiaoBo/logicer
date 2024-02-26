@@ -1,14 +1,16 @@
 package com.dylan.licence.service;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.elasticsearch.core.CreateResponse;
-import co.elastic.clients.elasticsearch.core.GetResponse;
+import co.elastic.clients.elasticsearch._types.FieldValue;
+import co.elastic.clients.elasticsearch.core.*;
 import co.elastic.clients.elasticsearch.indices.CreateIndexResponse;
 import co.elastic.clients.elasticsearch.indices.DeleteIndexResponse;
 import co.elastic.clients.elasticsearch.indices.GetIndexResponse;
 import com.dylan.licence.model.es.Book;
 import com.dylan.logicer.base.logger.MyLogger;
 import com.dylan.logicer.base.logger.MyLoggerFactory;
+import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.common.unit.Fuzziness;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 @RunWith(SpringRunner.class)
@@ -88,16 +92,43 @@ public class EsBookTest {
 
     @Test
     public void queryDoc() throws IOException {
-        GetResponse<Book> bookGetResponse = esClient.get(e -> e.index("book").id("4"), Book.class);
+        GetResponse<Book> bookGetResponse = esClient.get(e -> e.index("book").index("1"), Book.class);
 
         logger.info("res: {}", bookGetResponse.source());
 
     }
 
+
     @Test
     public void addAndQueryDoc() throws IOException {
         addDoc();
         queryDoc();
+    }
+
+    @Test
+    public void query() throws Exception {
+        SearchRequest searchRequest = SearchRequest.of(s -> s
+                .index("book")
+                .query(q -> q
+                        .fuzzy(f -> f
+                                .field("title")
+                                .value("西")
+                                .fuzziness(Fuzziness.AUTO.asString())
+                        )));
+        SearchResponse<Book> searchResponse = esClient.search(searchRequest, Book.class);
+        logger.info("res : {}", searchResponse.hits().hits());
+    }
+
+    @Test
+    public void deleteDoc() throws IOException {
+        String docId = "4";
+        DeleteResponse bookDeleted = esClient.delete(d -> d.index("book").id(docId));
+        logger.info("delete result: {}", bookDeleted);
+    }
+
+    @Test
+    public void querySource() throws IOException {
+
     }
 
 }
