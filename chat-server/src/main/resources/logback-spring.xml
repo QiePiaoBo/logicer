@@ -17,7 +17,7 @@
 
     <!--  彩色日志格式  -->
     <property name="CONSOLE_LOG_PATH"
-              value="%clr(%d{yyyy-MM-dd HH:mm:ss:SSS}){faint} %clr(%5p) %clr(${PID:-- }) %clr(---){faint} %clr([%t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wex" />
+              value="%d{yyyy-MM-dd HH:mm:ss} [%thread] %magenta(%-5level) %green([%-50.50class]) >>> %cyan(%msg) %n" />
     <!--  普通日志格式  -->
     <property name="FILE_LOG_PATTERN"
               value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:-- } --- [%t] %-40.40logger{39} : %m%n%wex"/>
