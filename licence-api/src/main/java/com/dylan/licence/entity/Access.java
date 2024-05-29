@@ -1,6 +1,5 @@
 package com.dylan.licence.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -9,7 +8,6 @@ import java.sql.Timestamp;
  * @Description 权限实体类
  * @Date : 2022/5/9 - 23:25
  */
-@TableName("lgc_access")
 public class Access implements Serializable {
 
     private Integer id;

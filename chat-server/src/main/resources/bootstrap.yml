@@ -7,17 +7,23 @@ spring:
     active: ${profile-name}
   main:
     allow-bean-definition-overriding: true
+  session:
+    store-type: redis
+    redis:
+      namespace: LGC:SESSION
   cloud:
     nacos:
+      config:
+        server-addr: ${nacos.remote-address}
+        file-extension: yaml
+        namespace: ${config.namespace}
+        extension-configs:
+          - {dataId: common.yaml, group: 'DEFAULT_GROUP', refresh: true}
       discovery:
         server-addr: ${nacos.remote-address}
         username: ${nacos.username}
         password: ${nacos.password}
         namespace: ${config.namespace}
-  session:
-    store-type: redis
-    redis:
-      namespace: LGC:SESSION
 mybatis-plus:
   mapper-locations: classpath:mapper/*Mapper.xml
   configuration:

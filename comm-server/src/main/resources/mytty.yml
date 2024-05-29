@@ -17,8 +17,8 @@ redis:
     password:
 app:
 #  groupId需要与工程中的包名一致 如com.dylan.comm
-  groupId: ${groupId}
-  artifactId: ${artifactId}
+  groupId: ${project.groupId}
+  artifactId: ${project.artifactId}
 rabbitmq:
   host: 172.26.0.150
   port: 5672

@@ -12,7 +12,7 @@
     <name>comm-server</name>
     <packaging>jar</packaging>
     <properties>
-        <application.name>${name}</application.name>
+        <application.name>${project.name}</application.name>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
