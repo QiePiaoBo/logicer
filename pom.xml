@@ -75,28 +75,28 @@
     </profiles>
 
     <properties>
-        <java.version>1.8</java.version>
         <revision>1.0.1${version.suffix}</revision>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!--    version    -->
-        <spring-boot.version>2.7.15</spring-boot.version>
-        <spring-cloud.version>2021.0.5</spring-cloud.version>
-        <spring-cloud-alibaba.version>2021.0.5.0</spring-cloud-alibaba.version>
+        <spring-boot.version>3.3.0</spring-boot.version>
+        <spring-cloud.version>2023.0.1</spring-cloud.version>
+        <spring-cloud-alibaba.version>2022.0.0.0-RC2</spring-cloud-alibaba.version>
         <servlet-api.version>3.0-alpha-1</servlet-api.version>
         <javax-el-api.version>3.0.1-b06</javax-el-api.version>
         <redisson.version>3.13.6</redisson.version>
-        <mybatis-plus-boot-starter.version>3.5.3.1</mybatis-plus-boot-starter.version>
+        <mybatis-plus-spring-boot3-starter.version>3.5.6</mybatis-plus-spring-boot3-starter.version>
+        <mybatis-plus-extension.version>3.5.6</mybatis-plus-extension.version>
+        <mybatis-spring.version>3.0.3</mybatis-spring.version>
         <druid.version>1.2.18</druid.version>
         <fastjson.version>2.0.37</fastjson.version>
         <poi.version>5.2.3</poi.version>
         <jackson.version>2.15.2</jackson.version>
         <aspectjweaver.version>1.9.19</aspectjweaver.version>
-        <mybatis-plus-extension.version>3.5.3.1</mybatis-plus-extension.version>
-        <guava.version>30.1.1-jre</guava.version>
-        <mysql.version>8.0.22</mysql.version>
+        <guava.version>32.0.0-android</guava.version>
+        <mysql.version>8.0.28</mysql.version>
         <qiniu.version>7.2.29</qiniu.version>
         <dubbo.version>3.2.4</dubbo.version>
         <port.gateway>8888</port.gateway>
@@ -248,23 +248,23 @@
             </dependency>
 
             <!-- mybatisPlus 核心库 -->
+<!--            <dependency>-->
+<!--                <groupId>com.baomidou</groupId>-->
+<!--                <artifactId>mybatis-plus-annotation</artifactId>-->
+<!--                <version>${mybatis-plus-spring-boot3-starter.version}</version>-->
+<!--                <scope>compile</scope>-->
+<!--            </dependency>-->
             <dependency>
                 <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-annotation</artifactId>
-                <version>${mybatis-plus-boot-starter.version}</version>
-                <scope>compile</scope>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+                <version>${mybatis-plus-spring-boot3-starter.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus-boot-starter.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-extension</artifactId>
-                <version>${mybatis-plus-extension.version}</version>
-                <scope>compile</scope>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>com.baomidou</groupId>-->
+<!--                <artifactId>mybatis-plus-extension</artifactId>-->
+<!--                <version>${mybatis-plus-extension.version}</version>-->
+<!--                <scope>compile</scope>-->
+<!--            </dependency>-->
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
@@ -360,7 +360,6 @@
                         </execution>
                     </executions>
                     <configuration>
-                        <fork>true</fork>
                         <executable>true</executable>
                         <outputDirectory>/home/logicer/java/lib</outputDirectory>
                     </configuration>

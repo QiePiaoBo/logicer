@@ -8,9 +8,9 @@ import com.dylan.file.transfer.FileStorageTransfer;
 import com.dylan.framework.model.info.Message;
 import com.dylan.framework.model.info.Status;
 import com.dylan.framework.model.result.DataResult;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**

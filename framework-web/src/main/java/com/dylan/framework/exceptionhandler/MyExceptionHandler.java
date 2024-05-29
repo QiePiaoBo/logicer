@@ -4,13 +4,13 @@ import com.dylan.framework.model.exception.MyException;
 import com.dylan.framework.model.info.Message;
 import com.dylan.framework.model.info.Status;
 import com.dylan.framework.model.result.HttpResult;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Objects;
 
 /**

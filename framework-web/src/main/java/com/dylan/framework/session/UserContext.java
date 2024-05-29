@@ -4,12 +4,12 @@ package com.dylan.framework.session;
 import com.dylan.framework.constant.CommonConstant;
 import com.dylan.framework.model.entity.Person;
 import com.dylan.framework.model.vo.PersonVo;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpSession;
 import java.util.Objects;
 
 /**
@@ -18,6 +18,8 @@ import java.util.Objects;
  */
 @Service
 public class UserContext {
+
+
 
     /**
      * 获取session

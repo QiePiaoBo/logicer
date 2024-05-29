@@ -8,7 +8,7 @@ import com.dylan.logicer.base.logger.MyLoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.LinkedBlockingQueue;

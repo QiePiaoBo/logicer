@@ -11,7 +11,7 @@ import com.dylan.framework.model.info.Status;
 import com.dylan.framework.model.result.DataResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.io.IOException;
 
 /**

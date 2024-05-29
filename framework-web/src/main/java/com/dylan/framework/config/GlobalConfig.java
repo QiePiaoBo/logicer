@@ -11,14 +11,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.session.data.redis.config.ConfigureRedisAction;
 import org.springframework.session.web.http.DefaultCookieSerializer;
-import org.springframework.session.web.http.HttpSessionIdResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * @Classname GlobalCorsConfig

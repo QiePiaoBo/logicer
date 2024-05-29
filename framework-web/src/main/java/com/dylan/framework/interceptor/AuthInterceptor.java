@@ -10,15 +10,14 @@ import com.dylan.framework.utils.PermissionChecker;
 import com.dylan.logicer.base.logger.MyLogger;
 import com.dylan.logicer.base.logger.MyLoggerFactory;
 import com.dylan.logicer.base.util.JsonUtil;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 
 /**
@@ -31,11 +30,13 @@ public class AuthInterceptor implements HandlerInterceptor{
 
     private static final MyLogger logger = MyLoggerFactory.getLogger(AuthInterceptor.class);
 
-    @Resource
+    @Autowired
     private PermissionChecker permissionChecker;
 
     @Autowired
     private CookieUtil cookieUtil;
+
+
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

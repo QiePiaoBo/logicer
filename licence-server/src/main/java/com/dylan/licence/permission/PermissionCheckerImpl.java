@@ -10,7 +10,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Component;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.util.Objects;
 
 /**

@@ -9,7 +9,7 @@ import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 /**
  * @Classname WebsocketConfig
