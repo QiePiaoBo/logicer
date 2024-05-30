@@ -117,14 +117,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         // 设置默认用户组
         userDTO.setUserGroup(GroupEnum.USER_GROUP.getGroupId());
         // 若未传入密码，则设置默认密码为123456
-        if (userDTO.getUserPassword()==null || userDTO.getUserPassword().length()==0){
+        if (userDTO.getUserPassword()==null || userDTO.getUserPassword().isEmpty()){
             userDTO.setUserPassword(passwordService.createPassword("123456"));
         }
-        if (userDTO.getUserName()==null || userDTO.getUserName().length()==0){
+        if (userDTO.getUserName()==null || userDTO.getUserName().isEmpty()){
             dataResult = DataResult.getBuilder(Status.INSERT_ERROR.getStatus(), Message.INSERT_ERROR.getMsg()).build();
             return dataResult;
         }
-        if (userDTO.getUserPhone()==null || userDTO.getUserPhone().length()==0){
+        if (userDTO.getUserPhone()==null || userDTO.getUserPhone().isEmpty()){
             dataResult = DataResult.getBuilder(Status.INSERT_ERROR.getStatus(), Message.INSERT_ERROR.getMsg()).build();
             return dataResult;
         }
