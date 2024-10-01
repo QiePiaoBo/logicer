@@ -71,6 +71,8 @@ public class ServerAction {
         Connection mqConnection = RabbitMQCenter.getMqConnection();
         try {
             Channel channel = mqConnection.createChannel();
+            // 声明交换机
+            channel.exchangeDeclare(LogicerTalkMqConstant.LOGICER_DIRECT_EXCHANGE, "direct");
             // 声明队列
             channel.queueDeclare(LogicerTalkMqConstant.LOGICER_QUEUE_LOGICER, true, false, false, null);
             channel.queueDeclare(LogicerTalkMqConstant.LOGICER_QUEUE_COMMAND, true, false, false, null);

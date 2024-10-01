@@ -22,9 +22,9 @@ app:
 rabbitmq:
   host: 172.26.0.150
   port: 5672
-  virtualHost: logicer
+  virtualHost: LOGICER
   userName: logicer
-  password: 19970413
+  password: LGC@199704
 mybatis:
   mapperScanPackage: com.dylan.logicertalk.dao.mapper
   mapperFileLocation: mapper
