@@ -1,4 +1,4 @@
-package com.dylan.blog.config;
+package com.dylan.framework.config;
 
 import com.aliyun.oss.ClientBuilderConfiguration;
 import com.aliyun.oss.OSS;

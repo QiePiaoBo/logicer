@@ -5,7 +5,7 @@ import com.dylan.blog.entity.Article;
 import com.dylan.blog.dto.ArticleDto;
 import com.dylan.blog.service.ArticleFileService;
 import com.dylan.blog.service.ArticleService;
-import com.dylan.file.filesdk.QiNiuSdk;
+import com.dylan.framework.utils.QiNiuUtil;
 import com.dylan.framework.model.info.Message;
 import com.dylan.framework.model.info.Status;
 import com.dylan.framework.model.result.DataResult;
@@ -49,7 +49,7 @@ public class ArticleFileServiceImpl implements ArticleFileService {
     String bucketName;
 
     /**
-     * 上传文件 布尔值控制是否上传至七牛云
+     * 上传文件
      * @param articleDto
      * @param uploadWhere
      * @return
@@ -99,7 +99,7 @@ public class ArticleFileServiceImpl implements ArticleFileService {
     public Response upload2QiNiu(File file){
         Response response = null;
         try {
-            response = QiNiuSdk.uploadToQiniu(file, accessKey, secretKey, bucketName);
+            response = QiNiuUtil.uploadToQiniu(file, accessKey, secretKey, bucketName);
         }catch (QiniuException e){
             e.printStackTrace();
         }

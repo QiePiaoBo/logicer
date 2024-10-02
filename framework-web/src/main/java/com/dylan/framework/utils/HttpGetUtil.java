@@ -1,4 +1,4 @@
-package com.dylan.framework.wordsdk;
+package com.dylan.framework.utils;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -20,7 +20,7 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Map;
 
-class HttpGet {
+class HttpGetUtil {
     protected static final int SOCKET_TIMEOUT = 10000; // 10S
     protected static final String GET = "GET";
 

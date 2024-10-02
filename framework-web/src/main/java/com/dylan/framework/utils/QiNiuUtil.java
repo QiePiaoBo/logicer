@@ -1,4 +1,4 @@
-package com.dylan.file.filesdk;
+package com.dylan.framework.utils;
 
 import com.qiniu.common.QiniuException;
 import com.qiniu.http.Response;
@@ -22,7 +22,7 @@ import java.util.Objects;
  * @Description :
  * @Function :
  */
-public class QiNiuSdk {
+public class QiNiuUtil {
     private static final long expireSeconds = 3600;
 
     /**

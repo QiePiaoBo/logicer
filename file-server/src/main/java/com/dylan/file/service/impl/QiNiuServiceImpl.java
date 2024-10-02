@@ -6,7 +6,7 @@ import com.dylan.file.model.FileStorageModel;
 import com.dylan.file.service.FileStorageService;
 import com.dylan.file.service.QiNiuService;
 import com.dylan.file.transfer.FileStorageTransfer;
-import com.dylan.file.filesdk.QiNiuSdk;
+import com.dylan.framework.utils.QiNiuUtil;
 import com.dylan.framework.constant.FileConstant;
 import com.dylan.framework.model.exception.MyException;
 import com.dylan.framework.model.info.Message;
@@ -77,7 +77,7 @@ public class QiNiuServiceImpl implements QiNiuService {
             fileName = multipartFile.getOriginalFilename();
             file = FileUtils.multi2File(multipartFile);
             if (Objects.nonNull(file)){
-                response = QiNiuSdk.uploadToQiniu(file, accessKey, secretKey, bucketName);
+                response = QiNiuUtil.uploadToQiniu(file, accessKey, secretKey, bucketName);
                 // 上传之后将临时文件删掉
                 if (file.exists()){
                     boolean deleted = file.delete();
@@ -119,6 +119,6 @@ public class QiNiuServiceImpl implements QiNiuService {
 
     @Override
     public List<FileInfo> queryFileList() {
-        return QiNiuSdk.queryFileList(bucketName, "", accessKey, secretKey, "");
+        return QiNiuUtil.queryFileList(bucketName, "", accessKey, secretKey, "");
     }
 }

@@ -34,23 +34,6 @@
             <groupId>com.dylan</groupId>
             <artifactId>framework-web</artifactId>
         </dependency>
-        <!--  aliyun oss-->
-        <dependency>
-            <groupId>com.aliyun.oss</groupId>
-            <artifactId>aliyun-sdk-oss</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.activation</groupId>
-            <artifactId>activation</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.jaxb</groupId>
-            <artifactId>jaxb-runtime</artifactId>
-        </dependency>
         <!--        springboot依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -1,4 +1,4 @@
-package com.dylan.framework.wordsdk;
+package com.dylan.framework.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,7 +15,7 @@ import java.security.NoSuchAlgorithmException;
  * @author wangjingtao
  * 
  */
-public class MD5 {
+public class MD5Util {
     // 首先初始化一个字符数组，用来存放每个16进制字符
     private static final char[] hexDigits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd',
             'e', 'f' };
