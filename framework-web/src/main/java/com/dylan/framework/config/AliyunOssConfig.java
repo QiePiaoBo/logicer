@@ -26,7 +26,7 @@ public class AliyunOssConfig {
     @Lazy
     @Bean("ossClientBeijing")
     public OSS ossClientBeijing() throws ClientException {
-        String endpoint = "oss-cn-beijing.aliyuncs.com";
+        String endpoint = "https://oss-cn-beijing.aliyuncs.com";
         // 从环境变量中获取访问凭证。运行本代码示例之前，请先配置环境变量。
         DefaultCredentialProvider credentialsProvider = CredentialsProviderFactory.newDefaultCredentialProvider(alibabaCloudAccessKeyId, alibabaCloudAccessKeySecret);
 
@@ -50,7 +50,7 @@ public class AliyunOssConfig {
         // 设置是否开启二级域名的访问方式，默认不开启。
         // conf.setSLDEnabled(true);
         // 设置连接OSS所使用的协议（HTTP或HTTPS），默认为HTTP。
-        conf.setProtocol(Protocol.HTTP);
+        conf.setProtocol(Protocol.HTTPS);
         // 设置用户代理，指HTTP的User-Agent头，默认为aliyun-sdk-java。
         // conf.setUserAgent("aliyun-sdk-java");
         // 设置代理服务器IP，请将"<yourProxyHost>"替换为代理服务器的IP地址（如"196.128.xxx.xxx"）。
@@ -60,7 +60,7 @@ public class AliyunOssConfig {
         // 设置代理服务器验证的密码，请将"<yourProxyPassword>"替换为该用户的验证密码。
         // conf.setProxyPassword("<yourProxyPassword>");
         // 设置是否开启HTTP重定向，默认开启。
-        // conf.setRedirectEnable(true);
+         conf.setRedirectEnable(true);
         // 设置是否开启SSL证书校验，默认开启。
         // conf.setVerifySSLEnable(true);
 
