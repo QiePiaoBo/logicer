@@ -1,5 +1,7 @@
 package com.dylan.blog;
 
+import com.dylan.file.entity.FileStorage;
+import com.dylan.file.service.FileStorageService;
 import com.dylan.framework.file.service.FileUploadService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +21,8 @@ public class FileUploadTest {
 
     @Resource
     private FileUploadService fileUploadService;
+    @Resource
+    private FileStorageService fileStorageService;
 
 
     @Test
@@ -32,6 +36,21 @@ public class FileUploadTest {
                 file.getName(), "text/plain", fileInputStream);
         String upload2OSS = fileUploadService.upload2OSS(multipartFile);
         log.info("res: {}", upload2OSS);
+    }
+
+    @Test
+    public void testUploadAndSave() throws IOException {
+        File file = new File("C:\\Users\\Dylan\\Desktop\\TestOSSUpload.md"); // 修正文件路径
+
+
+        FileInputStream fileInputStream = new FileInputStream(file);
+
+        // 创建MockMultipartFile，三个参数分别是：文件名称、文件原始名称、文件内容类型（可以为null）和文件的字节流
+        MultipartFile multipartFile = new MockMultipartFile(file.getName(),
+                file.getName(), "text/plain", fileInputStream);
+        String fileOssName = fileUploadService.upload2OSS(multipartFile);
+        FileStorage fileStorage  = fileStorageService.insertByOSSFileName(fileOssName);
+        log.info("res: {}", fileStorage);
     }
 
 
