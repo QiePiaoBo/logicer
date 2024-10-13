@@ -5,6 +5,7 @@ import com.dylan.blog.vo.ArticleVO;
 import com.dylan.framework.model.result.DataResult;
 import com.dylan.framework.model.result.HttpResult;
 //import com.dylan.licence.config.HomeDataLoader;
+import com.dylan.licence.config.HomeDataLoader;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +25,8 @@ import java.util.*;
 @RequestMapping("logicer")
 public class LogicerController {
 
-//    @Resource
-//    private HomeDataLoader homeDataLoader;
+    @Resource
+    private HomeDataLoader homeDataLoader;
 
     @DubboReference(version = "1.0.0")
     private ArticleService articleService;
@@ -34,15 +35,15 @@ public class LogicerController {
      * 分页获取用户组
      * @return
      */
-//    @GetMapping("get-home-data")
-//    public HttpResult getPagedGroup() {
-//        Map<String, Object> homeDataMap = new HashMap<>();
-//        List<ArticleVO> articleVOS = articleService.getArticleList();
-//        String defaultTitle = "LOGICER";
-//        homeDataMap.put("title", Objects.isNull(homeDataLoader.getTitle()) ? defaultTitle : homeDataLoader.getTitle());
-//        homeDataMap.put("articles", articleVOS);
-//        return DataResult.success().data(homeDataMap).build();
-//    }
+    @GetMapping("get-home-data")
+    public HttpResult getPagedGroup() {
+        Map<String, Object> homeDataMap = new HashMap<>();
+        List<ArticleVO> articleVOS = articleService.getArticleList();
+        String defaultTitle = "LOGICER";
+        homeDataMap.put("title", Objects.isNull(homeDataLoader.getTitle()) ? defaultTitle : homeDataLoader.getTitle());
+        homeDataMap.put("articles", articleVOS);
+        return DataResult.success().data(homeDataMap).build();
+    }
 
     /**
      * 根据入参获取对应长度和对应最大值的数组并以字符串的形式返回
