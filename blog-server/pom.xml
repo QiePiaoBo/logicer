@@ -15,8 +15,6 @@
         <application.name>${project.name}</application.name>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <ALIBABA_CLOUD_ACCESS_KEY_ID>LTAI5tRaUgJdPipySMQJvRBV</ALIBABA_CLOUD_ACCESS_KEY_ID>
-        <ALIBABA_CLOUD_ACCESS_KEY_SECRET>IoOWOOeryJVTinSLlvkRcZ9wP0HZef</ALIBABA_CLOUD_ACCESS_KEY_SECRET>
     </properties>
     <dependencies>
         <dependency>
