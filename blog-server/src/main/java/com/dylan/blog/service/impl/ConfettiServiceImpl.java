@@ -72,7 +72,7 @@ public class ConfettiServiceImpl implements ConfettiService {
      * @return
      */
     @Override
-    @Cacheable(key = "#queryModel != null ? #queryModel.getCacheKey():T(com.dylan.blog.config.BlogConstants).CACHE_REDIS_GET_CONFETTI_FOR_USER", unless = "#result == null")
+    @Cacheable(key = "#queryModel != null ? #queryModel.getCacheKey():T(com.dylan.framework.model.constants.BlogConstants).CACHE_REDIS_GET_CONFETTI_FOR_USER", unless = "#result == null")
     public HttpResult getConfettiForUser(ConfettiQueryModel queryModel) {
         if (!queryModel.isValid()){
             return DataResult.fail().data("Error param: " + queryModel).build();

@@ -18,10 +18,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.dylan</groupId>
-            <artifactId>logicer-base</artifactId>
-        </dependency>
         <!--    guava   -->
         <dependency>
             <groupId>com.google.guava</groupId>

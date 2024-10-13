@@ -1,4 +1,4 @@
-package com.dylan.blog.config;
+package com.dylan.framework.model.constants;
 
 /**
  * @author Dylan
@@ -6,10 +6,6 @@ package com.dylan.blog.config;
  * @Date : 2022/12/24 - 12:32
  */
 public class BlogConstants {
-
-    public static final String WINDOWS_FILE_DIR = "E:\\Cache\\storage\\logicer\\";
-
-    public static final String LINUX_FILE_DIR = "/data/storage/logicer/";
 
     public static final String CACHE_REDIS_GET_ARTICLE_LIST = "ARTICLE_SERVICE#GET_ARTICLE_LIST";
 

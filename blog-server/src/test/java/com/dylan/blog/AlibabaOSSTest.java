@@ -15,7 +15,7 @@ import java.util.Date;
 
 @Slf4j
 @SpringBootTest
-public class AlibabaTest {
+public class AlibabaOSSTest {
 
     @Value("${alibaba.alibaba_cloud_access_key_id}")
     private String alibabaCloudAccessKeyId;
@@ -45,7 +45,7 @@ public class AlibabaTest {
         try {
             File file2Upload = new File("C:\\Users\\Dylan\\Desktop\\TestOSSUpload.md"); // 修正文件路径
             // 3. 上传文件流到OSS
-            PutObjectResult putObjectResult = ossClientBeijing.putObject("test-bucket-from-code", "TestOSSUpload.md", new FileInputStream(file2Upload));
+            PutObjectResult putObjectResult = ossClientBeijing.putObject("test-bucket-from-code", "/test/TestOSSUpload.md", new FileInputStream(file2Upload));
             log.info("res: {}", putObjectResult);
 
         }catch (OSSException | FileNotFoundException oe) {
@@ -54,12 +54,12 @@ public class AlibabaTest {
     }
 
     @Test
-    public void testGeneratePresignedUrl() {
+    public void testGeneratePreSignedUrl() {
         try {
             // 设置签名URL过期时间，单位为毫秒。本示例以设置过期时间为1小时为例。
             Date expiration = new Date(new Date().getTime() + 180 * 1000L);
             // 生成以GET方法访问的签名URL，访客可以直接通过浏览器访问相关内容。
-            URL url = ossClientBeijing.generatePresignedUrl("test-bucket-from-code", "TestOSSUpload.md", expiration);
+            URL url = ossClientBeijing.generatePresignedUrl("test-bucket-from-code", "/test/TestOSSUpload.md", expiration);
             log.info("Url: {}", url);
         }catch (OSSException oe) {
             log.error("oe message: {}", oe.getMessage(), oe);

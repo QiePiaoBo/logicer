@@ -58,11 +58,11 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
      * @return
      */
     @Override
-    @Cacheable(key = "#article != null ? #article.getCacheKey():T(com.dylan.blog.config.BlogConstants).CACHE_REDIS_QUERY_RIGHT", unless = "#result == null")
+    @Cacheable(key = "#article != null ? #article.getCacheKey():T(com.dylan.framework.model.constants.BlogConstants).CACHE_REDIS_QUERY_RIGHT", unless = "#result == null")
     public DataResult queryRight(Article article) {
         DataResult dataResult;
         article.setIsLock(0);
-        article.setIsDel(0);
+        article.setDelFlag(0);
         List<Article> list = articleMapper.queryAll(article);
         if (list.size() > 0) {
             dataResult = DataResult.getBuilder().data(list).build();
@@ -77,10 +77,10 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
      * @return
      */
     @Override
-    @Cacheable(key = "T(com.dylan.blog.config.BlogConstants).CACHE_REDIS_GET_ARTICLE_LIST", unless = "#result == null")
+    @Cacheable(key = "T(com.dylan.framework.model.constants.BlogConstants).CACHE_REDIS_GET_ARTICLE_LIST", unless = "#result == null")
     public List<ArticleVO> getArticleList() {
         Article article = new Article();
-        article.setIsDel(0);
+        article.setDelFlag(0);
         article.setIsLock(0);
         List<Article> list = articleMapper.queryAll(article);
         return Safes.of(list).stream().map(ArticleConverter::getArticleVO).collect(Collectors.toList());
@@ -176,7 +176,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     public DataResult deleteById(Integer id) {
         Article article = articleMapper.queryById(id);
         if (licService.getUser().getId().equals(article.getUserId()) || licService.getUser().getUserGroup() < 1){
-            article.setIsDel(1);
+            article.setDelFlag(1);
             int delNum = articleMapper.update(article, new UpdateWrapper<Article>().eq("id", id));
             if (delNum < 1){
                 return DataResult.getBuilder(Status.DELETE_ERROR.getStatus(), Message.DELETE_ERROR.getMsg()).build();

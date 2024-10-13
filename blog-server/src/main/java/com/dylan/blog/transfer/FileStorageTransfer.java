@@ -1,8 +1,9 @@
-package com.dylan.file.transfer;
+package com.dylan.blog.transfer;
 
 import com.dylan.file.entity.FileStorage;
 import com.dylan.file.model.FileStorageModel;
 import com.dylan.framework.constant.FileConstant;
+import com.dylan.framework.model.constants.FileUploadConstants;
 import com.dylan.framework.model.dto.QiNiuFileInfo;
 import com.dylan.framework.utils.QiNiuTransfer;
 import com.dylan.framework.utils.Safes;
@@ -88,4 +89,39 @@ public class FileStorageTransfer {
     }
 
 
+    /**
+     * 根据成功上传到阿里云的文件名构建实体信息
+     * @param ossFileName
+     * @return
+     */
+    public static FileStorageModel getModelFromOSSFileName(String ossFileName) {
+
+        FileStorageModel result = new FileStorageModel();
+        result.setBucket(FileUploadConstants.OSS_BUCKET_NAME_LOGICER);
+        result.setFileName(ossFileName);
+        result.setFileUri(ossFileName);
+        result.setFileSize(0L);
+        result.setHash("");
+        result.setType(1);
+        result.setUploadInfo(FileUploadConstants.OSS_BUCKET_NAME_LOGICER + "&" + ossFileName);
+        return result;
+    }
+
+    /**
+     * 根据上传到服务器的文件全路径构建实体信息
+     * @param serverFilePath
+     * @return
+     */
+    public static FileStorageModel getModelFromServerFilePath(String serverFilePath) {
+
+        FileStorageModel result = new FileStorageModel();
+        result.setBucket(FileUploadConstants.OSS_BUCKET_NAME_LOGICER);
+        result.setFileName(serverFilePath);
+        result.setFileUri(serverFilePath);
+        result.setFileSize(0L);
+        result.setHash("");
+        result.setType(2);
+        result.setUploadInfo(serverFilePath);
+        return result;
+    }
 }

@@ -1,4 +1,4 @@
-package com.dylan.file.mapper;
+package com.dylan.blog.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.dylan.file.entity.FileStorage;

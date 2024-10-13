@@ -11,8 +11,6 @@
   * chat-server
     * netty服务聊天客户端
   * file-api
-  * file-server
-    * 文件服务
   * licence-api
   * licence-server
     * 权限认证服务

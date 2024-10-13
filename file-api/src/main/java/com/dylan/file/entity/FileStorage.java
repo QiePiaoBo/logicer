@@ -5,12 +5,12 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
+ * 文件对象存储信息
  * @Classname FileUpload
  * @Description FileUpload
  * @Date 9/19/2022 6:40 PM
  */
 public class FileStorage implements Serializable {
-
 
     private Integer id;
 

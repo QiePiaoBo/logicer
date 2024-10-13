@@ -34,7 +34,7 @@ public class Article implements Serializable {
     /**
      * 文章路径
      */
-    private String filePath;
+    private Integer fileId;
     /**
      * 作者id
      */
@@ -46,7 +46,7 @@ public class Article implements Serializable {
     /**
      * 是否禁止访问(管理员)
      */
-    private Integer isDel;
+    private Integer delFlag;
     /**
      * 是否进行展示(作者)
      */
@@ -92,12 +92,12 @@ public class Article implements Serializable {
         this.fileType = fileType;
     }
 
-    public String getFilePath() {
-        return filePath;
+    public Integer getFileId() {
+        return fileId;
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public void setFileId(Integer fileId) {
+        this.fileId = fileId;
     }
 
     public Integer getUserId() {
@@ -116,12 +116,12 @@ public class Article implements Serializable {
         this.createTime = createTime;
     }
 
-    public Integer getIsDel() {
-        return isDel;
+    public Integer getDelFlag() {
+        return delFlag;
     }
 
-    public void setIsDel(Integer isDel) {
-        this.isDel = isDel;
+    public void setDelFlag(Integer delFlag) {
+        this.delFlag = delFlag;
     }
 
     public Integer getIsLock() {
@@ -149,8 +149,8 @@ public class Article implements Serializable {
         if (fileType != null) {
             sb.append(fileType).append("_");
         }
-        if (filePath != null) {
-            sb.append(filePath).append("_");
+        if (fileId != null) {
+            sb.append(fileId).append("_");
         }
         if (userId != null) {
             sb.append(userId).append("_");
@@ -179,13 +179,13 @@ public class Article implements Serializable {
                 .append(", \"fileType\":")
                 .append(fileType)
                 .append(", \"filePath\":")
-                .append(filePath)
+                .append(fileId)
                 .append(", \"userId\":")
                 .append(userId)
                 .append(", \"createTime\":")
                 .append(createTime)
                 .append(", \"isDel\":")
-                .append(isDel)
+                .append(delFlag)
                 .append(", \"isLock\":")
                 .append(isLock)
                 .append('}');

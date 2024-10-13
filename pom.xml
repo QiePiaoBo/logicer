@@ -14,7 +14,6 @@
         <module>framework-web</module>
         <module>framework-model</module>
         <module>file-api</module>
-        <module>file-server</module>
         <module>blog-api</module>
         <module>blog-server</module>
         <module>chat-api</module>
@@ -141,11 +140,6 @@
             <dependency>
                 <groupId>com.dylan</groupId>
                 <artifactId>file-api</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.dylan</groupId>
-                <artifactId>file-server</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
