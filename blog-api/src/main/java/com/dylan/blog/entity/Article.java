@@ -36,6 +36,10 @@ public class Article implements Serializable {
      */
     private Integer fileId;
     /**
+     * 文章路径
+     */
+    private String filePath;
+    /**
      * 作者id
      */
     private Integer userId;
@@ -51,6 +55,14 @@ public class Article implements Serializable {
      * 是否进行展示(作者)
      */
     private Integer isLock;
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
 
     public Integer getId() {
         return id;

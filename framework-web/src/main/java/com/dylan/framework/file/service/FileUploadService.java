@@ -13,6 +13,7 @@ import com.dylan.logicer.base.logger.MyLoggerFactory;
 import com.qiniu.http.Response;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,6 +26,7 @@ import java.util.Objects;
 
 
 @Service
+@ConditionalOnBean(name = "ossClientBeijing")
 public class FileUploadService {
 
     private static final MyLogger log = MyLoggerFactory.getLogger(FileUploadService.class);

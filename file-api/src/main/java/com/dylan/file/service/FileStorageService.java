@@ -15,6 +15,12 @@ import java.util.List;
 public interface FileStorageService {
 
     /**
+     * 根据id查找文件保存信息
+     * @param fileStorageId
+     * @return
+     */
+    FileStorage selectById(Integer fileStorageId);
+    /**
      * 插入
      * @param model
      * @return
@@ -48,4 +54,11 @@ public interface FileStorageService {
      * @return
      */
     FileStorage insertByOSFilePath(String serverFilePath);
+
+    /**
+     * 根据文件保存id查找对应的url
+     * @param fileId
+     * @return
+     */
+    String selectFileUrlById(Integer fileId);
 }

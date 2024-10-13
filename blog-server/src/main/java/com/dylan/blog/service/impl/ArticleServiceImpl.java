@@ -8,6 +8,9 @@ import com.dylan.blog.entity.Article;
 import com.dylan.blog.mapper.ArticleMapper;
 import com.dylan.blog.service.ArticleService;
 import com.dylan.blog.vo.ArticleVO;
+import com.dylan.file.entity.FileStorage;
+import com.dylan.file.service.FileStorageService;
+import com.dylan.framework.file.service.FileUploadService;
 import com.dylan.framework.model.info.Message;
 import com.dylan.framework.model.info.Status;
 import com.dylan.framework.model.result.DataResult;
@@ -47,6 +50,9 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
 
     @Resource
     private CacheUtil cacheUtil;
+
+    @Resource
+    private FileStorageService fileStorageService;
 
     private static final MyLogger logger = MyLoggerFactory.getLogger(ArticleServiceImpl.class);
 
@@ -94,7 +100,11 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
      */
     @Override
     public Article queryById(Integer id) {
-        return this.articleMapper.queryById(id);
+        Article article = this.articleMapper.queryById(id);
+        Integer fileId = article.getFileId();
+        String fileUrl = fileStorageService.selectFileUrlById(fileId);
+        article.setFilePath(fileUrl);
+        return article;
     }
 
 

@@ -81,11 +81,30 @@
     </select>
 
     <insert id="saveSelective" parameterType="com.dylan.blog.entity.Article" useGeneratedKeys="true" keyProperty="id">
-        insert into
-            `article`(title, sub_title, description, file_type,
-                      file_path, user_id, create_time, is_lock)
+        insert into `article`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">title,</if>
+            <if test="subTitle != null">sub_title,</if>
+            <if test="description != null">description,</if>
+            <if test="fileType != null">file_type,</if>
+            <if test="fileId != null">file_id,</if>
+            <if test="filePath != null">file_path,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="isLock != null">is_lock,</if>
+        </trim>
         values
-            (#{title}, #{subTitle}, #{description}, #{fileType}, #{filePath}, #{userId}, #{createTime}, #{isLock})
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">#{title},</if>
+            <if test="subTitle != null">#{subTitle},</if>
+            <if test="description != null">#{description},</if>
+            <if test="fileType != null">#{fileType},</if>
+            <if test="fileId != null">#{fileId},</if>
+            <if test="filePath != null">#{filePath},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="isLock != null">#{isLock},</if>
+        </trim>
     </insert>
 
 

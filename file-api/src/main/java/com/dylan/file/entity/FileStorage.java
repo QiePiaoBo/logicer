@@ -1,6 +1,10 @@
 package com.dylan.file.entity;
 
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import org.springframework.data.annotation.Id;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -12,6 +16,7 @@ import java.sql.Timestamp;
  */
 public class FileStorage implements Serializable {
 
+    @TableId(type = IdType.AUTO)
     private Integer id;
 
     private Integer type;

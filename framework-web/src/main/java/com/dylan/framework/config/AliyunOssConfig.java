@@ -8,11 +8,13 @@ import com.aliyun.oss.common.auth.DefaultCredentialProvider;
 import com.aliyun.oss.common.comm.Protocol;
 import com.aliyuncs.exceptions.ClientException;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 
 @Configuration
+@ConditionalOnProperty("alibaba.alibaba_cloud_access_key_id")
 public class AliyunOssConfig {
 
     @Value("${alibaba.alibaba_cloud_access_key_id}")

@@ -1,6 +1,5 @@
 package com.dylan.blog.service.impl;
 
-import com.aliyun.oss.OSS;
 import com.dylan.blog.dto.ArticleDto;
 import com.dylan.blog.entity.Article;
 import com.dylan.blog.service.ArticleFileService;
@@ -126,6 +125,8 @@ public class ArticleFileServiceImpl implements ArticleFileService {
             // 设置作者id为上传者的id
             article.setUserId(currentUser.getId());
             // 设置真实文件路径
+            article.setFilePath("FILE_UPLOAD_URL://" + fileId);
+            // 设置文件上传id
             article.setFileId(fileId);
             // 设置文章是否显示
             article.setIsLock(articleDto.getIsLock() != null ? articleDto.getIsLock() : 0);
