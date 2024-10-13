@@ -14,13 +14,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 
 @Configuration
-@ConditionalOnProperty("alibaba.alibaba_cloud_access_key_id")
+@ConditionalOnProperty("alibaba.alibaba_access_key_id")
 public class AliyunOssConfig {
 
-    @Value("${alibaba.alibaba_cloud_access_key_id}")
+    @Value("${alibaba.alibaba_access_key_id}")
     private String alibabaCloudAccessKeyId;
 
-    @Value("${alibaba.alibaba_cloud_access_key_secret}")
+    @Value("${alibaba.alibaba_access_key_secret}")
     private String alibabaCloudAccessKeySecret;
 
     @Lazy

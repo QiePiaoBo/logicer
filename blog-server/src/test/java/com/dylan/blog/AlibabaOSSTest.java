@@ -17,10 +17,10 @@ import java.util.Date;
 @SpringBootTest
 public class AlibabaOSSTest {
 
-    @Value("${alibaba.alibaba_cloud_access_key_id}")
+    @Value("${alibaba.alibaba_access_key_id}")
     private String alibabaCloudAccessKeyId;
 
-    @Value("${alibaba.alibaba_cloud_access_key_secret}")
+    @Value("${alibaba.alibaba_access_key_secret}")
     private String alibabaCloudAccessKeySecret;
 
     @Resource
