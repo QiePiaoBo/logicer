@@ -40,5 +40,5 @@ mail:
   username: 15966245906@163.com
   password: IXHFBQLBKYADMPVH
 alibaba:
-  alibaba_access_key_id: ${ALIBABA_ACCESS_KEY_ID}
-  alibaba_access_key_secret: ${ALIBABA_ACCESS_KEY_SECRET}
+  alibaba_access_key_id: ${ALIBABA_CLOUD_ACCESS_KEY_ID}
+  alibaba_access_key_secret: ${ALIBABA_CLOUD_ACCESS_KEY_SECRET}
