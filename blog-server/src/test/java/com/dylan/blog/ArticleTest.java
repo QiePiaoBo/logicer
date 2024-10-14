@@ -56,5 +56,11 @@ public class ArticleTest {
         logger.info("res: {}", list);
     }
 
+    @Test
+    public void testSelectOne() {
+        Article article = articleService.queryById(2);
+        logger.info("res: {}", article);
+    }
+
 
 }

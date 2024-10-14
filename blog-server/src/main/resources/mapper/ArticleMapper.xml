@@ -7,8 +7,9 @@
         <result property="title" column="title" jdbcType="VARCHAR"/>
         <result property="subTitle" column="sub_title" jdbcType="VARCHAR"/>
         <result property="description" column="description" jdbcType="VARCHAR"/>
-        <result property="fileType" column="file_type" jdbcType="VARCHAR"/>
+        <result property="fileType" column="file_type" />
         <result property="filePath" column="file_path" jdbcType="VARCHAR"/>
+        <result property="fileId" column="file_id" />
         <result property="userId" column="user_id" jdbcType="INTEGER"/>
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
         <result property="delFlag" column="del_flag" />
