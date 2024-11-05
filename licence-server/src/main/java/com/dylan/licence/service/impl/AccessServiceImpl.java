@@ -16,8 +16,9 @@ import com.dylan.licence.service.AccessService;
 import com.dylan.licence.transformer.AccessTransformer;
 import com.dylan.logicer.base.logger.MyLogger;
 import com.dylan.logicer.base.logger.MyLoggerFactory;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -31,14 +32,14 @@ import java.util.stream.Collectors;
 public class AccessServiceImpl implements AccessService {
 
     @Resource
-    private AccessMapper mapper;
+    private AccessMapper accessMapper;
 
     private static final MyLogger logger = MyLoggerFactory.getLogger(AccessServiceImpl.class);
 
     @Override
     public HttpResult getPagedAccess(MyPage myPage) {
         myPage.checkValid();
-        List<Access> accesses = mapper.selectAccessList(myPage);
+        List<Access> accesses = accessMapper.selectAccessList(myPage);
 
         List<AccessVO> accessVOS = Safes
                 .of(accesses)
@@ -51,7 +52,7 @@ public class AccessServiceImpl implements AccessService {
                 .page(myPage.getPageNo())
                 .size(myPage.getPageSize())
                 .data(accessVOS)
-                .total(mapper.selectAccessTotal())
+                .total(accessMapper.selectAccessTotal())
                 .build();
     }
 
@@ -67,15 +68,15 @@ public class AccessServiceImpl implements AccessService {
             throw new MyException("Error, access code must be not null");
         }
         QueryWrapper<Access> query = Wrappers.query(new Access()).eq("access_code", accessDTO.getAccessCode());
-        if (mapper.selectCount(query) > 0) {
+        if (accessMapper.selectCount(query) > 0) {
             throw new MyException("Duplicate error, record already exists.");
         }
         Access access = AccessTransformer.accessDTO2Access(accessDTO);
-        int inserted = mapper.insert(access);
+        int inserted = accessMapper.insert(access);
         if (inserted <= 0) {
             logger.error("Error insert access: {}", access);
         }
-        Access returnAccess = mapper
+        Access returnAccess = accessMapper
                 .selectOne(query.eq("access_code", accessDTO.getAccessCode()));
         return DataResult.success().data(AccessTransformer.access2AccessVO(returnAccess)).build();
     }
@@ -85,7 +86,7 @@ public class AccessServiceImpl implements AccessService {
         if (Objects.isNull(id)) {
             throw new MyException("Error, id in getById must not be null.");
         }
-        Access access = mapper.selectById(id);
+        Access access = accessMapper.selectById(id);
         return DataResult
                 .success()
                 .data(AccessTransformer.access2AccessVO(access))
@@ -97,8 +98,8 @@ public class AccessServiceImpl implements AccessService {
         if (Objects.isNull(id)) {
             throw new MyException("Error, id in deleteById must not be null.");
         }
-        mapper.logicalDeletionById(id);
-        Access access = mapper.selectById(id);
+        accessMapper.logicalDeletionById(id);
+        Access access = accessMapper.selectById(id);
         return DataResult
                 .success()
                 .data(AccessTransformer.access2AccessVO(access))
@@ -117,7 +118,7 @@ public class AccessServiceImpl implements AccessService {
             throw new MyException("Error, id in updateById must not be null.");
         }
         Access access = AccessTransformer.accessDTO2Access(accessDTO);
-        mapper.updateById(access);
+        accessMapper.updateById(access);
         return DataResult
                 .success()
                 .data(accessDTO)
@@ -132,7 +133,7 @@ public class AccessServiceImpl implements AccessService {
      */
     @Override
     public HttpResult selectAccessListByIds(List<Integer> ids) {
-        List<Access> accesses = mapper.selectAccessListByIds(ids);
+        List<Access> accesses = accessMapper.selectAccessListByIds(ids);
         List<AccessVO> accessVOS = Safes
                 .of(accesses)
                 .stream()

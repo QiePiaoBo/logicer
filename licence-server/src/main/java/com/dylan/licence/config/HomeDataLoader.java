@@ -14,7 +14,7 @@ import java.util.Map;
  */
 @RefreshScope
 @Component
-@ConfigurationProperties(prefix = "logicer.data.home")
+//@ConfigurationProperties(prefix = "logicer.data.home")
 public class HomeDataLoader {
 
     private String title;

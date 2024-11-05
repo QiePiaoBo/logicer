@@ -12,7 +12,7 @@
     <name>blog-server</name>
     <packaging>jar</packaging>
     <properties>
-        <application.name>${name}</application.name>
+        <application.name>${project.name}</application.name>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
@@ -30,6 +30,8 @@
             <groupId>com.dylan</groupId>
             <artifactId>file-api</artifactId>
         </dependency>
+
+
         <dependency>
             <groupId>com.dylan</groupId>
             <artifactId>framework-web</artifactId>
@@ -42,7 +44,7 @@
         <!-- mybatisPlus 核心库 -->
         <dependency>
             <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
         </dependency>
         <!--    mysql   -->
         <dependency>

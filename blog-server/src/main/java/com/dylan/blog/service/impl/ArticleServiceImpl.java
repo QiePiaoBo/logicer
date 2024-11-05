@@ -1,7 +1,6 @@
 package com.dylan.blog.service.impl;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.dylan.blog.converter.ArticleConverter;
@@ -9,16 +8,24 @@ import com.dylan.blog.entity.Article;
 import com.dylan.blog.mapper.ArticleMapper;
 import com.dylan.blog.service.ArticleService;
 import com.dylan.blog.vo.ArticleVO;
+import com.dylan.file.entity.FileStorage;
+import com.dylan.file.service.FileStorageService;
+import com.dylan.framework.file.service.FileUploadService;
 import com.dylan.framework.model.info.Message;
 import com.dylan.framework.model.info.Status;
 import com.dylan.framework.model.result.DataResult;
+import com.dylan.framework.utils.CacheUtil;
 import com.dylan.framework.utils.Safes;
+import com.dylan.logicer.base.logger.MyLogger;
+import com.dylan.logicer.base.logger.MyLoggerFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,13 +39,22 @@ import java.util.stream.Collectors;
 @Service
 @RefreshScope
 @DubboService(version = "1.0.0")
+@CacheConfig(cacheManager = "lgcCacheManager", cacheNames = {"articleService"})
 public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> implements ArticleService {
 
     @Resource
     private ArticleMapper articleMapper;
 
     @Resource
-    LicService licService;
+    private LicService licService;
+
+    @Resource
+    private CacheUtil cacheUtil;
+
+    @Resource
+    private FileStorageService fileStorageService;
+
+    private static final MyLogger logger = MyLoggerFactory.getLogger(ArticleServiceImpl.class);
 
     /**
      * 获取全部符合条件的文章列表
@@ -48,28 +64,12 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
      * @return
      */
     @Override
+    @Cacheable(key = "#article != null ? #article.getCacheKey():T(com.dylan.framework.model.constants.BlogConstants).CACHE_REDIS_QUERY_RIGHT", unless = "#result == null")
     public DataResult queryRight(Article article) {
         DataResult dataResult;
-        QueryWrapper<Article> articleQueryWrapper = new QueryWrapper<>();
-        articleQueryWrapper.eq("is_del", 0);
-        articleQueryWrapper.eq("is_lock", 0);
-        if (null != article.getId()){
-            articleQueryWrapper.eq("id", article.getId());
-        }
-        if (null != article.getTitle()){
-            articleQueryWrapper.like("file_name", article.getTitle());
-        }
-        if (null != article.getSubTitle()){
-            articleQueryWrapper.like("sub_title", article.getSubTitle());
-        }
-        if (null != article.getFileType()){
-            articleQueryWrapper.eq("file_type", article.getFileType());
-        }
-        if (null != article.getUserId()){
-            articleQueryWrapper.eq("user_id", article.getUserId());
-        }
-
-        List<Article> list = articleMapper.selectList(articleQueryWrapper);
+        article.setIsLock(0);
+        article.setDelFlag(0);
+        List<Article> list = articleMapper.queryAll(article);
         if (list.size() > 0) {
             dataResult = DataResult.getBuilder().data(list).build();
             return dataResult;
@@ -83,11 +83,12 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
      * @return
      */
     @Override
+    @Cacheable(key = "T(com.dylan.framework.model.constants.BlogConstants).CACHE_REDIS_GET_ARTICLE_LIST", unless = "#result == null")
     public List<ArticleVO> getArticleList() {
-        QueryWrapper<Article> articleQueryWrapper = new QueryWrapper<>();
-        articleQueryWrapper.eq("is_del", 0);
-        articleQueryWrapper.eq("is_lock", 0);
-        List<Article> list = articleMapper.selectList(articleQueryWrapper);
+        Article article = new Article();
+        article.setDelFlag(0);
+        article.setIsLock(0);
+        List<Article> list = articleMapper.queryAll(article);
         return Safes.of(list).stream().map(ArticleConverter::getArticleVO).collect(Collectors.toList());
     }
 
@@ -99,7 +100,11 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
      */
     @Override
     public Article queryById(Integer id) {
-        return this.articleMapper.queryById(id);
+        Article article = this.articleMapper.queryById(id);
+        Integer fileId = article.getFileId();
+        String fileUrl = fileStorageService.selectFileUrlById(fileId);
+        article.setFilePath(fileUrl);
+        return article;
     }
 
 
@@ -126,11 +131,11 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     public Article insert(Article article) {
         int insert = articleMapper.saveSelective(article);
         if (insert > 0) {
+            cacheUtil.deleteCacheOfArticle();
             return article;
         }
         return null;
     }
-
 
     /**
      * 修改数据
@@ -181,7 +186,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     public DataResult deleteById(Integer id) {
         Article article = articleMapper.queryById(id);
         if (licService.getUser().getId().equals(article.getUserId()) || licService.getUser().getUserGroup() < 1){
-            article.setIsDel(1);
+            article.setDelFlag(1);
             int delNum = articleMapper.update(article, new UpdateWrapper<Article>().eq("id", id));
             if (delNum < 1){
                 return DataResult.getBuilder(Status.DELETE_ERROR.getStatus(), Message.DELETE_ERROR.getMsg()).build();

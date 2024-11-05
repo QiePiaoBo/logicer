@@ -1,6 +1,7 @@
 package com.dylan.licence.entity;
 
 
+
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;

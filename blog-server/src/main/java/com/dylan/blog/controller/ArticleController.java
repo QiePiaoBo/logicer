@@ -6,13 +6,15 @@ import com.dylan.blog.dto.ArticleDto;
 import com.dylan.blog.service.ArticleFileService;
 import com.dylan.blog.service.ArticleService;
 import com.dylan.framework.annos.AdminPermission;
+import com.dylan.framework.model.constants.FileUploadConstants;
 import com.dylan.framework.model.info.Message;
 import com.dylan.framework.model.info.Status;
 import com.dylan.framework.model.result.DataResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * (Article)表控制层
@@ -85,15 +87,15 @@ public class ArticleController {
      */
     @AdminPermission
     @RequestMapping("upload")
-    public DataResult uploadFile(@ModelAttribute ArticleDto articleDto) throws IOException {
-        if (articleDto.getFile()==null){
+    public DataResult uploadFile(@ModelAttribute ArticleDto articleDto) {
+        if (Objects.isNull(articleDto.getFile())){
             return DataResult.getBuilder(Status.FILE_NEED.getStatus(), Message.FILE_NEED.getMsg()).build();
         }
-        DataResult dataResult = null;
-        if (null == articleDto.getSendPlace() || "qiniu".equals(articleDto.getSendPlace())){
-            dataResult = articleFileService.uploadFile(articleDto, "qiniu");
+        DataResult dataResult = DataResult.fail().data("Error uploading").build();
+        if (Objects.isNull(articleDto.getSendPlace()) || FileUploadConstants.FILE_UPLOAD_PLACE_ALIYUN_OSS.equals(articleDto.getSendPlace())){
+            dataResult = articleFileService.uploadFile(articleDto, FileUploadConstants.FILE_UPLOAD_PLACE_ALIYUN_OSS);
         }else {
-            dataResult = articleFileService.uploadFile(articleDto, articleDto.getSendPlace());
+            dataResult = articleFileService.uploadFile(articleDto, FileUploadConstants.FILE_UPLOAD_PLACE_QINIU);
         }
         return dataResult;
     }

@@ -1,9 +1,17 @@
 package com.dylan.framework.utils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -14,8 +22,9 @@ import java.util.Set;
 @Component
 public class RedisUtil {
 
-    @Resource
+    @Autowired
     private RedisTemplate<String, Object> lgcRedisTemplate;
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     public void set(String key, Object value) {
         lgcRedisTemplate.opsForValue().set(key, value);
@@ -23,6 +32,31 @@ public class RedisUtil {
 
     public Object get(String key) {
         return lgcRedisTemplate.opsForValue().get(key);
+    }
+
+    public void setList(String key, Object listValue){
+        try {
+            String str = objectMapper.writeValueAsString(listValue);
+            set(key, str);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public <T> List<T> getList(String key, Class<T> clazz){
+        Object cacheObject = get(key);
+        List<T> list = new ArrayList<>();
+        if (cacheObject instanceof String) {
+            String jsonString = (String) cacheObject;
+            try {
+                JavaType javaType = objectMapper.getTypeFactory().constructParametricType(List.class, clazz);
+                TypeReference<List<T>> typeRef = new TypeReference<List<T>>() {};
+                list = objectMapper.readValue(jsonString, typeRef);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
     }
 
     public void del(String key) {

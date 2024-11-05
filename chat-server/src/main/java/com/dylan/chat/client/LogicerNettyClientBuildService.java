@@ -8,7 +8,7 @@ import com.dylan.logicer.base.logger.MyLoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -47,7 +47,7 @@ public class LogicerNettyClientBuildService {
         nettyClientExecutor.execute(() -> {
             try {
                 if (!logicerNettyClient.isConnecting()){
-                    logicerNettyClient.connect("logicer.top", 8001);
+                    logicerNettyClient.connect("172.26.0.152", 8001);
                 }else {
                     logger.info("Netty Client already connected, userName: {}, talkWith: {}, msgAreaType: {}", userName, talkWith, msgAreaType);
                 }

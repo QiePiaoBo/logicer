@@ -15,8 +15,9 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.io.IOException;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -102,6 +103,12 @@ public class MyWebSocketHandler extends TextWebSocketHandler {
      */
     @Override
     public void afterConnectionEstablished(@NonNull WebSocketSession session) throws Exception {
+        // 从 session 中获取参数
+        Map<String, Object> attributes = session.getAttributes();
+        String curUser = (String) attributes.get("curUser");
+        String aimUser = (String) attributes.get("aimUser");
+        String chatType = (String) attributes.get("chatType");
+        logger.info("curUser " + curUser + " aimUser " + aimUser + " chatType " + chatType);
         // logger.info("UserName is {}", userName);
         WebSocketSession put = WebsocketConstant.WS_SESSION_POOL.put(getWsConversationMapKey(session), session);
         if (Objects.isNull(put)){

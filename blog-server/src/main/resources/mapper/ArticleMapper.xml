@@ -7,12 +7,13 @@
         <result property="title" column="title" jdbcType="VARCHAR"/>
         <result property="subTitle" column="sub_title" jdbcType="VARCHAR"/>
         <result property="description" column="description" jdbcType="VARCHAR"/>
-        <result property="fileType" column="file_type" jdbcType="VARCHAR"/>
+        <result property="fileType" column="file_type" />
         <result property="filePath" column="file_path" jdbcType="VARCHAR"/>
+        <result property="fileId" column="file_id" />
         <result property="userId" column="user_id" jdbcType="INTEGER"/>
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
-        <result property="isDel" column="is_del" jdbcType="VARCHAR"/>
-        <result property="isLock" column="is_lock" jdbcType="VARCHAR"/>
+        <result property="delFlag" column="del_flag" />
+        <result property="isLock" column="is_lock" />
     </resultMap>
 
     <!--查询单个-->
@@ -26,7 +27,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="ArticleMap">
         select
-          id, title, sub_title, description, file_type, file_path, user_id, create_time, is_del, is_lock
+          id, title, sub_title, description, file_type, file_path, user_id, create_time, del_flag, is_lock
         from article
         limit #{offset}, #{limit}
     </select>
@@ -34,7 +35,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="ArticleMap">
         select
-          id, title, sub_title, description, file_type, file_path, user_id, create_time, is_del, is_lock
+          id, title, sub_title, description, file_type, file_id, file_path, user_id, create_time, del_flag, is_lock
         from article
         <where>
             <if test="id != null">
@@ -61,10 +62,10 @@
             <if test="createTime != null">
                 and create_time = #{createTime}
             </if>
-            <if test="isDel != null and isDel != ''">
-                and is_del = #{isDel}
+            <if test="delFlag != null">
+                and del_flag = #{delFlag}
             </if>
-            <if test="isLock != null and isLock != ''">
+            <if test="isLock != null">
                 and is_lock = #{isLock}
             </if>
         </where>
@@ -72,20 +73,39 @@
 
     <!--  查询某用户发布作品的天数  -->
     <select id="queryWithCreateTime" resultType="java.util.Date">
-        select create_time from article where user_id = #{id} and is_del = 0 and is_lock = 0
+        select create_time from article where user_id = #{id} and del_flag = 0 and is_lock = 0
     </select>
 
     <select id="queryArticlesInOneDay" resultMap="ArticleMap">
-        select id, title, sub_title, description, file_type, file_path, user_id, create_time, is_del, is_lock
+        select id, title, sub_title, description, file_type, file_path, user_id, create_time, del_flag, is_lock
          from article where date_format(create_time,'%Y-%m-%d') = #{createTime} and user_id = #{authorId}
     </select>
 
     <insert id="saveSelective" parameterType="com.dylan.blog.entity.Article" useGeneratedKeys="true" keyProperty="id">
-        insert into
-            `article`(title, sub_title, description, file_type,
-                      file_path, user_id, create_time, is_lock)
+        insert into `article`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">title,</if>
+            <if test="subTitle != null">sub_title,</if>
+            <if test="description != null">description,</if>
+            <if test="fileType != null">file_type,</if>
+            <if test="fileId != null">file_id,</if>
+            <if test="filePath != null">file_path,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="isLock != null">is_lock,</if>
+        </trim>
         values
-            (#{title}, #{subTitle}, #{description}, #{fileType}, #{filePath}, #{userId}, #{createTime}, #{isLock})
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">#{title},</if>
+            <if test="subTitle != null">#{subTitle},</if>
+            <if test="description != null">#{description},</if>
+            <if test="fileType != null">#{fileType},</if>
+            <if test="fileId != null">#{fileId},</if>
+            <if test="filePath != null">#{filePath},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="isLock != null">#{isLock},</if>
+        </trim>
     </insert>
 
 

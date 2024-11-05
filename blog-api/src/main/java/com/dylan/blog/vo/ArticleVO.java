@@ -69,4 +69,22 @@ public class ArticleVO implements Serializable {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("{")
+                .append("\"id\":")
+                .append(id)
+                .append(", \"title\":")
+                .append(title)
+                .append(", \"subTitle\":")
+                .append(subTitle)
+                .append(", \"description\":")
+                .append(description)
+                .append(", \"createTime\":")
+                .append(createTime)
+                .append('}');
+        return sb.toString();
+    }
 }

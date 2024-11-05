@@ -9,7 +9,7 @@ import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 /**
  * @Classname WebsocketConfig
@@ -31,7 +31,7 @@ public class WebsocketConfig implements WebSocketConfigurer {
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry webSocketHandlerRegistry) {
         webSocketHandlerRegistry
-                .addHandler(myWebSocketHandler(), "/chat")
+                .addHandler(myWebSocketHandler(), "/chat/{curUser}/{aimUser}/{chatType}")
                 .setAllowedOrigins("*")
                 .addInterceptors(webSocketInterceptor);
     }

@@ -5,7 +5,7 @@ import com.dylan.licence.mapper.RoleAccessMapper;
 import com.dylan.licence.service.AccessService;
 import com.dylan.licence.service.RoleAccessService;
 import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.util.List;
 
 /**

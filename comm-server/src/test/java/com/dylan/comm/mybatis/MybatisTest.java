@@ -1,11 +1,11 @@
 package com.dylan.comm.mybatis;
 
-import com.dylan.comm.action.ConfigAction;
-import com.dylan.comm.comp.CompManager;
-import com.dylan.comm.dao.entity.TalkTeam;
-import com.dylan.comm.dao.entity.User;
-import com.dylan.comm.dao.service.TalkTeamService;
-import com.dylan.comm.dao.service.UserService;
+import com.dylan.commserver.action.ConfigAction;
+import com.dylan.commserver.comp.CompManager;
+import com.dylan.commserver.dao.entity.TalkTeam;
+import com.dylan.commserver.dao.entity.User;
+import com.dylan.commserver.dao.service.TalkTeamService;
+import com.dylan.commserver.dao.service.UserService;
 import com.dylan.logicer.base.logger.MyLogger;
 import com.dylan.logicer.base.logger.MyLoggerFactory;
 import org.junit.Test;

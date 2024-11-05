@@ -12,45 +12,57 @@ import java.util.Date;
 public class Article implements Serializable {
     private static final long serialVersionUID = -66199659751436277L;
     /**
-    * 文章主键
-    */
+     * 文章主键
+     */
     private Integer id;
     /**
-    * 文章名
-    */
+     * 文章名
+     */
     private String title;
     /**
-    * 文章二级标题
-    */
+     * 文章二级标题
+     */
     private String subTitle;
     /**
-    * 文章内容梗概
-    */
+     * 文章内容梗概
+     */
     private String description;
     /**
-    * 文章类型
-    */
+     * 文章类型
+     */
     private String fileType;
     /**
-    * 文章路径
-    */
+     * 文章路径
+     */
+    private Integer fileId;
+    /**
+     * 文章路径
+     */
     private String filePath;
     /**
-    * 作者id
-    */
+     * 作者id
+     */
     private Integer userId;
     /**
-    * 创建时间
-    */
+     * 创建时间
+     */
     private Date createTime;
     /**
-    *  是否禁止访问(管理员)
-    */
-    private Integer isDel;
+     * 是否禁止访问(管理员)
+     */
+    private Integer delFlag;
     /**
-    * 是否进行展示(作者)
-    */
+     * 是否进行展示(作者)
+     */
     private Integer isLock;
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
 
     public Integer getId() {
         return id;
@@ -92,12 +104,12 @@ public class Article implements Serializable {
         this.fileType = fileType;
     }
 
-    public String getFilePath() {
-        return filePath;
+    public Integer getFileId() {
+        return fileId;
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public void setFileId(Integer fileId) {
+        this.fileId = fileId;
     }
 
     public Integer getUserId() {
@@ -116,12 +128,12 @@ public class Article implements Serializable {
         this.createTime = createTime;
     }
 
-    public Integer getIsDel() {
-        return isDel;
+    public Integer getDelFlag() {
+        return delFlag;
     }
 
-    public void setIsDel(Integer isDel) {
-        this.isDel = isDel;
+    public void setDelFlag(Integer delFlag) {
+        this.delFlag = delFlag;
     }
 
     public Integer getIsLock() {
@@ -130,5 +142,65 @@ public class Article implements Serializable {
 
     public void setIsLock(Integer isLock) {
         this.isLock = isLock;
+    }
+
+    public String getCacheKey() {
+        final StringBuilder sb = new StringBuilder("article_cache_key");
+        if (id != null) {
+            sb.append(id).append("_");
+        }
+        if (title != null) {
+            sb.append(title).append("_");
+        }
+        if (subTitle != null) {
+            sb.append(subTitle).append("_");
+        }
+        if (description != null) {
+            sb.append(description).append("_");
+        }
+        if (fileType != null) {
+            sb.append(fileType).append("_");
+        }
+        if (fileId != null) {
+            sb.append(fileId).append("_");
+        }
+        if (userId != null) {
+            sb.append(userId).append("_");
+        }
+        if (createTime != null) {
+            sb.append(createTime).append("_");
+        }
+        sb.append(0).append("_");
+        sb.append(0);
+        return sb.toString();
+
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("{")
+                .append("\"id\":")
+                .append(id)
+                .append(", \"title\":")
+                .append(title)
+                .append(", \"subTitle\":")
+                .append(subTitle)
+                .append(", \"description\":")
+                .append(description)
+                .append(", \"fileType\":")
+                .append(fileType)
+                .append(", \"filePath\":")
+                .append(fileId)
+                .append(", \"userId\":")
+                .append(userId)
+                .append(", \"createTime\":")
+                .append(createTime)
+                .append(", \"isDel\":")
+                .append(delFlag)
+                .append(", \"isLock\":")
+                .append(isLock)
+                .append('}');
+        return sb.toString();
     }
 }

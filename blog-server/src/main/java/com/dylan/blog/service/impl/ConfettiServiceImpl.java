@@ -10,15 +10,18 @@ import com.dylan.blog.service.ConfettiService;
 import com.dylan.blog.vo.ConfettiVO;
 import com.dylan.framework.model.result.DataResult;
 import com.dylan.framework.model.result.HttpResult;
+import com.dylan.framework.utils.CacheUtil;
 import com.dylan.framework.utils.Safes;
 import com.dylan.licence.model.vo.UserVO;
 import com.dylan.licence.service.UserBaseInfoService;
 import com.dylan.logicer.base.logger.MyLogger;
 import com.dylan.logicer.base.logger.MyLoggerFactory;
 import org.apache.dubbo.config.annotation.DubboReference;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -30,12 +33,16 @@ import java.util.stream.Collectors;
  * @Date 6/28/2023 3:27 PM
  */
 @Service
+@CacheConfig(cacheManager = "lgcCacheManager", cacheNames = {"confettiService"})
 public class ConfettiServiceImpl implements ConfettiService {
 
     private static final MyLogger logger = MyLoggerFactory.getLogger(ConfettiServiceImpl.class);
 
     @Resource
     private ConfettiMapper confettiMapper;
+
+    @Resource
+    private CacheUtil cacheUtil;
 
     @DubboReference(version = "1.0.0")
     private UserBaseInfoService userBaseInfoService;
@@ -53,6 +60,7 @@ public class ConfettiServiceImpl implements ConfettiService {
         }
         boolean inserted = confettiMapper.addConfetti(model) > 0;
         if (inserted){
+            cacheUtil.deleteCacheOfConfetti();
             return DataResult.getBuilder().data(ConfettiConverter.getConfettiVO(model)).build();
         }else {
             return DataResult.fail().data("Insert error.").build();
@@ -64,6 +72,7 @@ public class ConfettiServiceImpl implements ConfettiService {
      * @return
      */
     @Override
+    @Cacheable(key = "#queryModel != null ? #queryModel.getCacheKey():T(com.dylan.framework.model.constants.BlogConstants).CACHE_REDIS_GET_CONFETTI_FOR_USER", unless = "#result == null")
     public HttpResult getConfettiForUser(ConfettiQueryModel queryModel) {
         if (!queryModel.isValid()){
             return DataResult.fail().data("Error param: " + queryModel).build();
@@ -117,6 +126,7 @@ public class ConfettiServiceImpl implements ConfettiService {
         }
         Integer changed = confettiMapper.addOrUpdateConfettiBatch(Arrays.asList(c1, c2));
         if (changed > 0){
+            cacheUtil.deleteCacheOfConfetti();
             return DataResult.success().build();
         }else {
             return DataResult.fail().data("Error add or update.").build();

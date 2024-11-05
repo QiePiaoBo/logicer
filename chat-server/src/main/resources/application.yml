@@ -17,11 +17,11 @@ spring:
         max-idle: 10
         min-idle: 0
   rabbitmq:
-    host: logicer.top
+    host: 172.26.0.150
     port: 5672
     username: logicer
-    password: 19970413
-    virtual-host: logicer
+    password: LGC@199704
+    virtual-host: LOGICER
     listener:
       simple:
         acknowledge-mode: none

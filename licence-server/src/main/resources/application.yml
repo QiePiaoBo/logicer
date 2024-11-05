@@ -17,7 +17,7 @@ spring:
         max-idle: 10
         min-idle: 0
   rabbitmq:
-    host: logicer.top
+    host: 172.26.0.150
     port: 5672
     username: logicer
     password: 19970413
@@ -29,6 +29,9 @@ spring:
         max-concurrency: 10
         retry:
           enabled: true
+  elasticsearch:
+    password: LGC@199704
+    username: dylan111
 qiniu:
   accesskey: k48ML3ZoFFcGdxUcXdYXGgoSArc2yJ61xxIyANLk
   secretkey: vlI9BWwW--uqWuNbuQLQL6DHm0Vqd9uWddcHslc_

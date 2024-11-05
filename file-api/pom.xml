@@ -17,15 +17,9 @@
     </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>com.dylan</groupId>
             <artifactId>framework-web</artifactId>
-        </dependency>
-        <!--  七牛  -->
-        <dependency>
-            <groupId>com.qiniu</groupId>
-            <artifactId>qiniu-java-sdk</artifactId>
         </dependency>
     </dependencies>
     <build>

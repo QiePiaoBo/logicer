@@ -1,8 +1,5 @@
 package com.dylan.framework.utils;
 
-
-import org.springframework.util.Base64Utils;
-
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -10,6 +7,7 @@ import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -45,7 +43,7 @@ public class AesUtil {
             byte[] result = cipher.doFinal(byteContent);
 
             //通过Base64转码返回
-            return new String(Base64Utils.encode(result));
+            return new String(Base64.getEncoder().encode(result));
         } catch (Exception ex) {
             Logger.getLogger(AesUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -68,7 +66,7 @@ public class AesUtil {
             cipher.init(Cipher.DECRYPT_MODE, getSecretKey(key));
 
             //执行操作
-            byte[] result = cipher.doFinal(Base64Utils.decode(content.getBytes()));
+            byte[] result = cipher.doFinal(Base64.getDecoder().decode(content.getBytes()));
 
 
             return new String(result, StandardCharsets.UTF_8);
